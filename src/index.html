@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,959 +10,906 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background-color: #1a1a1a;
-        color: #e0e0e0;
-        padding: 20px;
-        min-height: 100vh;
-    }
-    
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 24px;
-        color: #ffffff;
-    }
-    
-    .controls {
-        background-color: #2a2a2a;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .time-input-group {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .time-display {
-        background-color: #3a3a3a;
-        color: #e0e0e0;
-        border: 1px solid #4a4a4a;
-        padding: 6px 15px;
-        border-radius: 4px;
-        font-size: 16px;
-        font-weight: bold;
-        min-width: 80px;
-        text-align: center;
-    }
-    
-    .time-btn {
-        background-color: #4a4a4a;
-        color: #e0e0e0;
-        border: 1px solid #5a5a5a;
-        padding: 6px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 18px;
-        font-weight: bold;
-        transition: background-color 0.2s;
-    }
-    
-    .time-btn:hover {
-        background-color: #5a5a5a;
-    }
-    
-    .time-btn:active {
-        background-color: #3a3a3a;
-    }
-    
-    .live-btn {
-        background-color: #4a4a4a;
-        color: #e0e0e0;
-        border: 1px solid #5a5a5a;
-        padding: 8px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: bold;
-        transition: background-color 0.2s;
-    }
-    
-    .live-btn:hover:not(:disabled) {
-        background-color: #5a5a5a;
-    }
-    
-    .live-btn:disabled {
-        background-color: #2a2a2a;
-        border-color: #3a3a3a;
-        color: #666;
-        cursor: not-allowed;
-    }
-    
-    .tracker-container {
-        background-color: #2a2a2a;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .station {
-        background-color: #404040;
-        padding: 15px;
-        border-radius: 6px;
-        margin-bottom: 2px;
-        position: relative;
-        min-height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .station-name {
-        font-weight: bold;
-        font-size: 16px;
-        z-index: 1;
-    }
-    
-    .track-section {
-        background-color: #333333;
-        position: relative;
-        min-height: 100px;
-        margin-bottom: 2px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .track-line {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background-color: #555555;
-        transform: translateX(-50%);
-    }
-    
-    .train {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 13px;
-        padding: 4px 8px;
-        border-radius: 4px;
-        white-space: nowrap;
-        z-index: 2;
-    }
-    
-    .train.northbound {
-        left: 10%;
-        flex-direction: row;
-    }
-    
-    .train.southbound {
-        right: 10%;
-        flex-direction: row-reverse;
-    }
-    
-    .train-icon {
-        font-size: 20px;
-    }
-    
-    .train-label {
-        display: flex;
-        flex-direction: column;
-        font-size: 11px;
-    }
-    
-    .train-number {
-        font-weight: bold;
-    }
-    
-    .direction-arrow {
-        font-size: 14px;
-    }
-    
-    .status-panel {
-        background-color: #2a2a2a;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .status-panel h2 {
-        font-size: 18px;
-        margin-bottom: 15px;
-        color: #ffffff;
-    }
-    
-    .train-status {
-        background-color: #333333;
-        padding: 12px;
-        border-radius: 6px;
-        margin-bottom: 10px;
-        border-left: 4px solid;
-    }
-    
-    .train-status-header {
-        font-weight: bold;
-        margin-bottom: 6px;
-        font-size: 14px;
-    }
-    
-    .train-status-detail {
-        font-size: 13px;
-        color: #b0b0b0;
-    }
-    
-    @media (max-width: 600px) {
+        
         body {
-            padding: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
         }
         
         h1 {
-            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #ffffff;
         }
         
         .controls {
-            flex-direction: column;
-            align-items: stretch;
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
-        .controls label {
-            justify-content: space-between;
+        .time-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .time-display {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: 1px solid #4a4a4a;
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .time-btn {
+            background-color: #4a4a4a;
+            color: #e0e0e0;
+            border: 1px solid #5a5a5a;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        
+        .time-btn:hover {
+            background-color: #5a5a5a;
+        }
+        
+        .time-btn:active {
+            background-color: #3a3a3a;
+        }
+        
+        .live-btn {
+            background-color: #4a4a4a;
+            color: #e0e0e0;
+            border: 1px solid #5a5a5a;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        
+        .live-btn:hover:not(:disabled) {
+            background-color: #5a5a5a;
+        }
+        
+        .live-btn:disabled {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+            color: #666;
+            cursor: not-allowed;
+        }
+        
+        .tracker-container {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .station {
+            background-color: #404040;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 2px;
+            position: relative;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .station-name {
+            font-weight: bold;
+            font-size: 16px;
+            z-index: 1;
+        }
+        
+        .track-section {
+            background-color: #333333;
+            position: relative;
+            min-height: 100px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .track-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #555555;
+            transform: translateX(-50%);
         }
         
         .train {
-            font-size: 11px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 2;
+        }
+        
+        .train.northbound {
+            left: 10%;
+            flex-direction: row;
+        }
+        
+        .train.southbound {
+            right: 10%;
+            flex-direction: row-reverse;
         }
         
         .train-icon {
-            font-size: 16px;
+            font-size: 20px;
         }
-    }
-</style>
-
+        
+        .train-label {
+            display: flex;
+            flex-direction: column;
+            font-size: 11px;
+        }
+        
+        .train-number {
+            font-weight: bold;
+        }
+        
+        .direction-arrow {
+            font-size: 14px;
+        }
+        
+        .status-panel {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .status-panel h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .train-status {
+            background-color: #333333;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid;
+        }
+        
+        .train-status-header {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        
+        .train-status-detail {
+            font-size: 13px;
+            color: #b0b0b0;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .controls label {
+                justify-content: space-between;
+            }
+            
+            .train {
+                font-size: 11px;
+            }
+            
+            .train-icon {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Severn Valley Live Train Tracker</h1>
-
-<div class="controls">
-    <div class="time-input-group">
-        <button class="time-btn" id="timeDown">◀</button>
-        <div class="time-display" id="timeDisplay">08:00</div>
-        <button class="time-btn" id="timeUp">▶</button>
+    
+    <div class="controls">
+        <div class="time-input-group">
+            <button class="time-btn" id="timeDown">◀</button>
+            <div class="time-display" id="timeDisplay">08:00</div>
+            <button class="time-btn" id="timeUp">▶</button>
+        </div>
+        <button class="live-btn" id="liveBtn" disabled>Live Time</button>
     </div>
-    <button class="live-btn" id="liveBtn" disabled>Live Time</button>
-</div>
+    
+    <div class="tracker-container" id="trackerContainer"></div>
+    
+    <div class="status-panel">
+        <h2>Train Status</h2>
+        <div id="statusContainer"></div>
+    </div>
 
-<div class="tracker-container" id="trackerContainer"></div>
-
-<div class="status-panel">
-    <h2>Train Status</h2>
-    <div id="statusContainer"></div>
-</div>
-
-<script>
-    const timetableData = {
-
-“route”: “Kidderminster - Bridgnorth”,
-“date”: “Saturday 11 October only”,
-“trains”: [
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “09:40”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “time”: “09:58”, “stopsAt”: false },
-{ “station”: “Highley”, “time”: “10:08”, “stopsAt”: false },
-{ “station”: “Arley”, “time”: “10:20”, “stopsAt”: false },
-{ “station”: “Bewdley”, “arrival”: “10:24”, “departure”: “10:27”, “stopsAt”: true },
-{ “station”: “Kidderminster”, “arrival”: “10:40”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel DMU”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “10:45”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “11:07”, “departure”: “11:10”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “11:17”, “departure”: “11:20”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “11:29”, “departure”: “11:32”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “11:44”, “departure”: “11:47”, “stopsAt”: true },
-{ “station”: “Kidderminster”, “arrival”: “12:00”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Steam 75069”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “12:20”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “12:35”, “departure”: “12:38”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “12:45”, “departure”: “12:48”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “12:59”, “departure”: “13:02”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “13:14”, “departure”: “13:17”, “stopsAt”: true },
-{ “station”: “Kidderminster”, “arrival”: “13:30”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “13:00”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “13:22”, “departure”: “13:25”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “13:32”, “departure”: “13:35”, “stopsAt”: true },
-{ “station”: “Arley”, “time”: “13:47”, “stopsAt”: false },
-{ “station”: “Bewdley”, “time”: “14:00”, “stopsAt”: false },
-{ “station”: “Kidderminster”, “arrival”: “14:57”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel DMU”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “13:45”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “14:02”, “departure”: “14:05”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “14:14”, “departure”: “14:17”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “14:27”, “departure”: “14:30”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “14:42”, “departure”: “14:45”, “stopsAt”: true },
-{ “station”: “Kidderminster”, “arrival”: “14:57”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “14:40”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “14:55”, “departure”: “14:58”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “15:07”, “departure”: “15:10”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “15:17”, “departure”: “15:20”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “15:32”, “departure”: “15:35”, “stopsAt”: true },
-{ “station”: “Kidderminster”, “arrival”: “15:55”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Steam 75069”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “15:50”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “16:05”, “departure”: “16:08”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “16:15”, “departure”: “16:18”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “16:29”, “departure”: “16:32”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “16:44”, “departure”: “16:47”, “stopsAt”: true },
-{ “station”: “Kidderminster”, “arrival”: “17:02”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “northbound”,
-“stops”: [
-{ “station”: “Bridgnorth”, “departure”: “18:00”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “time”: “18:18”, “stopsAt”: false },
-{ “station”: “Highley”, “time”: “18:28”, “stopsAt”: false },
-{ “station”: “Arley”, “time”: “18:40”, “stopsAt”: false },
-{ “station”: “Bewdley”, “arrival”: “18:42”, “departure”: “18:45”, “stopsAt”: true },
-{ “station”: “Kidderminster”, “arrival”: “18:57”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “08:15”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “08:27”, “departure”: “08:30”, “stopsAt”: true },
-{ “station”: “Arley”, “time”: “08:45”, “stopsAt”: false },
-{ “station”: “Highley”, “time”: “08:57”, “stopsAt”: false },
-{ “station”: “Hampton Loade”, “time”: “09:05”, “stopsAt”: false },
-{ “station”: “Bridgnorth”, “arrival”: “09:13”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Steam 75069”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “10:15”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “10:27”, “departure”: “10:30”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “10:42”, “departure”: “10:45”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “10:54”, “departure”: “10:57”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “11:07”, “departure”: “11:10”, “stopsAt”: true },
-{ “station”: “Bridgnorth”, “arrival”: “11:25”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “11:00”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “11:12”, “departure”: “11:15”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “11:30”, “departure”: “11:33”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “11:42”, “departure”: “11:45”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “11:55”, “departure”: “11:58”, “stopsAt”: true },
-{ “station”: “Bridgnorth”, “arrival”: “12:13”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel DMU”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “12:30”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “12:42”, “departure”: “12:45”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “13:00”, “departure”: “13:03”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “13:11”, “departure”: “13:14”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “13:22”, “departure”: “13:25”, “stopsAt”: true },
-{ “station”: “Bridgnorth”, “arrival”: “13:40”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “13:52”, “stopsAt”: true },
-{ “station”: “Bewdley”, “time”: “14:05”, “stopsAt”: false },
-{ “station”: “Arley”, “time”: “14:20”, “stopsAt”: false },
-{ “station”: “Highley”, “arrival”: “13:49”, “departure”: “13:52”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “14:02”, “departure”: “14:05”, “stopsAt”: true },
-{ “station”: “Bridgnorth”, “arrival”: “14:20”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Steam 75069”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “14:00”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “14:12”, “departure”: “14:15”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “14:27”, “departure”: “14:30”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “14:39”, “departure”: “14:42”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “14:55”, “departure”: “14:58”, “stopsAt”: true },
-{ “station”: “Bridgnorth”, “arrival”: “15:13”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel DMU”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “15:50”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “16:07”, “departure”: “16:10”, “stopsAt”: true },
-{ “station”: “Arley”, “arrival”: “16:30”, “departure”: “16:33”, “stopsAt”: true },
-{ “station”: “Highley”, “arrival”: “16:41”, “departure”: “16:44”, “stopsAt”: true },
-{ “station”: “Hampton Loade”, “arrival”: “16:52”, “departure”: “16:55”, “stopsAt”: true },
-{ “station”: “Bridgnorth”, “arrival”: “17:10”, “stopsAt”: true }
-]
-},
-{
-“trainNumber”: “Diesel 37248”,
-“direction”: “southbound”,
-“stops”: [
-{ “station”: “Kidderminster”, “departure”: “16:30”, “stopsAt”: true },
-{ “station”: “Bewdley”, “arrival”: “16:44”, “departure”: “16:47”, “stopsAt”: true },
-{ “station”: “Arley”, “time”: “17:02”, “stopsAt”: false },
-{ “station”: “Highley”, “time”: “17:14”, “stopsAt”: false },
-{ “station”: “Hampton Loade”, “time”: “17:22”, “stopsAt”: false },
-{ “station”: “Bridgnorth”, “arrival”: “17:30”, “stopsAt”: true }
-]
-}
-]
+    <script>
+        const timetableData = {
+  "route": "Kidderminster - Bridgnorth",
+  "date": "Saturday 11 October only",
+  "trains": [
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "09:40", "stopsAt": true },
+        { "station": "Hampton Loade", "time": "09:58", "stopsAt": false },
+        { "station": "Highley", "time": "10:08", "stopsAt": false },
+        { "station": "Arley", "time": "10:20", "stopsAt": false },
+        { "station": "Bewdley", "arrival": "10:24", "departure": "10:27", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "10:40", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "10:45", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "11:07", "departure": "11:10", "stopsAt": true },
+        { "station": "Highley", "arrival": "11:17", "departure": "11:20", "stopsAt": true },
+        { "station": "Arley", "arrival": "11:29", "departure": "11:32", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "11:44", "departure": "11:47", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "12:00", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "12:20", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "12:35", "departure": "12:38", "stopsAt": true },
+        { "station": "Highley", "arrival": "12:45", "departure": "12:48", "stopsAt": true },
+        { "station": "Arley", "arrival": "12:59", "departure": "13:02", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "13:14", "departure": "13:17", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "13:30", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "13:00", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "13:22", "departure": "13:25", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:32", "departure": "13:35", "stopsAt": true },
+        { "station": "Arley", "time": "13:47", "stopsAt": false },
+        { "station": "Bewdley", "time": "14:00", "stopsAt": false },
+        { "station": "Kidderminster", "arrival": "14:57", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "13:45", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "14:02", "departure": "14:05", "stopsAt": true },
+        { "station": "Highley", "arrival": "14:14", "departure": "14:17", "stopsAt": true },
+        { "station": "Arley", "arrival": "14:27", "departure": "14:30", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:42", "departure": "14:45", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "14:57", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "14:40", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "14:55", "departure": "14:58", "stopsAt": true },
+        { "station": "Highley", "arrival": "15:07", "departure": "15:10", "stopsAt": true },
+        { "station": "Arley", "arrival": "15:17", "departure": "15:20", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "15:32", "departure": "15:35", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "15:55", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "15:50", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "16:05", "departure": "16:08", "stopsAt": true },
+        { "station": "Highley", "arrival": "16:15", "departure": "16:18", "stopsAt": true },
+        { "station": "Arley", "arrival": "16:29", "departure": "16:32", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "16:44", "departure": "16:47", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "17:02", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "18:00", "stopsAt": true },
+        { "station": "Hampton Loade", "time": "18:18", "stopsAt": false },
+        { "station": "Highley", "time": "18:28", "stopsAt": false },
+        { "station": "Arley", "time": "18:40", "stopsAt": false },
+        { "station": "Bewdley", "arrival": "18:42", "departure": "18:45", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "18:57", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "08:15", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "08:27", "departure": "08:30", "stopsAt": true },
+        { "station": "Arley", "time": "08:45", "stopsAt": false },
+        { "station": "Highley", "time": "08:57", "stopsAt": false },
+        { "station": "Hampton Loade", "time": "09:05", "stopsAt": false },
+        { "station": "Bridgnorth", "arrival": "09:13", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "10:15", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "10:27", "departure": "10:30", "stopsAt": true },
+        { "station": "Arley", "arrival": "10:42", "departure": "10:45", "stopsAt": true },
+        { "station": "Highley", "arrival": "10:54", "departure": "10:57", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "11:07", "departure": "11:10", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "11:25", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "11:00", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "11:12", "departure": "11:15", "stopsAt": true },
+        { "station": "Arley", "arrival": "11:30", "departure": "11:33", "stopsAt": true },
+        { "station": "Highley", "arrival": "11:42", "departure": "11:45", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "11:55", "departure": "11:58", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "12:13", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "12:30", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:42", "departure": "12:45", "stopsAt": true },
+        { "station": "Arley", "arrival": "13:00", "departure": "13:03", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:11", "departure": "13:14", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "13:22", "departure": "13:25", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "13:40", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "13:52", "stopsAt": true },
+        { "station": "Bewdley", "time": "14:05", "stopsAt": false },
+        { "station": "Arley", "time": "14:20", "stopsAt": false },
+        { "station": "Highley", "arrival": "13:49", "departure": "13:52", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "14:02", "departure": "14:05", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "14:20", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "14:00", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:12", "departure": "14:15", "stopsAt": true },
+        { "station": "Arley", "arrival": "14:27", "departure": "14:30", "stopsAt": true },
+        { "station": "Highley", "arrival": "14:39", "departure": "14:42", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "14:55", "departure": "14:58", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "15:13", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "15:50", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "16:07", "departure": "16:10", "stopsAt": true },
+        { "station": "Arley", "arrival": "16:30", "departure": "16:33", "stopsAt": true },
+        { "station": "Highley", "arrival": "16:41", "departure": "16:44", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "16:52", "departure": "16:55", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "17:10", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "16:30", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "16:44", "departure": "16:47", "stopsAt": true },
+        { "station": "Arley", "time": "17:02", "stopsAt": false },
+        { "station": "Highley", "time": "17:14", "stopsAt": false },
+        { "station": "Hampton Loade", "time": "17:22", "stopsAt": false },
+        { "station": "Bridgnorth", "arrival": "17:30", "stopsAt": true }
+      ]
+    }
+  ]
 };
 
-    // Extract stations in order from Kidderminster to Bridgnorth
-    const stations = ['Kidderminster', 'Bewdley', 'Arley', 'Highley', 'Hampton Loade', 'Bridgnorth'];
-    
-    // Assign unique colors to each unique train number dynamically from timetable
-    const trainColors = {};
-    const colorPalette = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fd79a8', '#fdcb6e', '#6c5ce7', '#a29bfe', '#74b9ff'];
-    
-    // Extract unique train numbers from timetable and sort alphabetically
-    const uniqueTrains = [...new Set(timetableData.trains.map(t => t.trainNumber))].sort();
-    
-    // Assign colors based on alphabetical order
-    uniqueTrains.forEach((trainNumber, index) => {
-        trainColors[trainNumber] = colorPalette[index % colorPalette.length];
-    });
-    
-    function getTrainColor(trainNumber) {
-        return trainColors[trainNumber] || '#888888';
-    }
-    
-    function parseTime(timeStr) {
-        const [hours, minutes] = timeStr.split(':').map(Number);
-        return hours * 60 + minutes;
-    }
-    
-    function formatTime(minutes) {
-        const h = Math.floor(minutes / 60);
-        const m = minutes % 60;
-        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-    }
-    
-    function getTrainIcon(trainNumber) {
-        if (trainNumber.includes('Steam')) return '🚂';
-        if (trainNumber.includes('DMU')) return '🚃';
-        return '🚆';
-    }
-    
-    // Manual time state - initialize to current time
-    const now = new Date();
-    let manualTime = now.getHours() * 60 + now.getMinutes();
-    let isLiveMode = true;
-    
-    function updateTimeDisplay() {
-        if (isLiveMode) {
-            const now = new Date();
-            const currentTime = now.getHours() * 60 + now.getMinutes();
-            document.getElementById('timeDisplay').textContent = formatTime(currentTime);
-        } else {
-            document.getElementById('timeDisplay').textContent = formatTime(manualTime);
-        }
-    }
-    
-    function updateLiveButton() {
-        const btn = document.getElementById('liveBtn');
-        btn.disabled = isLiveMode;
-    }
-    
-    function getCurrentTime() {
-        if (isLiveMode) {
-            const now = new Date();
-            return now.getHours() * 60 + now.getMinutes();
-        } else {
-            return manualTime;
-        }
-    }
-    
-    function getStopTime(stop) {
-        return parseTime(stop.departure || stop.arrival || stop.time);
-    }
-    
-    function findTrainPosition(train, currentTime) {
-        const stops = train.stops;
+        // Extract stations in order from Kidderminster to Bridgnorth
+        const stations = ['Kidderminster', 'Bewdley', 'Arley', 'Highley', 'Hampton Loade', 'Bridgnorth'];
         
-        // Check if train hasn't started yet
-        const firstStop = stops[0];
-        const startTime = getStopTime(firstStop);
-        if (currentTime < startTime) {
-            return null;
+        // Assign unique colors to each unique train number dynamically from timetable
+        const trainColors = {};
+        const colorPalette = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fd79a8', '#fdcb6e', '#6c5ce7', '#a29bfe', '#74b9ff'];
+        
+        // Extract unique train numbers from timetable and sort alphabetically
+        const uniqueTrains = [...new Set(timetableData.trains.map(t => t.trainNumber))].sort();
+        
+        // Assign colors based on alphabetical order
+        uniqueTrains.forEach((trainNumber, index) => {
+            trainColors[trainNumber] = colorPalette[index % colorPalette.length];
+        });
+        
+        function getTrainColor(trainNumber) {
+            return trainColors[trainNumber] || '#888888';
         }
         
-        // Check if train has completed journey
-        const lastStop = stops[stops.length - 1];
-        const endTime = getStopTime(lastStop);
+        function parseTime(timeStr) {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
         
-        // If train has finished this service
-        if (currentTime > endTime) {
-            // Check if there's a future service for this train
-            const lastStation = lastStop.station;
-            const nextService = getNextService(train.trainNumber, lastStation, currentTime);
-            
-            if (nextService) {
-                // Train is waiting at terminus for next service
-                return {
-                    type: 'at_station',
-                    station: lastStation
-                };
+        function formatTime(minutes) {
+            const h = Math.floor(minutes / 60);
+            const m = minutes % 60;
+            return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        }
+        
+        function getTrainIcon(trainNumber) {
+            if (trainNumber.includes('Steam')) return '🚂';
+            if (trainNumber.includes('DMU')) return '🚃';
+            return '🚆';
+        }
+        
+        // Manual time state - initialize to current time
+        const now = new Date();
+        let manualTime = now.getHours() * 60 + now.getMinutes();
+        let isLiveMode = true;
+        
+        function updateTimeDisplay() {
+            if (isLiveMode) {
+                const now = new Date();
+                const currentTime = now.getHours() * 60 + now.getMinutes();
+                document.getElementById('timeDisplay').textContent = formatTime(currentTime);
             } else {
-                // No future service - remove after 15 minutes
-                if (currentTime > endTime + 15) {
-                    return null;
-                }
-                return {
-                    type: 'at_station',
-                    station: lastStation
-                };
+                document.getElementById('timeDisplay').textContent = formatTime(manualTime);
             }
         }
         
-        // Find current segment
-        for (let i = 0; i < stops.length - 1; i++) {
-            const currentStop = stops[i];
-            const nextStop = stops[i + 1];
+        function updateLiveButton() {
+            const btn = document.getElementById('liveBtn');
+            btn.disabled = isLiveMode;
+        }
+        
+        function getCurrentTime() {
+            if (isLiveMode) {
+                const now = new Date();
+                return now.getHours() * 60 + now.getMinutes();
+            } else {
+                return manualTime;
+            }
+        }
+        
+        function getStopTime(stop) {
+            return parseTime(stop.departure || stop.arrival || stop.time);
+        }
+        
+        function findTrainPosition(train, currentTime) {
+            const stops = train.stops;
             
-            const departTime = currentStop.departure ? parseTime(currentStop.departure) : getStopTime(currentStop);
-            const arriveTime = nextStop.arrival ? parseTime(nextStop.arrival) : getStopTime(nextStop);
-            
-            if (currentTime >= departTime && currentTime <= arriveTime) {
-                // Train is between stations
-                const progress = (currentTime - departTime) / (arriveTime - departTime);
-                return {
-                    type: 'between',
-                    fromStation: currentStop.station,
-                    toStation: nextStop.station,
-                    progress: progress,
-                    departTime: departTime,
-                    arriveTime: arriveTime
-                };
+            // Check if train hasn't started yet
+            const firstStop = stops[0];
+            const startTime = getStopTime(firstStop);
+            if (currentTime < startTime) {
+                return null;
             }
             
-            // Check if at a station (between arrival and departure)
-            if (currentStop.arrival && currentStop.departure) {
-                const arrivalTime = parseTime(currentStop.arrival);
-                const departureTime = parseTime(currentStop.departure);
-                if (currentTime >= arrivalTime && currentTime < departureTime) {
+            // Check if train has completed journey
+            const lastStop = stops[stops.length - 1];
+            const endTime = getStopTime(lastStop);
+            
+            // If train has finished this service
+            if (currentTime > endTime) {
+                // Check if there's a future service for this train
+                const lastStation = lastStop.station;
+                const nextService = getNextService(train.trainNumber, lastStation, currentTime);
+                
+                if (nextService) {
+                    // Train is waiting at terminus for next service
                     return {
                         type: 'at_station',
-                        station: currentStop.station
+                        station: lastStation
+                    };
+                } else {
+                    // No future service - remove after 15 minutes
+                    if (currentTime > endTime + 15) {
+                        return null;
+                    }
+                    return {
+                        type: 'at_station',
+                        station: lastStation
                     };
                 }
             }
-        }
-        
-        // Should not reach here, but return at final station as fallback
-        return {
-            type: 'at_station',
-            station: lastStop.station
-        };
-    }
-    
-    function getNextService(trainNumber, currentStation, currentTime) {
-        // Find any service with the same train number that departs from the current station
-        const services = timetableData.trains.filter(t => t.trainNumber === trainNumber);
-        
-        for (let service of services) {
-            const firstStop = service.stops[0];
-            const startTime = getStopTime(firstStop);
-            // Check that the service starts from the current station and is in the future
-            if (startTime > currentTime && firstStop.station === currentStation) {
-                return {
-                    service: service,
-                    departTime: startTime
-                };
+            
+            // Find current segment
+            for (let i = 0; i < stops.length - 1; i++) {
+                const currentStop = stops[i];
+                const nextStop = stops[i + 1];
+                
+                const departTime = currentStop.departure ? parseTime(currentStop.departure) : getStopTime(currentStop);
+                const arriveTime = nextStop.arrival ? parseTime(nextStop.arrival) : getStopTime(nextStop);
+                
+                if (currentTime >= departTime && currentTime <= arriveTime) {
+                    // Train is between stations
+                    const progress = (currentTime - departTime) / (arriveTime - departTime);
+                    return {
+                        type: 'between',
+                        fromStation: currentStop.station,
+                        toStation: nextStop.station,
+                        progress: progress,
+                        departTime: departTime,
+                        arriveTime: arriveTime
+                    };
+                }
+                
+                // Check if at a station (between arrival and departure)
+                if (currentStop.arrival && currentStop.departure) {
+                    const arrivalTime = parseTime(currentStop.arrival);
+                    const departureTime = parseTime(currentStop.departure);
+                    if (currentTime >= arrivalTime && currentTime < departureTime) {
+                        return {
+                            type: 'at_station',
+                            station: currentStop.station
+                        };
+                    }
+                }
             }
+            
+            // Should not reach here, but return at final station as fallback
+            return {
+                type: 'at_station',
+                station: lastStop.station
+            };
         }
-        return null;
-    }
-    
-    function generateStatusText(train, position, currentTime) {
-        const stops = train.stops;
         
-        if (!position) {
+        function getNextService(trainNumber, currentStation, currentTime) {
+            // Find any service with the same train number that departs from the current station
+            const services = timetableData.trains.filter(t => t.trainNumber === trainNumber);
+            
+            for (let service of services) {
+                const firstStop = service.stops[0];
+                const startTime = getStopTime(firstStop);
+                // Check that the service starts from the current station and is in the future
+                if (startTime > currentTime && firstStop.station === currentStation) {
+                    return {
+                        service: service,
+                        departTime: startTime
+                    };
+                }
+            }
             return null;
         }
         
-        if (position.type === 'at_station') {
-            const isTerminus = position.station === 'Kidderminster' || position.station === 'Bridgnorth';
+        function generateStatusText(train, position, currentTime) {
+            const stops = train.stops;
             
-            if (isTerminus) {
-                const nextService = getNextService(train.trainNumber, position.station, currentTime);
-                if (nextService) {
-                    const minutesUntil = nextService.departTime - currentTime;
-                    return `Waiting at ${position.station}, next departure at ${formatTime(nextService.departTime)} (departing in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
-                } else {
-                    return `Terminated at ${position.station}`;
-                }
+            if (!position) {
+                return null;
             }
             
-            // At intermediate station
-            const currentStopIndex = stops.findIndex(s => s.station === position.station);
-            const currentStop = stops[currentStopIndex];
-            if (currentStop.departure) {
-                const nextStop = stops[currentStopIndex + 1];
-                const departTime = parseTime(currentStop.departure);
-                const minutesUntil = departTime - currentTime;
-                return `At ${position.station}, departing at ${currentStop.departure} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''}) → ${nextStop.station}`;
-            }
-        }
-        
-        if (position.type === 'between') {
-            const minutesUntilArrival = position.arriveTime - currentTime;
-            const arrivalText = minutesUntilArrival === 0 ? 'arriving now' : `arriving ${formatTime(position.arriveTime)} in ${minutesUntilArrival} minute${minutesUntilArrival !== 1 ? 's' : ''}`;
-            
-            // Check for non-stop stations
-            let statusParts = [`Traveling from ${position.fromStation} (departed ${formatTime(position.departTime)}) → ${position.toStation} (${arrivalText})`];
-            
-            // Find stations being passed without stopping
-            const fromIndex = stations.indexOf(position.fromStation);
-            const toIndex = stations.indexOf(position.toStation);
-            const intermediateStations = train.direction === 'northbound' 
-                ? stations.slice(fromIndex + 1, toIndex)
-                : stations.slice(toIndex + 1, fromIndex);
-            
-            for (let station of intermediateStations) {
-                const stopInfo = stops.find(s => s.station === station);
-                if (stopInfo && !stopInfo.stopsAt) {
-                    const passTime = getStopTime(stopInfo);
-                    const minutesUntilPass = passTime - currentTime;
-                    if (minutesUntilPass > 0) {
-                        statusParts.push(`Passing ${station} in ${minutesUntilPass} minute${minutesUntilPass !== 1 ? 's' : ''}`);
+            if (position.type === 'at_station') {
+                const isTerminus = position.station === 'Kidderminster' || position.station === 'Bridgnorth';
+                
+                if (isTerminus) {
+                    const nextService = getNextService(train.trainNumber, position.station, currentTime);
+                    if (nextService) {
+                        const minutesUntil = nextService.departTime - currentTime;
+                        return `Waiting at ${position.station}, next departure at ${formatTime(nextService.departTime)} (departing in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
+                    } else {
+                        return `Terminated at ${position.station}`;
                     }
                 }
+                
+                // At intermediate station
+                const currentStopIndex = stops.findIndex(s => s.station === position.station);
+                const currentStop = stops[currentStopIndex];
+                if (currentStop.departure) {
+                    const nextStop = stops[currentStopIndex + 1];
+                    const departTime = parseTime(currentStop.departure);
+                    const minutesUntil = departTime - currentTime;
+                    return `At ${position.station}, departing at ${currentStop.departure} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''}) → ${nextStop.station}`;
+                }
             }
             
-            return statusParts.join(' • ');
+            if (position.type === 'between') {
+                const minutesUntilArrival = position.arriveTime - currentTime;
+                const arrivalText = minutesUntilArrival === 0 ? 'arriving now' : `arriving ${formatTime(position.arriveTime)} in ${minutesUntilArrival} minute${minutesUntilArrival !== 1 ? 's' : ''}`;
+                
+                // Check for non-stop stations
+                let statusParts = [`Traveling from ${position.fromStation} (departed ${formatTime(position.departTime)}) → ${position.toStation} (${arrivalText})`];
+                
+                // Find stations being passed without stopping
+                const fromIndex = stations.indexOf(position.fromStation);
+                const toIndex = stations.indexOf(position.toStation);
+                const intermediateStations = train.direction === 'northbound' 
+                    ? stations.slice(fromIndex + 1, toIndex)
+                    : stations.slice(toIndex + 1, fromIndex);
+                
+                for (let station of intermediateStations) {
+                    const stopInfo = stops.find(s => s.station === station);
+                    if (stopInfo && !stopInfo.stopsAt) {
+                        const passTime = getStopTime(stopInfo);
+                        const minutesUntilPass = passTime - currentTime;
+                        if (minutesUntilPass > 0) {
+                            statusParts.push(`Passing ${station} in ${minutesUntilPass} minute${minutesUntilPass !== 1 ? 's' : ''}`);
+                        }
+                    }
+                }
+                
+                return statusParts.join(' • ');
+            }
+            
+            return null;
         }
         
-        return null;
-    }
-    
-    function renderTracker() {
-        const container = document.getElementById('trackerContainer');
-        const currentTime = getCurrentTime();
-        container.innerHTML = '';
-        
-        // Track active trains by train number only (not direction)
-        const activeTrains = {};
-        
-        for (let train of timetableData.trains) {
-            const position = findTrainPosition(train, currentTime);
-            if (position) {
-                const key = train.trainNumber;
-                
-                // If this train number already exists, pick the most relevant service
-                if (activeTrains[key]) {
-                    const existingTrain = activeTrains[key].train;
-                    const existingPosition = activeTrains[key].position;
+        function renderTracker() {
+            const container = document.getElementById('trackerContainer');
+            const currentTime = getCurrentTime();
+            container.innerHTML = '';
+            
+            // Track active trains by train number only (not direction)
+            const activeTrains = {};
+            
+            for (let train of timetableData.trains) {
+                const position = findTrainPosition(train, currentTime);
+                if (position) {
+                    const key = train.trainNumber;
                     
-                    const currentStartTime = getStopTime(train.stops[0]);
-                    const currentEndTime = getStopTime(train.stops[train.stops.length - 1]);
-                    const existingStartTime = getStopTime(existingTrain.stops[0]);
-                    const existingEndTime = getStopTime(existingTrain.stops[existingTrain.stops.length - 1]);
-                    
-                    // Prioritize services that are actually running right now
-                    const currentIsRunning = currentTime >= currentStartTime && currentTime <= currentEndTime;
-                    const existingIsRunning = currentTime >= existingStartTime && currentTime <= existingEndTime;
-                    
-                    if (currentIsRunning && !existingIsRunning) {
-                        // Current service is running, existing is not - use current
-                        activeTrains[key] = { train, position };
-                    } else if (!currentIsRunning && existingIsRunning) {
-                        // Keep existing as it's running
-                        // Do nothing
-                    } else if (currentIsRunning && existingIsRunning) {
-                        // Both running - prioritize the one that's moving
-                        if (position.type === 'between' && existingPosition.type === 'at_station') {
+                    // If this train number already exists, we need to pick the right service
+                    if (activeTrains[key]) {
+                        // Check if current train is actually running (not just waiting)
+                        const existingTrain = activeTrains[key].train;
+                        const existingPosition = activeTrains[key].position;
+                        
+                        const currentEndTime = getStopTime(train.stops[train.stops.length - 1]);
+                        const existingEndTime = getStopTime(existingTrain.stops[existingTrain.stops.length - 1]);
+                        
+                        // If the current train's service is still active (not finished)
+                        // and the existing one has finished, replace it
+                        if (currentTime <= currentEndTime && currentTime > existingEndTime) {
+                            activeTrains[key] = { train, position };
+                        }
+                        // If both are active or both waiting, keep the one that's actually moving
+                        else if (position.type === 'between' && existingPosition.type === 'at_station') {
                             activeTrains[key] = { train, position };
                         }
                     } else {
-                        // Neither running currently
-                        // If both haven't started yet, pick the earlier one
-                        // If one has finished and one hasn't started, keep the finished one (it's waiting)
-                        const currentHasFinished = currentTime > currentEndTime;
-                        const existingHasFinished = currentTime > existingEndTime;
-                        
-                        if (currentHasFinished && !existingHasFinished) {
-                            // Current has finished, existing hasn't started - keep existing (waiting train)
-                            // Actually no - keep current as it's the one that's there
-                            activeTrains[key] = { train, position };
-                        } else if (!currentHasFinished && existingHasFinished) {
-                            // Existing has finished, current hasn't started - keep existing
-                            // Do nothing
-                        } else if (currentHasFinished && existingHasFinished) {
-                            // Both have finished - keep most recent
-                            if (currentEndTime > existingEndTime) {
-                                activeTrains[key] = { train, position };
+                        activeTrains[key] = { train, position };
+                    }
+                }
+            }
+            
+            // Render stations and tracks
+            for (let i = 0; i < stations.length; i++) {
+                const station = stations[i];
+                
+                // Create station div
+                const stationDiv = document.createElement('div');
+                stationDiv.className = 'station';
+                stationDiv.innerHTML = `<div class="station-name">${station}</div>`;
+                
+                // Add trains at this station
+                for (let key in activeTrains) {
+                    const { train, position } = activeTrains[key];
+                    if (position.type === 'at_station' && position.station === station) {
+                        const trainDiv = createTrainElement(train, 50);
+                        stationDiv.appendChild(trainDiv);
+                    }
+                }
+                
+                container.appendChild(stationDiv);
+                
+                // Create track section (except after last station)
+                if (i < stations.length - 1) {
+                    const trackDiv = document.createElement('div');
+                    trackDiv.className = 'track-section';
+                    trackDiv.innerHTML = '<div class="track-line"></div>';
+                    
+                    const nextStation = stations[i + 1];
+                    
+                    // Add trains between stations
+                    for (let key in activeTrains) {
+                        const { train, position } = activeTrains[key];
+                        if (position.type === 'between') {
+                            // For northbound: from is lower station, to is upper station
+                            // For southbound: from is upper station, to is lower station
+                            // Track sections go from current station to next (upward in list)
+                            let matchesSegment = false;
+                            
+                            if (train.direction === 'northbound') {
+                                // Northbound goes from Bridgnorth to Kidderminster (bottom to top)
+                                matchesSegment = position.fromStation === nextStation && position.toStation === station;
+                            } else {
+                                // Southbound goes from Kidderminster to Bridgnorth (top to bottom)
+                                matchesSegment = position.fromStation === station && position.toStation === nextStation;
+                            }
+                            
+                            if (matchesSegment) {
+                                // progress goes 0 to 1 from departure to arrival
+                                // For northbound: start at bottom (100%) and move to top (0%)
+                                // For southbound: start at top (0%) and move to bottom (100%)
+                                const percentage = train.direction === 'northbound' 
+                                    ? (1 - position.progress) * 100 
+                                    : position.progress * 100;
+                                const trainDiv = createTrainElement(train, percentage);
+                                trackDiv.appendChild(trainDiv);
                             }
                         }
                     }
-                } else {
-                    activeTrains[key] = { train, position };
+                    
+                    container.appendChild(trackDiv);
                 }
             }
+            
+            // Render status panel
+            renderStatus(activeTrains, currentTime);
         }
         
-        // For trains at terminus stations waiting for next service, show them on the departure side
-        for (let key in activeTrains) {
-            const { train, position } = activeTrains[key];
-            if (position.type === 'at_station') {
-                const isTerminus = position.station === 'Kidderminster' || position.station === 'Bridgnorth';
-                if (isTerminus) {
-                    // Only switch to next service if current service has finished
-                    const currentEndTime = getStopTime(train.stops[train.stops.length - 1]);
-                    if (currentTime > currentEndTime) {
-                        const nextService = getNextService(train.trainNumber, position.station, currentTime);
-                        if (nextService) {
-                            // Update to show the train ready for its next departure direction
-                            activeTrains[key] = {
-                                train: nextService.service,
-                                position: position
-                            };
-                        }
-                    }
-                }
+        function createTrainElement(train, topPercentage) {
+            const trainDiv = document.createElement('div');
+            trainDiv.className = `train ${train.direction}`;
+            trainDiv.style.top = `${topPercentage}%`;
+            trainDiv.style.transform = 'translateY(-50%)';
+            
+            const color = getTrainColor(train.trainNumber);
+            trainDiv.style.backgroundColor = color + '33';
+            trainDiv.style.borderLeft = `3px solid ${color}`;
+            
+            const icon = getTrainIcon(train.trainNumber);
+            const arrow = train.direction === 'northbound' ? '↑' : '↓';
+            
+            trainDiv.innerHTML = `
+                <div class="train-label">
+                    <span class="train-number">${train.trainNumber}</span>
+                </div>
+                <span class="train-icon">${icon}</span>
+                <span class="direction-arrow">${arrow}</span>
+            `;
+            
+            return trainDiv;
+        }
+        
+        function renderStatus(activeTrains, currentTime) {
+            const container = document.getElementById('statusContainer');
+            container.innerHTML = '';
+            
+            if (Object.keys(activeTrains).length === 0) {
+                container.innerHTML = '<div style="color: #888;">No trains currently active</div>';
+                return;
             }
-        }
-        
-        // Render stations and tracks
-        for (let i = 0; i < stations.length; i++) {
-            const station = stations[i];
             
-            // Create station div
-            const stationDiv = document.createElement('div');
-            stationDiv.className = 'station';
-            stationDiv.innerHTML = `<div class="station-name">${station}</div>`;
-            
-            // Add trains at this station
             for (let key in activeTrains) {
                 const { train, position } = activeTrains[key];
-                if (position.type === 'at_station' && position.station === station) {
-                    const trainDiv = createTrainElement(train, 50);
-                    stationDiv.appendChild(trainDiv);
+                const statusText = generateStatusText(train, position, currentTime);
+                
+                if (statusText) {
+                    const statusDiv = document.createElement('div');
+                    statusDiv.className = 'train-status';
+                    const color = getTrainColor(train.trainNumber);
+                    statusDiv.style.borderLeftColor = color;
+                    
+                    statusDiv.innerHTML = `
+                        <div class="train-status-header">${train.trainNumber} (${train.direction})</div>
+                        <div class="train-status-detail">${statusText}</div>
+                    `;
+                    
+                    container.appendChild(statusDiv);
                 }
             }
+        }
+        
+        // Event listeners
+        document.getElementById('timeUp').addEventListener('click', () => {
+            if (isLiveMode) {
+                const now = new Date();
+                manualTime = now.getHours() * 60 + now.getMinutes();
+                isLiveMode = false;
+            }
+            manualTime += 5;
+            if (manualTime >= 24 * 60) manualTime = 0;
+            updateTimeDisplay();
+            updateLiveButton();
+            renderTracker();
+            startAutoRefresh();
+        });
+        
+        document.getElementById('timeDown').addEventListener('click', () => {
+            if (isLiveMode) {
+                const now = new Date();
+                manualTime = now.getHours() * 60 + now.getMinutes();
+                isLiveMode = false;
+            }
+            manualTime -= 5;
+            if (manualTime < 0) manualTime = 24 * 60 - 5;
+            updateTimeDisplay();
+            updateLiveButton();
+            renderTracker();
+            startAutoRefresh();
+        });
+        
+        document.getElementById('liveBtn').addEventListener('click', () => {
+            isLiveMode = true;
+            updateTimeDisplay();
+            updateLiveButton();
+            renderTracker();
+            startAutoRefresh();
+        });
+        
+        // Auto-refresh in live mode
+        let refreshInterval;
+        
+        function startAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+                refreshInterval = null;
+            }
             
-            container.appendChild(stationDiv);
-            
-            // Create track section (except after last station)
-            if (i < stations.length - 1) {
-                const trackDiv = document.createElement('div');
-                trackDiv.className = 'track-section';
-                trackDiv.innerHTML = '<div class="track-line"></div>';
-                
-                const nextStation = stations[i + 1];
-                
-                // Add trains between stations
-                for (let key in activeTrains) {
-                    const { train, position } = activeTrains[key];
-                    if (position.type === 'between') {
-                        // For northbound: from is lower station, to is upper station
-                        // For southbound: from is upper station, to is lower station
-                        // Track sections go from current station to next (upward in list)
-                        let matchesSegment = false;
-                        
-                        if (train.direction === 'northbound') {
-                            // Northbound goes from Bridgnorth to Kidderminster (bottom to top)
-                            matchesSegment = position.fromStation === nextStation && position.toStation === station;
-                        } else {
-                            // Southbound goes from Kidderminster to Bridgnorth (top to bottom)
-                            matchesSegment = position.fromStation === station && position.toStation === nextStation;
-                        }
-                        
-                        if (matchesSegment) {
-                            // progress goes 0 to 1 from departure to arrival
-                            // For northbound: start at bottom (100%) and move to top (0%)
-                            // For southbound: start at top (0%) and move to bottom (100%)
-                            const percentage = train.direction === 'northbound' 
-                                ? (1 - position.progress) * 100 
-                                : position.progress * 100;
-                            const trainDiv = createTrainElement(train, percentage);
-                            trackDiv.appendChild(trainDiv);
-                        }
-                    }
-                }
-                
-                container.appendChild(trackDiv);
+            if (isLiveMode) {
+                refreshInterval = setInterval(() => {
+                    updateTimeDisplay();
+                    renderTracker();
+                }, 30000); // 30 seconds
             }
         }
         
-        // Render status panel
-        renderStatus(activeTrains, currentTime);
-    }
-    
-    function createTrainElement(train, topPercentage) {
-        const trainDiv = document.createElement('div');
-        trainDiv.className = `train ${train.direction}`;
-        trainDiv.style.top = `${topPercentage}%`;
-        trainDiv.style.transform = 'translateY(-50%)';
-        
-        const color = getTrainColor(train.trainNumber);
-        trainDiv.style.backgroundColor = color + '33';
-        trainDiv.style.borderLeft = `3px solid ${color}`;
-        
-        const icon = getTrainIcon(train.trainNumber);
-        const arrow = train.direction === 'northbound' ? '↑' : '↓';
-        
-        trainDiv.innerHTML = `
-            <div class="train-label">
-                <span class="train-number">${train.trainNumber}</span>
-            </div>
-            <span class="train-icon">${icon}</span>
-            <span class="direction-arrow">${arrow}</span>
-        `;
-        
-        return trainDiv;
-    }
-    
-    function renderStatus(activeTrains, currentTime) {
-        const container = document.getElementById('statusContainer');
-        container.innerHTML = '';
-        
-        if (Object.keys(activeTrains).length === 0) {
-            container.innerHTML = '<div style="color: #888;">No trains currently active</div>';
-            return;
-        }
-        
-        for (let key in activeTrains) {
-            const { train, position } = activeTrains[key];
-            const statusText = generateStatusText(train, position, currentTime);
-            
-            if (statusText) {
-                const statusDiv = document.createElement('div');
-                statusDiv.className = 'train-status';
-                const color = getTrainColor(train.trainNumber);
-                statusDiv.style.borderLeftColor = color;
-                
-                statusDiv.innerHTML = `
-                    <div class="train-status-header">${train.trainNumber} (${train.direction})</div>
-                    <div class="train-status-detail">${statusText}</div>
-                `;
-                
-                container.appendChild(statusDiv);
-            }
-        }
-    }
-    
-    // Event listeners
-    document.getElementById('timeUp').addEventListener('click', () => {
-        if (isLiveMode) {
-            const now = new Date();
-            manualTime = now.getHours() * 60 + now.getMinutes();
-            isLiveMode = false;
-        }
-        manualTime += 5;
-        if (manualTime >= 24 * 60) manualTime = 0;
+        // Initial render
         updateTimeDisplay();
         updateLiveButton();
         renderTracker();
         startAutoRefresh();
-    });
-    
-    document.getElementById('timeDown').addEventListener('click', () => {
-        if (isLiveMode) {
-            const now = new Date();
-            manualTime = now.getHours() * 60 + now.getMinutes();
-            isLiveMode = false;
-        }
-        manualTime -= 5;
-        if (manualTime < 0) manualTime = 24 * 60 - 5;
-        updateTimeDisplay();
-        updateLiveButton();
-        renderTracker();
-        startAutoRefresh();
-    });
-    
-    document.getElementById('liveBtn').addEventListener('click', () => {
-        isLiveMode = true;
-        updateTimeDisplay();
-        updateLiveButton();
-        renderTracker();
-        startAutoRefresh();
-    });
-    
-    // Auto-refresh in live mode
-    let refreshInterval;
-    
-    function startAutoRefresh() {
-        if (refreshInterval) {
-            clearInterval(refreshInterval);
-            refreshInterval = null;
-        }
-        
-        if (isLiveMode) {
-            refreshInterval = setInterval(() => {
-                updateTimeDisplay();
-                renderTracker();
-            }, 30000); // 30 seconds
-        }
-    }
-    
-    // Initial render
-    updateTimeDisplay();
-    updateLiveButton();
-    renderTracker();
-    startAutoRefresh();
-</script>
-
+    </script>
 </body>
 </html>
