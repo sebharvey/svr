@@ -476,8 +476,24 @@
   ]
 };
 
-        // Extract stations in order from Kidderminster to Bridgnorth
-        const stations = ['Kidderminster', 'Bewdley', 'Arley', 'Highley', 'Hampton Loade', 'Bridgnorth'];
+        // Extract stations dynamically from timetable data
+        // Build ordered list by following the first complete route
+        function extractStations() {
+            // Find a service with all stops to get the complete station order
+            // Use the first northbound service as it goes from last to first station
+            const referenceService = timetableData.trains.find(t => t.direction === 'northbound');
+            if (!referenceService) {
+                // Fallback to any service
+                return [...new Set(timetableData.trains[0].stops.map(s => s.station))];
+            }
+            
+            // For northbound, stations go from last to first (Bridgnorth to Kidderminster)
+            // We want to display top to bottom (Kidderminster to Bridgnorth)
+            const stationsInRoute = referenceService.stops.map(s => s.station);
+            return stationsInRoute.reverse(); // Reverse to get Kidderminster at top
+        }
+        
+        const stations = extractStations();
         
         // Assign unique colors to each unique train number dynamically from timetable
         const trainColors = {};
@@ -650,7 +666,7 @@
             }
             
             if (position.type === 'at_station') {
-                const isTerminus = position.station === 'Kidderminster' || position.station === 'Bridgnorth';
+                const isTerminus = position.station === stations[0] || position.station === stations[stations.length - 1];
                 
                 if (isTerminus) {
                     const nextService = getNextService(train.trainNumber, position.station, currentTime);
