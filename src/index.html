@@ -755,21 +755,50 @@
                     
                     // If this train number already exists, we need to pick the right service
                     if (activeTrains[key]) {
-                        // Check if current train is actually running (not just waiting)
                         const existingTrain = activeTrains[key].train;
                         const existingPosition = activeTrains[key].position;
                         
+                        const currentStartTime = getStopTime(train.stops[0]);
                         const currentEndTime = getStopTime(train.stops[train.stops.length - 1]);
+                        const existingStartTime = getStopTime(existingTrain.stops[0]);
                         const existingEndTime = getStopTime(existingTrain.stops[existingTrain.stops.length - 1]);
                         
-                        // If the current train's service is still active (not finished)
-                        // and the existing one has finished, replace it
-                        if (currentTime <= currentEndTime && currentTime > existingEndTime) {
+                        // Check if services are currently running (between start and end)
+                        const currentIsRunning = currentTime >= currentStartTime && currentTime <= currentEndTime;
+                        const existingIsRunning = currentTime >= existingStartTime && currentTime <= existingEndTime;
+                        
+                        // Priority 1: Currently running service
+                        if (currentIsRunning && !existingIsRunning) {
                             activeTrains[key] = { train, position };
                         }
-                        // If both are active or both waiting, keep the one that's actually moving
-                        else if (position.type === 'between' && existingPosition.type === 'at_station') {
-                            activeTrains[key] = { train, position };
+                        else if (!currentIsRunning && existingIsRunning) {
+                            // Keep existing
+                        }
+                        // Both running: prioritize moving trains
+                        else if (currentIsRunning && existingIsRunning) {
+                            if (position.type === 'between' && existingPosition.type === 'at_station') {
+                                activeTrains[key] = { train, position };
+                            }
+                        }
+                        // Neither running: both are waiting or pre-departure
+                        else {
+                            // If current has finished and existing hasn't started (waiting for departure)
+                            const currentHasFinished = currentTime > currentEndTime;
+                            const existingHasFinished = currentTime > existingEndTime;
+                            
+                            if (currentHasFinished && !existingHasFinished) {
+                                // Current service has finished, existing hasn't started - use current (it's waiting)
+                                activeTrains[key] = { train, position };
+                            }
+                            else if (existingHasFinished && !currentHasFinished) {
+                                // Keep existing (it's waiting)
+                            }
+                            else if (currentHasFinished && existingHasFinished) {
+                                // Both finished - keep the most recent one
+                                if (currentEndTime > existingEndTime) {
+                                    activeTrains[key] = { train, position };
+                                }
+                            }
                         }
                     } else {
                         activeTrains[key] = { train, position };
