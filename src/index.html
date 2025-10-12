@@ -569,7 +569,17 @@
             // Check if train hasn't started yet
             const firstStop = stops[0];
             const startTime = getStopTime(firstStop);
+            
+            // Show train at terminal station 15 minutes before departure
             if (currentTime < startTime) {
+                const isTerminalStation = firstStop.station === stations[0] || firstStop.station === stations[stations.length - 1];
+                if (isTerminalStation && currentTime >= startTime - 15) {
+                    return {
+                        type: 'at_station',
+                        station: firstStop.station,
+                        waitingForDeparture: true
+                    };
+                }
                 return null;
             }
             
@@ -600,6 +610,47 @@
                     };
                 }
             }
+            
+            // Find current segment
+            for (let i = 0; i < stops.length - 1; i++) {
+                const currentStop = stops[i];
+                const nextStop = stops[i + 1];
+                
+                const departTime = currentStop.departure ? parseTime(currentStop.departure) : getStopTime(currentStop);
+                const arriveTime = nextStop.arrival ? parseTime(nextStop.arrival) : getStopTime(nextStop);
+                
+                if (currentTime >= departTime && currentTime <= arriveTime) {
+                    // Train is between stations
+                    const progress = (currentTime - departTime) / (arriveTime - departTime);
+                    return {
+                        type: 'between',
+                        fromStation: currentStop.station,
+                        toStation: nextStop.station,
+                        progress: progress,
+                        departTime: departTime,
+                        arriveTime: arriveTime
+                    };
+                }
+                
+                // Check if at a station (between arrival and departure)
+                if (currentStop.arrival && currentStop.departure) {
+                    const arrivalTime = parseTime(currentStop.arrival);
+                    const departureTime = parseTime(currentStop.departure);
+                    if (currentTime >= arrivalTime && currentTime < departureTime) {
+                        return {
+                            type: 'at_station',
+                            station: currentStop.station
+                        };
+                    }
+                }
+            }
+            
+            // Should not reach here, but return at final station as fallback
+            return {
+                type: 'at_station',
+                station: lastStop.station
+            };
+        }
             
             // Find current segment
             for (let i = 0; i < stops.length - 1; i++) {
