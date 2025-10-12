@@ -4,7 +4,7 @@ Convert the provided railway timetable image into a structured JSON format follo
 
 ## JSON Structure Requirements:
 
-1. **Metadata**: Include route name and date/day of operation
+1. **Metadata**: Include the name, route name and date/day of operation
 2. **Trains array**: Each train object must contain:
    - `trainNumber`: the train identifier (e.g., "Diesel 37248", "Steam 75069", "Diesel DMU")
    - `direction`: either "northbound" (Bridgnorth to Kidderminster) or "southbound" (Kidderminster to Bridgnorth)
@@ -75,6 +75,7 @@ Convert the provided railway timetable image into a structured JSON format follo
 ## Example output structure:
 ```json
 {
+  "name": "Special timetable",
   "route": "Kidderminster - Bridgnorth",
   "date": "Saturday 11 October only",
   "trains": [
