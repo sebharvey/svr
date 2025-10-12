@@ -651,47 +651,6 @@
                 station: lastStop.station
             };
         }
-            
-            // Find current segment
-            for (let i = 0; i < stops.length - 1; i++) {
-                const currentStop = stops[i];
-                const nextStop = stops[i + 1];
-                
-                const departTime = currentStop.departure ? parseTime(currentStop.departure) : getStopTime(currentStop);
-                const arriveTime = nextStop.arrival ? parseTime(nextStop.arrival) : getStopTime(nextStop);
-                
-                if (currentTime >= departTime && currentTime <= arriveTime) {
-                    // Train is between stations
-                    const progress = (currentTime - departTime) / (arriveTime - departTime);
-                    return {
-                        type: 'between',
-                        fromStation: currentStop.station,
-                        toStation: nextStop.station,
-                        progress: progress,
-                        departTime: departTime,
-                        arriveTime: arriveTime
-                    };
-                }
-                
-                // Check if at a station (between arrival and departure)
-                if (currentStop.arrival && currentStop.departure) {
-                    const arrivalTime = parseTime(currentStop.arrival);
-                    const departureTime = parseTime(currentStop.departure);
-                    if (currentTime >= arrivalTime && currentTime < departureTime) {
-                        return {
-                            type: 'at_station',
-                            station: currentStop.station
-                        };
-                    }
-                }
-            }
-            
-            // Should not reach here, but return at final station as fallback
-            return {
-                type: 'at_station',
-                station: lastStop.station
-            };
-        }
         
         function getNextService(trainNumber, currentStation, currentTime) {
             // Find any service with the same train number that departs from the current station
@@ -720,6 +679,14 @@
             
             if (position.type === 'at_station') {
                 const isTerminus = position.station === stations[0] || position.station === stations[stations.length - 1];
+                
+                // Check if this is a pre-departure waiting position
+                if (position.waitingForDeparture) {
+                    const firstStop = stops[0];
+                    const departTime = getStopTime(firstStop);
+                    const minutesUntil = departTime - currentTime;
+                    return `Waiting at ${position.station}, departing at ${formatTime(departTime)} (departing in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
+                }
                 
                 if (isTerminus) {
                     const nextService = getNextService(train.trainNumber, position.station, currentTime);
