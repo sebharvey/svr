@@ -15,8 +15,8 @@ Convert the provided railway timetable image into a structured JSON format follo
 
 4. **For each stop in the stops array**:
    - `station`: station name
-   - `arrival`: arrival time in HH:MM format (use when train stops)
-   - `departure`: departure time in HH:MM format (use when train stops)
+   - `arrival`: arrival time in HH:MM format (use when train stops, except at origin station)
+   - `departure`: departure time in HH:MM format (use when train stops, except at destination station)
    - `time`: estimated pass-through time for non-stopping trains (use this field only when `stopsAt` is false)
    - `stopsAt`: boolean - `true` if train stops, `false` if passing through
 
@@ -24,10 +24,13 @@ Convert the provided railway timetable image into a structured JSON format follo
 
 ### Stopping trains:
 - If the timetable shows a time at a station, the train STOPS there
-- Include both `arrival` and `departure` times
 - Set `stopsAt: true`
-- If only one time is shown, it's the departure time - set arrival to 3 minutes earlier
-- Example: If timetable shows "10:40", use `"arrival": "10:37", "departure": "10:40", "stopsAt": true`
+- For intermediate stops: include both `arrival` (3 minutes before departure) and `departure` times
+- For the ORIGIN station (first stop): only include `departure` time (no arrival time)
+- For the DESTINATION station (last stop): only include `arrival` time (no departure time), using the actual timetable time
+- Example intermediate stop: If timetable shows "10:40", use `"arrival": "10:37", "departure": "10:40", "stopsAt": true`
+- Example origin: `"departure": "09:40", "stopsAt": true`
+- Example destination: `"arrival": "11:25", "stopsAt": true`
 
 ### Passing trains (marked with "-"):
 - If the timetable shows "-" for a station, the train does NOT stop but DOES pass through
@@ -48,7 +51,8 @@ Convert the provided railway timetable image into a structured JSON format follo
 - Some trains do not travel the complete line
 - If stations at the start or end of a route are blank, the train starts/ends at a different station
 - Only include stations that have either a time or a "-" symbol
-- The first station with a time is the origin, the last station with a time or "-" is the terminus
+- The first station with a time is the origin (departure only), the last station with a time or "-" is the terminus (arrival only if stopping)
+- Apply the same origin/destination rules: first stop has departure only, last stop has arrival only
 
 ### Times with 'x' notation:
 - The 'x' in times (like "11x10" or "2x05") indicates trains crossing at stations
@@ -62,10 +66,11 @@ Convert the provided railway timetable image into a structured JSON format follo
 - Ensure all times are strings: "14:30" not 14:30
 - Convert PM times correctly (add 12 to hours after 12:59)
 
-### Terminus stations:
-- Kidderminster and Bridgnorth are the main terminus stations
-- Even terminus stops need arrival times 3 minutes before departure when they are the start/end of a complete journey
-- Other stations may be a terminus station if the preceding or succeeding station is blank
+### Terminus/Origin/Destination stations:
+- **Origin station** (where train starts): Include only `departure` time
+- **Destination station** (where train ends): Include only `arrival` time (use the actual timetable time, not minus 3 minutes)
+- **Intermediate stations**: Include both `arrival` (3 minutes before departure) and `departure` times
+- This applies to both main terminus stations (Kidderminster/Bridgnorth) AND partial service terminus stations (like Highley when a local service terminates there)
 
 ## Example output structure:
 ```json
@@ -77,21 +82,30 @@ Convert the provided railway timetable image into a structured JSON format follo
       "trainNumber": "Diesel 37248",
       "direction": "northbound",
       "stops": [
-        { "station": "Bridgnorth", "arrival": "09:37", "departure": "09:40", "stopsAt": true },
+        { "station": "Bridgnorth", "departure": "09:40", "stopsAt": true },
         { "station": "Hampton Loade", "time": "09:58", "stopsAt": false },
         { "station": "Highley", "time": "10:08", "stopsAt": false },
         { "station": "Arley", "time": "10:20", "stopsAt": false },
         { "station": "Bewdley", "arrival": "10:24", "departure": "10:27", "stopsAt": true },
-        { "station": "Kidderminster", "arrival": "10:37", "departure": "10:40", "stopsAt": true }
+        { "station": "Kidderminster", "arrival": "10:40", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "Diesel 37248",
       "direction": "southbound",
       "stops": [
-        { "station": "Highley", "arrival": "13:49", "departure": "13:52", "stopsAt": true },
-        { "station": "Hampton Loade", "arrival": "14:02", "departure": "14:05", "stopsAt": true },
-        { "station": "Bridgnorth", "arrival": "14:17", "departure": "14:20", "stopsAt": true }
+        { "station": "Highley", "departure": "13:52", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "13:59", "departure": "14:05", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "14:20", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 37248",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "13:00", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "13:22", "departure": "13:25", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:35", "stopsAt": true }
       ]
     }
   ]
