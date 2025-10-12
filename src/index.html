@@ -28,6 +28,38 @@
             color: #fff;
         }
         
+        .timetable-selector {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .timetable-selector label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .timetable-selector select {
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border: 1px solid #4a4a4a;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        
+        .timetable-selector select:hover {
+            background: #4a4a4a;
+        }
+        
         .controls {
             background: #2a2a2a;
             padding: 15px;
@@ -236,6 +268,13 @@
 <body>
     <h1>Severn Valley Live Train Tracker</h1>
     
+    <div class="timetable-selector">
+        <label for="timetableSelect">
+            <span>Timetable:</span>
+            <select id="timetableSelect"></select>
+        </label>
+    </div>
+    
     <div class="controls" id="controls" style="display: none;">
         <div class="time-input-group">
             <button class="time-btn" id="timeDown">◀</button>
@@ -262,10 +301,12 @@
             document.getElementById('controls').style.display = 'flex';
         }
         
-        const timetableData = {
-  "route": "Kidderminster - Bridgnorth",
-  "date": "Saturday 11 October only",
-  "trains": [
+        const timetables = [
+  {
+    "name": "11 October Special",
+    "route": "Kidderminster - Bridgnorth",
+    "date": "Saturday 11 October only",
+    "trains": [
     {
       "trainNumber": "Diesel 37248",
       "direction": "northbound",
@@ -453,7 +494,48 @@
       ]
     }
   ]
-};
+  }
+];
+
+        // Current timetable state
+        let currentTimetableIndex = 0;
+        let timetableData = timetables[currentTimetableIndex];
+        
+        // Populate timetable selector
+        function initializeTimetableSelector() {
+            const select = document.getElementById('timetableSelect');
+            timetables.forEach((timetable, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = timetable.name;
+                select.appendChild(option);
+            });
+            
+            select.addEventListener('change', (e) => {
+                currentTimetableIndex = parseInt(e.target.value);
+                timetableData = timetables[currentTimetableIndex];
+                
+                // Recalculate stations and train colors for new timetable
+                updateTimetableData();
+                
+                // Re-render everything
+                renderTracker();
+            });
+        }
+        
+        // Function to update derived data when timetable changes
+        function updateTimetableData() {
+            // Re-extract stations
+            stations.length = 0;
+            stations.push(...extractStations());
+            
+            // Re-assign train colors
+            Object.keys(trainColors).forEach(key => delete trainColors[key]);
+            const uniqueTrains = [...new Set(timetableData.trains.map(t => t.trainNumber))].sort();
+            uniqueTrains.forEach((trainNumber, index) => {
+                trainColors[trainNumber] = colorPalette[index % colorPalette.length];
+            });
+        }
 
         // Extract stations dynamically from timetable data
         // Build ordered list by following the first complete route
@@ -472,7 +554,7 @@
             return stationsInRoute.reverse(); // Reverse to get Kidderminster at top
         }
         
-        const stations = extractStations();
+        let stations = extractStations();
         
         // Assign unique colors to each unique train number dynamically from timetable
         const trainColors = {};
@@ -957,6 +1039,7 @@
         }
         
         // Initial render
+        initializeTimetableSelector();
         updateTimeDisplay();
         updateLiveButton();
         renderTracker();
