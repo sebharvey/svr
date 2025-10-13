@@ -4,16 +4,17 @@ Convert the provided railway timetable image into a structured JSON format follo
 
 ## JSON Structure Requirements:
 
-1. **Metadata**: Include the name, route name and date/day of operation
-2. **Trains array**: Each train object must contain:
+1. **Metadata**: Include the timetable name, and date/day of operation
+   - Timetable names should not include 'severn valley railway' or anything similar.  Use the actual timetable name such as 'timetable A', or 'autumn timetable'.
+3. **Trains array**: Each train object must contain:
    - `trainNumber`: the train identifier (e.g., "Diesel 37248", "Steam 75069", "Diesel DMU")
    - `direction`: either "northbound" (Bridgnorth to Kidderminster) or "southbound" (Kidderminster to Bridgnorth)
    - `stops`: an array of stations on the route in order of travel
 
-3. **Station order** (always in this order from north to south):
+4. **Station order** (always in this order from north to south):
    - Kidderminster, Bewdley, Arley, Highley, Hampton Loade, Bridgnorth
 
-4. **For each stop in the stops array**:
+5. **For each stop in the stops array**:
    - `station`: station name
    - `arrival`: arrival time in HH:MM format (use when train stops, except at origin station)
    - `departure`: departure time in HH:MM format (use when train stops, except at destination station)
@@ -56,10 +57,12 @@ Convert the provided railway timetable image into a structured JSON format follo
 
 ### Times with 'x' notation:
 - The 'x' in times (like "11x10" or "2x05") indicates trains crossing at stations
-- **IGNORE the 'x' completely** - it has no bearing on the JSON output
-- "11x10" means the time is simply "11:10"
-- "2x05" means the time is simply "14:05" (use 24-hour format)
-- "4x47" means the time is simply "16:47"
+- **IGNORE the 'x' character itself** - it's just notation indicating a crossing point
+- Treat times with 'x' exactly the same as regular times - they are STOPS where the train calls
+- "11x10" means the train stops at 11:10 (same as if it showed "11.10")
+- "2x05" means the train stops at 14:05 in 24-hour format (same as if it showed "2.05")
+- "4x47" means the train stops at 16:47 in 24-hour format (same as if it showed "4.47")
+- Apply the same origin/destination/intermediate stop rules: first stop = departure only, last stop = arrival only, intermediate = both arrival and departure
 
 ### Time format:
 - Always use 24-hour format (HH:MM)
@@ -76,7 +79,6 @@ Convert the provided railway timetable image into a structured JSON format follo
 ```json
 {
   "name": "Special timetable",
-  "route": "Kidderminster - Bridgnorth",
   "date": "Saturday 11 October only",
   "trains": [
     {
