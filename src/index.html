@@ -303,7 +303,6 @@
         const timetables = [
   {
     "name": "11 October Special",
-    "route": "Kidderminster - Bridgnorth",
     "date": "Saturday 11 October only",
     "trains": [
     {
@@ -495,16 +494,15 @@
   ]
   },
   {
-  "name": "Severn Valley Railway Autumn Timetable",
-  "route": "Kidderminster - Bridgnorth",
-  "date": "Autumn timetable",
+  "name": "Autumn timetable",
+  "date": "Autumn period",
   "trains": [
     {
       "trainNumber": "Diesel DMU",
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "10:45", "stopsAt": true },
-        { "station": "Hampton Loade", "time": "11:10", "stopsAt": false },
+        { "station": "Hampton Loade", "arrival": "11:07", "departure": "11:10", "stopsAt": true },
         { "station": "Highley", "arrival": "11:17", "departure": "11:20", "stopsAt": true },
         { "station": "Arley", "arrival": "11:29", "departure": "11:32", "stopsAt": true },
         { "station": "Bewdley", "arrival": "11:44", "departure": "11:47", "stopsAt": true },
@@ -516,7 +514,7 @@
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "12:20", "stopsAt": true },
-        { "station": "Hampton Loade", "time": "12:38", "stopsAt": false },
+        { "station": "Hampton Loade", "arrival": "12:35", "departure": "12:38", "stopsAt": true },
         { "station": "Highley", "arrival": "12:45", "departure": "12:48", "stopsAt": true },
         { "station": "Arley", "arrival": "12:59", "departure": "13:02", "stopsAt": true },
         { "station": "Bewdley", "arrival": "13:14", "departure": "13:17", "stopsAt": true },
@@ -530,7 +528,7 @@
         { "station": "Bridgnorth", "departure": "13:45", "stopsAt": true },
         { "station": "Hampton Loade", "arrival": "14:00", "departure": "14:03", "stopsAt": true },
         { "station": "Highley", "arrival": "14:10", "departure": "14:13", "stopsAt": true },
-        { "station": "Arley", "time": "14:30", "stopsAt": false },
+        { "station": "Arley", "arrival": "14:27", "departure": "14:30", "stopsAt": true },
         { "station": "Bewdley", "arrival": "14:42", "departure": "14:45", "stopsAt": true },
         { "station": "Kidderminster", "arrival": "14:57", "stopsAt": true }
       ]
@@ -540,10 +538,10 @@
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "14:30", "stopsAt": true },
-        { "station": "Hampton Loade", "time": "14:55", "stopsAt": false },
+        { "station": "Hampton Loade", "arrival": "14:52", "departure": "14:55", "stopsAt": true },
         { "station": "Highley", "arrival": "15:02", "departure": "15:05", "stopsAt": true },
         { "station": "Arley", "arrival": "15:17", "departure": "15:20", "stopsAt": true },
-        { "station": "Bewdley", "time": "15:35", "stopsAt": false },
+        { "station": "Bewdley", "arrival": "15:32", "departure": "15:35", "stopsAt": true },
         { "station": "Kidderminster", "arrival": "15:55", "stopsAt": true }
       ]
     },
@@ -554,7 +552,7 @@
         { "station": "Bridgnorth", "departure": "15:50", "stopsAt": true },
         { "station": "Hampton Loade", "arrival": "16:05", "departure": "16:08", "stopsAt": true },
         { "station": "Highley", "arrival": "16:15", "departure": "16:18", "stopsAt": true },
-        { "station": "Arley", "time": "16:32", "stopsAt": false },
+        { "station": "Arley", "arrival": "16:29", "departure": "16:32", "stopsAt": true },
         { "station": "Bewdley", "arrival": "16:44", "departure": "16:47", "stopsAt": true },
         { "station": "Kidderminster", "arrival": "17:02", "stopsAt": true }
       ]
@@ -567,7 +565,7 @@
         { "station": "Bewdley", "arrival": "10:27", "departure": "10:30", "stopsAt": true },
         { "station": "Arley", "arrival": "10:42", "departure": "10:45", "stopsAt": true },
         { "station": "Highley", "arrival": "10:50", "departure": "10:53", "stopsAt": true },
-        { "station": "Hampton Loade", "time": "11:10", "stopsAt": false },
+        { "station": "Hampton Loade", "arrival": "11:07", "departure": "11:10", "stopsAt": true },
         { "station": "Bridgnorth", "arrival": "11:25", "stopsAt": true }
       ]
     },
@@ -577,7 +575,7 @@
       "stops": [
         { "station": "Kidderminster", "departure": "10:55", "stopsAt": true },
         { "station": "Bewdley", "arrival": "11:07", "departure": "11:10", "stopsAt": true },
-        { "station": "Arley", "time": "11:33", "stopsAt": false },
+        { "station": "Arley", "arrival": "11:30", "departure": "11:33", "stopsAt": true },
         { "station": "Highley", "arrival": "11:38", "departure": "11:41", "stopsAt": true },
         { "station": "Hampton Loade", "arrival": "11:55", "departure": "11:58", "stopsAt": true },
         { "station": "Bridgnorth", "arrival": "12:13", "stopsAt": true }
@@ -589,7 +587,7 @@
       "stops": [
         { "station": "Kidderminster", "departure": "12:30", "stopsAt": true },
         { "station": "Bewdley", "arrival": "12:42", "departure": "12:45", "stopsAt": true },
-        { "station": "Arley", "time": "13:03", "stopsAt": false },
+        { "station": "Arley", "arrival": "13:00", "departure": "13:03", "stopsAt": true },
         { "station": "Highley", "arrival": "13:08", "departure": "13:11", "stopsAt": true },
         { "station": "Hampton Loade", "arrival": "13:22", "departure": "13:25", "stopsAt": true },
         { "station": "Bridgnorth", "arrival": "13:40", "stopsAt": true }
@@ -601,9 +599,9 @@
       "stops": [
         { "station": "Kidderminster", "departure": "14:00", "stopsAt": true },
         { "station": "Bewdley", "arrival": "14:12", "departure": "14:15", "stopsAt": true },
-        { "station": "Arley", "time": "14:30", "stopsAt": false },
+        { "station": "Arley", "arrival": "14:27", "departure": "14:30", "stopsAt": true },
         { "station": "Highley", "arrival": "14:35", "departure": "14:38", "stopsAt": true },
-        { "station": "Hampton Loade", "time": "14:55", "stopsAt": false },
+        { "station": "Hampton Loade", "arrival": "14:52", "departure": "14:55", "stopsAt": true },
         { "station": "Bridgnorth", "arrival": "15:10", "stopsAt": true }
       ]
     },
@@ -613,14 +611,14 @@
       "stops": [
         { "station": "Kidderminster", "departure": "15:50", "stopsAt": true },
         { "station": "Bewdley", "arrival": "16:07", "departure": "16:10", "stopsAt": true },
-        { "station": "Arley", "time": "16:33", "stopsAt": false },
+        { "station": "Arley", "arrival": "16:30", "departure": "16:33", "stopsAt": true },
         { "station": "Highley", "arrival": "16:38", "departure": "16:41", "stopsAt": true },
         { "station": "Hampton Loade", "arrival": "16:52", "departure": "16:55", "stopsAt": true },
         { "station": "Bridgnorth", "arrival": "17:10", "stopsAt": true }
       ]
     }
   ]
-}          
+}       
 ];
 
         // Current timetable state
