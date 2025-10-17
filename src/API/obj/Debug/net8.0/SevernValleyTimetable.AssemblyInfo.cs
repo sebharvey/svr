@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SevernValleyTimetable")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+004ba12bc2956cc8ab12df90c63738b0138dd18d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfe044c7df875909da46c76ce851af73371251d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("SevernValleyTimetable")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SevernValleyTimetable")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
