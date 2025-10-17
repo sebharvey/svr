@@ -5,9 +5,9 @@ name: Build and deploy dotnet core app to Azure Function App - svrliveapi
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
 
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'src/API' # set this to the path to your web app project, defaults to the repository root
@@ -50,4 +50,5 @@ jobs:
           app-name: 'svrliveapi'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+
           
