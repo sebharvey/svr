@@ -358,21 +358,29 @@
             });
         }
 
-        // Extract stations dynamically from timetable data
-        // Build ordered list by following the first complete route
+// Extract stations dynamically from timetable data
+        // Build ordered list by following the most complete route
         function extractStations() {
-            // Find a service with all stops to get the complete station order
-            // Use the first northbound service as it goes from last to first station
-            const referenceService = timetableData.trains.find(t => t.direction === 'northbound');
-            if (!referenceService) {
-                // Fallback to any service
-                return [...new Set(timetableData.trains[0].stops.map(s => s.station))];
+            // Find the service with the most stops to get the complete station order
+            let longestService = timetableData.trains[0];
+            let maxStops = longestService.stops.length;
+            
+            for (let train of timetableData.trains) {
+                if (train.stops.length > maxStops) {
+                    longestService = train;
+                    maxStops = train.stops.length;
+                }
             }
             
-            // For northbound, stations go from last to first (Bridgnorth to Kidderminster)
-            // We want to display top to bottom (Kidderminster to Bridgnorth)
-            const stationsInRoute = referenceService.stops.map(s => s.station);
-            return stationsInRoute.reverse(); // Reverse to get Kidderminster at top
+            const stationsInRoute = longestService.stops.map(s => s.station);
+            
+            // If the longest service is northbound, reverse to get Kidderminster at top
+            // If southbound, it's already in the right order (Kidderminster to Bridgnorth)
+            if (longestService.direction === 'northbound') {
+                return stationsInRoute.reverse();
+            }
+            
+            return stationsInRoute;
         }
         
         let stations = [];
