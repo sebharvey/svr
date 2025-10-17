@@ -1,4 +1,4 @@
-name: Build Only
+name: Build API
 
 on:
   push:
@@ -8,8 +8,7 @@ on:
 
 env:
   DOTNET_VERSION: '8.0.x'
-  SOLUTION_PATH: 'src/API/SevernValleyTimetable.sln'
-  PROJECT_PATH: 'src/API/SevernValleyTimetable/SevernValleyTimetable.csproj'
+  WORKING_DIRECTORY: 'src/API'
 
 jobs:
   build:
@@ -25,27 +24,44 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore dependencies
-      run: dotnet restore
+      working-directory: ${{ env.WORKING_DIRECTORY }}
+      run: dotnet restore SevernValleyTimetable.sln
 
-    - name: Build project
-      run: dotnet build --configuration Release --no-restore
+    - name: Build solution
+      working-directory: ${{ env.WORKING_DIRECTORY }}
+      run: dotnet build SevernValleyTimetable.sln --configuration Release --no-restore
 
-    - name: Run tests (if any)
-      run: dotnet test --configuration Release --no-build --verbosity normal
+    - name: Run tests
+      working-directory: ${{ env.WORKING_DIRECTORY }}
+      run: dotnet test SevernValleyTimetable.sln --configuration Release --no-build --verbosity normal
       continue-on-error: true
 
-    - name: Publish project
-      run: dotnet publish --configuration Release --no-build --output ./output
+    - name: Publish API
+      working-directory: ${{ env.WORKING_DIRECTORY }}
+      run: dotnet publish SevernValleyTimetable/SevernValleyTimetable.csproj --configuration Release --no-build --output ../../output
 
     - name: List output files
-      run: ls -la ./output
+      run: ls -laR ./output
 
     - name: Verify Timetables folder
       run: |
         if [ -d "./output/Timetables" ]; then
           echo "✓ Timetables folder found"
           ls -la ./output/Timetables
+          if [ -d "./output/Timetables/2025" ]; then
+            echo "✓ 2025 subfolder found"
+            ls -la ./output/Timetables/2025
+          else
+            echo "⚠ Warning: 2025 subfolder not found"
+          fi
         else
           echo "✗ Timetables folder missing!"
           exit 1
         fi
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: api-build
+        path: ./output
+        retention-days: 7
