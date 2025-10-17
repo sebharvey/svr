@@ -265,7 +265,7 @@
           "lib/netstandard2.0/Microsoft.Azure.Functions.Worker.ApplicationInsights.dll": {}
         }
       },
-      "Microsoft.Azure.Functions.Worker.Core/1.17.0": {
+      "Microsoft.Azure.Functions.Worker.Core/1.18.0": {
         "type": "package",
         "dependencies": {
           "Azure.Core": "1.37.0",
@@ -288,6 +288,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Azure.Functions.Worker.Extensions.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Azure.Functions.Worker.Extensions.Http/3.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Azure.Functions.Worker.Core": "1.18.0",
+          "Microsoft.Azure.Functions.Worker.Extensions.Abstractions": "1.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Azure.Functions.Worker.Extensions.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Azure.Functions.Worker.Extensions.Http.dll": {}
         }
       },
       "Microsoft.Azure.Functions.Worker.Grpc/1.16.0": {
@@ -1541,17 +1554,17 @@
         "microsoft.azure.functions.worker.applicationinsights.nuspec"
       ]
     },
-    "Microsoft.Azure.Functions.Worker.Core/1.17.0": {
-      "sha512": "sEyPFIp2OixaK2e8DtEDejbXiIvp8fczFwmA/Byi+MjvY+8FUR8FrWUYJUFDJNsRKCwgsSqGZbrEJG1xSlSzjQ==",
+    "Microsoft.Azure.Functions.Worker.Core/1.18.0": {
+      "sha512": "AFHJMjPB7JhwnWnGFbroSGMRa5ertGrG6j9DcCzpto3YmjrM29BasD9zLekAniRjZHqBMF0sSsTm1aq/cKdVKQ==",
       "type": "package",
-      "path": "microsoft.azure.functions.worker.core/1.17.0",
+      "path": "microsoft.azure.functions.worker.core/1.18.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.png",
         "lib/net5.0/Microsoft.Azure.Functions.Worker.Core.dll",
         "lib/netstandard2.0/Microsoft.Azure.Functions.Worker.Core.dll",
-        "microsoft.azure.functions.worker.core.1.17.0.nupkg.sha512",
+        "microsoft.azure.functions.worker.core.1.18.0.nupkg.sha512",
         "microsoft.azure.functions.worker.core.nuspec"
       ]
     },
@@ -1566,6 +1579,19 @@
         "lib/netstandard2.0/Microsoft.Azure.Functions.Worker.Extensions.Abstractions.dll",
         "microsoft.azure.functions.worker.extensions.abstractions.1.3.0.nupkg.sha512",
         "microsoft.azure.functions.worker.extensions.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.Azure.Functions.Worker.Extensions.Http/3.2.0": {
+      "sha512": "TC1xa/s1hZ97ertSh0+qZVjeXB632ObjsuVEhytND32kLfJhT7u+AiBunvdACgn6r0WOZeLIa/BZPA7qovFxiw==",
+      "type": "package",
+      "path": "microsoft.azure.functions.worker.extensions.http/3.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/Microsoft.Azure.Functions.Worker.Extensions.Http.dll",
+        "microsoft.azure.functions.worker.extensions.http.3.2.0.nupkg.sha512",
+        "microsoft.azure.functions.worker.extensions.http.nuspec"
       ]
     },
     "Microsoft.Azure.Functions.Worker.Grpc/1.16.0": {
@@ -3366,6 +3392,7 @@
       "Microsoft.ApplicationInsights.WorkerService >= 2.22.0",
       "Microsoft.Azure.Functions.Worker >= 1.21.0",
       "Microsoft.Azure.Functions.Worker.ApplicationInsights >= 1.2.0",
+      "Microsoft.Azure.Functions.Worker.Extensions.Http >= 3.2.0",
       "Microsoft.Azure.Functions.Worker.Sdk >= 1.17.0"
     ]
   },
@@ -3422,6 +3449,10 @@
           "Microsoft.Azure.Functions.Worker.ApplicationInsights": {
             "target": "Package",
             "version": "[1.2.0, )"
+          },
+          "Microsoft.Azure.Functions.Worker.Extensions.Http": {
+            "target": "Package",
+            "version": "[3.2.0, )"
           },
           "Microsoft.Azure.Functions.Worker.Sdk": {
             "target": "Package",
