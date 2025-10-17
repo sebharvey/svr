@@ -17,27 +17,45 @@ public class TimetableService
 
     public async Task<string> GetTimetableForDateAsync(DateTime date)
     {
-        // For now, always return the Oct 11 special timetable
-        var year = 2025;
-        var fileName = "oct-11-special.json";
+        var year = date.Year;
+        var month = date.ToString("MMM").ToLower(); // "oct", "nov", etc.
+        var day = date.Day;
         
+        // Try to find a date-specific timetable: oct-18.json
+        var fileName = $"{month}-{day}.json";
         var filePath = Path.Combine(_timetablesBasePath, year.ToString(), fileName);
         
-        _logger.LogInformation("Loading timetable from {FilePath}", filePath);
+        _logger.LogInformation("Looking for timetable: {FilePath}", filePath);
 
         // Check cache first
         if (_timetableCache.TryGetValue(filePath, out var cachedContent))
         {
-            _logger.LogInformation("Returning cached timetable");
+            _logger.LogInformation("Returning cached timetable for {FileName}", fileName);
             return cachedContent;
         }
 
-        if (!File.Exists(filePath))
+        // If date-specific file exists, use it
+        if (File.Exists(filePath))
         {
-            _logger.LogWarning("Timetable file not found: {FilePath}", filePath);
-            throw new FileNotFoundException($"Timetable file not found: {filePath}");
+            _logger.LogInformation("Found date-specific timetable: {FileName}", fileName);
+            return await LoadAndCacheTimetable(filePath);
         }
 
+        // Fall back to default.json for the year
+        var defaultFilePath = Path.Combine(_timetablesBasePath, year.ToString(), "default.json");
+        _logger.LogInformation("Date-specific timetable not found, trying default: {FilePath}", defaultFilePath);
+
+        if (!File.Exists(defaultFilePath))
+        {
+            _logger.LogWarning("No timetable found for year {Year}", year);
+            throw new FileNotFoundException($"No timetable found for date {date:yyyy-MM-dd}");
+        }
+
+        return await LoadAndCacheTimetable(defaultFilePath);
+    }
+
+    private async Task<string> LoadAndCacheTimetable(string filePath)
+    {
         var content = await File.ReadAllTextAsync(filePath);
         
         // Validate JSON
