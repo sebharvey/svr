@@ -1,0 +1,49 @@
+name: Build Only
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build project
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Run tests (if any)
+      run: dotnet test --configuration Release --no-build --verbosity normal
+      continue-on-error: true
+
+    - name: Publish project
+      run: dotnet publish --configuration Release --no-build --output ./output
+
+    - name: List output files
+      run: ls -la ./output
+
+    - name: Verify Timetables folder
+      run: |
+        if [ -d "./output/Timetables" ]; then
+          echo "✓ Timetables folder found"
+          ls -la ./output/Timetables
+        else
+          echo "✗ Timetables folder missing!"
+          exit 1
+        fi
