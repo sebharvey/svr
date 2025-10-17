@@ -1,0 +1,6 @@
+/workspaces/svr/src/API/SevernValleyTimetable/obj/Release/net8.0/SevernValleyTimetable.csproj.AssemblyReference.cache
+/workspaces/svr/src/API/SevernValleyTimetable/obj/Release/net8.0/SevernValleyTimetable.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/svr/src/API/SevernValleyTimetable/obj/Release/net8.0/SevernValleyTimetable.AssemblyInfoInputs.cache
+/workspaces/svr/src/API/SevernValleyTimetable/obj/Release/net8.0/SevernValleyTimetable.AssemblyInfo.cs
+/workspaces/svr/src/API/SevernValleyTimetable/obj/Release/net8.0/SevernValleyTimetable.csproj.CoreCompileInputs.cache
+/workspaces/svr/src/API/SevernValleyTimetable/obj/Release/net8.0/SevernValleyTimetable.sourcelink.json
