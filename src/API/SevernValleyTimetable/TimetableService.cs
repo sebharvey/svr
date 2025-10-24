@@ -3,11 +3,18 @@ using Microsoft.Extensions.Logging;
 
 namespace SevernValleyTimetable.Functions;
 
+public class TimetableScheduleEntry
+{
+    public string Date { get; set; } = string.Empty;
+    public string Timetable { get; set; } = string.Empty;
+}
+
 public class TimetableService
 {
     private readonly ILogger<TimetableService> _logger;
     private readonly string _timetablesBasePath;
     private readonly Dictionary<string, string> _timetableCache = new();
+    private readonly Dictionary<int, List<TimetableScheduleEntry>> _scheduleCache = new();
 
     public TimetableService(ILogger<TimetableService> logger)
     {
@@ -18,32 +25,45 @@ public class TimetableService
     public async Task<string> GetTimetableForDateAsync(DateTime date)
     {
         var year = date.Year;
-        var month = date.ToString("MMM").ToLower(); // "oct", "nov", etc.
-        var day = date.Day;
         
-        // Try to find a date-specific timetable: oct-18.json
-        var fileName = $"{month}-{day}.json";
-        var filePath = Path.Combine(_timetablesBasePath, year.ToString(), fileName);
+        _logger.LogInformation("Looking for timetable for date: {Date}", date.ToString("yyyy-MM-dd"));
+
+        // Load the schedule for this year
+        var schedule = await LoadScheduleAsync(year);
         
-        _logger.LogInformation("Looking for timetable: {FilePath}", filePath);
-
-        // Check cache first
-        if (_timetableCache.TryGetValue(filePath, out var cachedContent))
+        if (schedule != null && schedule.Count > 0)
         {
-            _logger.LogInformation("Returning cached timetable for {FileName}", fileName);
-            return cachedContent;
-        }
-
-        // If date-specific file exists, use it
-        if (File.Exists(filePath))
-        {
-            _logger.LogInformation("Found date-specific timetable: {FileName}", fileName);
-            return await LoadAndCacheTimetable(filePath);
+            // Format the date to match the schedule format (dd-MMM, e.g., "18-Oct")
+            var dateKey = date.ToString("dd-MMM");
+            
+            // Find matching schedule entry
+            var scheduleEntry = schedule.FirstOrDefault(s => 
+                string.Equals(s.Date, dateKey, StringComparison.OrdinalIgnoreCase));
+            
+            if (scheduleEntry != null && !string.IsNullOrWhiteSpace(scheduleEntry.Timetable))
+            {
+                _logger.LogInformation("Found schedule entry for {Date}: {Timetable}", dateKey, scheduleEntry.Timetable);
+                
+                // Load the specified timetable file
+                var timetableFileName = $"{scheduleEntry.Timetable}.json";
+                var filePath = Path.Combine(_timetablesBasePath, year.ToString(), timetableFileName);
+                
+                if (File.Exists(filePath))
+                {
+                    return await LoadAndCacheTimetable(filePath);
+                }
+                
+                _logger.LogWarning("Scheduled timetable file not found: {FilePath}", filePath);
+            }
+            else
+            {
+                _logger.LogInformation("No schedule entry found for {Date}", dateKey);
+            }
         }
 
         // Fall back to default.json for the year
         var defaultFilePath = Path.Combine(_timetablesBasePath, year.ToString(), "default.json");
-        _logger.LogInformation("Date-specific timetable not found, trying default: {FilePath}", defaultFilePath);
+        _logger.LogInformation("Falling back to default timetable: {FilePath}", defaultFilePath);
 
         if (!File.Exists(defaultFilePath))
         {
@@ -54,8 +74,54 @@ public class TimetableService
         return await LoadAndCacheTimetable(defaultFilePath);
     }
 
+    private async Task<List<TimetableScheduleEntry>?> LoadScheduleAsync(int year)
+    {
+        // Check cache first
+        if (_scheduleCache.TryGetValue(year, out var cachedSchedule))
+        {
+            return cachedSchedule;
+        }
+
+        var scheduleFilePath = Path.Combine(_timetablesBasePath, year.ToString(), "schedule.json");
+        
+        if (!File.Exists(scheduleFilePath))
+        {
+            _logger.LogInformation("No schedule.json found for year {Year}", year);
+            return null;
+        }
+
+        try
+        {
+            var scheduleJson = await File.ReadAllTextAsync(scheduleFilePath);
+            var schedule = JsonSerializer.Deserialize<List<TimetableScheduleEntry>>(scheduleJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (schedule != null)
+            {
+                _scheduleCache[year] = schedule;
+                _logger.LogInformation("Loaded schedule for year {Year} with {Count} entries", year, schedule.Count);
+            }
+
+            return schedule;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error loading schedule.json for year {Year}", year);
+            return null;
+        }
+    }
+
     private async Task<string> LoadAndCacheTimetable(string filePath)
     {
+        // Check cache first
+        if (_timetableCache.TryGetValue(filePath, out var cachedContent))
+        {
+            _logger.LogInformation("Returning cached timetable for {FilePath}", filePath);
+            return cachedContent;
+        }
+
         var content = await File.ReadAllTextAsync(filePath);
         
         // Validate JSON
@@ -89,7 +155,8 @@ public class TimetableService
         
         foreach (var yearDir in yearDirectories)
         {
-            var jsonFiles = Directory.GetFiles(yearDir, "*.json");
+            var jsonFiles = Directory.GetFiles(yearDir, "*.json")
+                .Where(f => !f.EndsWith("schedule.json", StringComparison.OrdinalIgnoreCase));
             timetables.AddRange(jsonFiles.Select(f => Path.GetRelativePath(_timetablesBasePath, f)));
         }
 
