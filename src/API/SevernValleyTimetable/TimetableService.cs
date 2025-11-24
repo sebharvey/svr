@@ -33,7 +33,7 @@ public class TimetableService
         if (debugMode)
         {
             _logger.LogInformation("Debug mode enabled, returning default timetable");
-            var debugFilePath = Path.Combine(_timetablesBasePath, year.ToString(), "default.json");
+            var debugFilePath = Path.Combine(_timetablesBasePath, "debug.json");
             
             if (!File.Exists(debugFilePath))
             {
