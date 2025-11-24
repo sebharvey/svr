@@ -294,7 +294,7 @@
         // Check for debug query string
         const urlParams = new URLSearchParams(window.location.search);
         const debugMode = urlParams.get('debug') === 'true';
-        
+         
         // Show controls if debug mode is enabled
         if (debugMode) {
             document.getElementById('controls').style.display = 'flex';
@@ -324,7 +324,25 @@
         // Fetch timetable from API
         async function loadTimetable() {
             try {
-                const response = await fetch('https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/timetable');
+                // Build API URL with optional debug parameter
+                let apiUrl = 'https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/timetable';
+                if (debugMode !== null) {
+                    apiUrl += `?debug=${debugMode}`;
+                }
+                
+                const response = await fetch(apiUrl);
+                
+                // Handle 404 - no timetable available
+                if (response.status === 404) {
+                    displayNoTimetableMessage();
+                    return;
+                }
+                
+                // Handle other non-OK responses
+                if (!response.ok) {
+                    throw new Error(`API returned status ${response.status}`);
+                }
+                
                 timetableData = await response.json();
                 
                 // Update derived data
@@ -337,7 +355,50 @@
                 startAutoRefresh();
             } catch (error) {
                 console.error('Error loading timetable:', error);
+                displayErrorMessage(error.message);
             }
+        }
+        
+        // Display message when no timetable is available
+        function displayNoTimetableMessage() {
+            const trackerContainer = document.getElementById('trackerContainer');
+            const statusContainer = document.getElementById('statusContainer');
+            
+            trackerContainer.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px; color: #888;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">🚂</div>
+                    <h2 style="color: #e0e0e0; margin-bottom: 10px;">No Timetable Available</h2>
+                    <p>There is no scheduled timetable for today.</p>
+                    <p style="margin-top: 20px; font-size: 14px;">The Severn Valley Railway may not be operating services today.</p>
+                </div>
+            `;
+            
+            statusContainer.innerHTML = `
+                <div style="text-align: center; color: #888; padding: 20px;">
+                    No train services scheduled for today
+                </div>
+            `;
+        }
+        
+        // Display error message
+        function displayErrorMessage(message) {
+            const trackerContainer = document.getElementById('trackerContainer');
+            const statusContainer = document.getElementById('statusContainer');
+            
+            trackerContainer.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px; color: #888;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">⚠️</div>
+                    <h2 style="color: #e0e0e0; margin-bottom: 10px;">Error Loading Timetable</h2>
+                    <p>Unable to load the timetable data.</p>
+                    <p style="margin-top: 20px; font-size: 14px; color: #666;">${message}</p>
+                </div>
+            `;
+            
+            statusContainer.innerHTML = `
+                <div style="text-align: center; color: #888; padding: 20px;">
+                    Unable to load train status
+                </div>
+            `;
         }
         
         // Current timetable state
