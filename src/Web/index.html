@@ -326,7 +326,7 @@
             try {
                 // Build API URL with optional debug parameter
                 let apiUrl = 'https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/timetable';
-                if (debugMode !== null) {
+                if (debugMode !== null && debugMode) {
                     apiUrl += `?debug=${debugMode}`;
                 }
                 
