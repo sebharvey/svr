@@ -22,13 +22,29 @@ public class TimetableService
         _timetablesBasePath = Path.Combine(AppContext.BaseDirectory, "Timetables");
     }
 
-    public async Task<string> GetTimetableForDateAsync(DateTime date)
+    public async Task<string> GetTimetableForDateAsync(DateTime date, bool debugMode = false)
     {
         var year = date.Year;
         
-        _logger.LogInformation("Looking for timetable for date: {Date}", date.ToString("yyyy-MM-dd"));
+        _logger.LogInformation("Looking for timetable for date: {Date}, Debug mode: {DebugMode}", 
+            date.ToString("yyyy-MM-dd"), debugMode);
 
-        // Load the schedule for this year
+        // If debug mode is enabled, always return default.json
+        if (debugMode)
+        {
+            _logger.LogInformation("Debug mode enabled, returning default timetable");
+            var debugFilePath = Path.Combine(_timetablesBasePath, year.ToString(), "default.json");
+            
+            if (!File.Exists(debugFilePath))
+            {
+                _logger.LogWarning("No default timetable found for year {Year}", year);
+                throw new FileNotFoundException($"No default timetable found for year {year}");
+            }
+            
+            return await LoadAndCacheTimetable(debugFilePath);
+        }
+
+        // Normal mode: Load the schedule for this year
         var schedule = await LoadScheduleAsync(year);
         
         if (schedule != null && schedule.Count > 0)
@@ -61,17 +77,10 @@ public class TimetableService
             }
         }
 
-        // Fall back to default.json for the year
-        var defaultFilePath = Path.Combine(_timetablesBasePath, year.ToString(), "default.json");
-        _logger.LogInformation("Falling back to default timetable: {FilePath}", defaultFilePath);
-
-        if (!File.Exists(defaultFilePath))
-        {
-            _logger.LogWarning("No timetable found for year {Year}", year);
-            throw new FileNotFoundException($"No timetable found for date {date:yyyy-MM-dd}");
-        }
-
-        return await LoadAndCacheTimetable(defaultFilePath);
+        // If no schedule entry found, do NOT fall back to default.json
+        // Instead, throw FileNotFoundException to return 404
+        _logger.LogWarning("No timetable scheduled for date {Date}", date.ToString("yyyy-MM-dd"));
+        throw new FileNotFoundException($"No timetable found for date {date:yyyy-MM-dd}");
     }
 
     private async Task<List<TimetableScheduleEntry>?> LoadScheduleAsync(int year)

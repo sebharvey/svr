@@ -25,7 +25,15 @@ public class TimetableFunction
 
         try
         {
-            var timetable = await _timetableService.GetTimetableForDateAsync(DateTime.UtcNow);
+            // Check for debug query parameter
+            var debugParam = req.Query["debug"];
+            var isDebugMode = !string.IsNullOrEmpty(debugParam) && 
+                              bool.TryParse(debugParam, out var debugValue) && 
+                              debugValue;
+            
+            _logger.LogInformation("Debug mode: {DebugMode}", isDebugMode);
+            
+            var timetable = await _timetableService.GetTimetableForDateAsync(DateTime.UtcNow, isDebugMode);
             
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "application/json");
