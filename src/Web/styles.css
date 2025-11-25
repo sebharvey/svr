@@ -1,0 +1,259 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 20px;
+    min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.timetable-selector {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: none; /* Hidden - will be used in future */
+    justify-content: center;
+}
+
+.timetable-selector label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.timetable-selector select {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border: 1px solid #4a4a4a;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.timetable-selector select:hover {
+    background: #4a4a4a;
+}
+
+.controls {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.time-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.time-display {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border: 1px solid #4a4a4a;
+    padding: 6px 15px;
+    border-radius: 4px;
+    font: bold 16px/1;
+    min-width: 80px;
+    text-align: center;
+}
+
+.time-btn,
+.live-btn {
+    background: #4a4a4a;
+    color: #e0e0e0;
+    border: 1px solid #5a5a5a;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color .2s;
+}
+
+.time-btn {
+    padding: 6px 12px;
+    font-size: 18px;
+}
+
+.time-btn:hover,
+.live-btn:hover:not(:disabled) {
+    background: #5a5a5a;
+}
+
+.time-btn:active {
+    background: #3a3a3a;
+}
+
+.live-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.live-btn:disabled {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.tracker-container,
+.status-panel {
+    background: #2a2a2a;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 auto 20px;
+    max-width: 800px;
+}
+
+.station {
+    background: #404040;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 2px;
+    position: relative;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.station-name {
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.track-section {
+    background: #333;
+    position: relative;
+    min-height: 100px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.track-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #555;
+    transform: translateX(-50%);
+}
+
+.train {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.train.northbound {
+    left: 10%;
+    flex-direction: row;
+}
+
+.train.southbound {
+    right: 10%;
+    flex-direction: row-reverse;
+}
+
+.train-icon {
+    font-size: 20px;
+}
+
+.train-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+}
+
+.train-number {
+    font-weight: bold;
+}
+
+.direction-arrow {
+    font-size: 14px;
+}
+
+.status-panel h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.train-status {
+    background: #333;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border-left: 4px solid;
+}
+
+.train-status-header {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.train-status-detail {
+    font-size: 13px;
+    color: #b0b0b0;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .controls label {
+        justify-content: space-between;
+    }
+    
+    .train {
+        font-size: 11px;
+    }
+    
+    .train-icon {
+        font-size: 16px;
+    }
+}
