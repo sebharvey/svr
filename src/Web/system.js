@@ -1,11 +1,39 @@
-
 // Check for debug query string
 const urlParams = new URLSearchParams(window.location.search);
 const debugMode = urlParams.get('debug') === 'true';
     
 // Show controls if debug mode is enabled
 if (debugMode) {
-    document.getElAementById('controls').style.display = 'flex';
+    document.getElementById('controls').style.display = 'flex';
+}
+
+// Health check
+async function checkHealth() {
+    try {
+        const response = await fetch('https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/health');
+        
+        if (response.ok) {
+            const healthData = await response.json();
+            
+            const statusElement = document.getElementById('systemStatus');
+            const statusText = document.getElementById('systemStatusText');
+            
+            if (healthData.status === 'healthy') {
+                statusElement.className = 'system-status online';
+                statusText.textContent = 'System status: online';
+            } else {
+                statusElement.className = 'system-status offline';
+                statusText.textContent = 'System status: unavailable';
+            }
+        } else {
+            document.getElementById('systemStatus').className = 'system-status offline';
+            document.getElementById('systemStatusText').textContent = 'System status: unavailable';
+        }
+    } catch (error) {
+        console.error('Health check failed:', error);
+        document.getElementById('systemStatus').className = 'system-status offline';
+        document.getElementById('systemStatusText').textContent = 'System status: unavailable';
+    }
 }
 
 /* API Response Format:
@@ -632,3 +660,7 @@ function startAutoRefresh() {
 
 // Initial load
 loadTimetable();
+checkHealth();
+
+// Check health status every 60 seconds
+setInterval(checkHealth, 60000);
