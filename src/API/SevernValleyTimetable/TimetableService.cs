@@ -3,12 +3,37 @@ using Microsoft.Extensions.Logging;
 
 namespace SevernValleyTimetable.Functions;
 
+// Model classes for timetable data
 public class TimetableScheduleEntry
 {
     public string Date { get; set; } = string.Empty;
     public string Timetable { get; set; } = string.Empty;
 }
 
+public class TimetableData
+{
+    public string? Name { get; set; }
+    public string? Date { get; set; }
+    public List<TrainService>? Trains { get; set; }
+}
+
+public class TrainService
+{
+    public string? TrainNumber { get; set; }
+    public string? Direction { get; set; }
+    public List<TrainStop>? Stops { get; set; }
+}
+
+public class TrainStop
+{
+    public string? Station { get; set; }
+    public string? Departure { get; set; }
+    public string? Arrival { get; set; }
+    public string? Time { get; set; }
+    public bool StopsAt { get; set; }
+}
+
+// Main service class
 public class TimetableService
 {
     private readonly ILogger<TimetableService> _logger;
@@ -83,7 +108,7 @@ public class TimetableService
         throw new FileNotFoundException($"No timetable found for date {date:yyyy-MM-dd}");
     }
 
-    private async Task<List<TimetableScheduleEntry>?> LoadScheduleAsync(int year)
+    public async Task<List<TimetableScheduleEntry>?> LoadScheduleAsync(int year)
     {
         // Check cache first
         if (_scheduleCache.TryGetValue(year, out var cachedSchedule))

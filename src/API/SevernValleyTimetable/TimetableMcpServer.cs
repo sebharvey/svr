@@ -204,7 +204,7 @@ public class TimetableMcpServer
             // Check for 2025
             if (!yearFilter.HasValue || yearFilter == 2025)
             {
-                var schedule2025 = await LoadScheduleForYearAsync(2025);
+                var schedule2025 = await _timetableService.LoadScheduleAsync(2025);
                 if (schedule2025 != null)
                 {
                     availableDates[2025] = schedule2025.Select(s => ConvertScheduleDateToFullDate(s.Date, 2025)).ToList();
@@ -214,7 +214,7 @@ public class TimetableMcpServer
             // Check for 2026
             if (!yearFilter.HasValue || yearFilter == 2026)
             {
-                var schedule2026 = await LoadScheduleForYearAsync(2026);
+                var schedule2026 = await _timetableService.LoadScheduleAsync(2026);
                 if (schedule2026 != null)
                 {
                     availableDates[2026] = schedule2026.Select(s => ConvertScheduleDateToFullDate(s.Date, 2026)).ToList();
@@ -269,7 +269,10 @@ public class TimetableMcpServer
         try
         {
             var timetableJson = await _timetableService.GetTimetableForDateAsync(date, false);
-            var timetable = JsonSerializer.Deserialize<TimetableData>(timetableJson);
+            var timetable = JsonSerializer.Deserialize<TimetableData>(timetableJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
             if (timetable?.Trains == null)
             {
@@ -357,8 +360,6 @@ public class TimetableMcpServer
                 _ => throw new ArgumentException($"Unknown resource URI: {resourceRead.Uri}")
             };
 
-            var timetable = JsonSerializer.Deserialize<JsonElement>(timetableJson);
-
             return McpServerResponse.Success(new
             {
                 contents = new[]
@@ -383,31 +384,6 @@ public class TimetableMcpServer
         }
     }
 
-    private async Task<List<TimetableScheduleEntry>?> LoadScheduleForYearAsync(int year)
-    {
-        try
-        {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "Timetables");
-            var scheduleFilePath = Path.Combine(basePath, year.ToString(), "schedule.json");
-
-            if (!File.Exists(scheduleFilePath))
-            {
-                return null;
-            }
-
-            var scheduleJson = await File.ReadAllTextAsync(scheduleFilePath);
-            return JsonSerializer.Deserialize<List<TimetableScheduleEntry>>(scheduleJson, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error loading schedule for year {Year}", year);
-            return null;
-        }
-    }
-
     private string ConvertScheduleDateToFullDate(string scheduleDate, int year)
     {
         // Schedule date format: "dd-MMM" (e.g., "26-Dec")
@@ -425,29 +401,7 @@ public class TimetableMcpServer
         }
     }
 
-    // Helper classes for deserialization
-    private class TimetableData
-    {
-        public string? Name { get; set; }
-        public List<TrainService>? Trains { get; set; }
-    }
-
-    private class TrainService
-    {
-        public string? TrainNumber { get; set; }
-        public string? Direction { get; set; }
-        public List<TrainStop>? Stops { get; set; }
-    }
-
-    private class TrainStop
-    {
-        public string? Station { get; set; }
-        public string? Departure { get; set; }
-        public string? Arrival { get; set; }
-        public string? Time { get; set; }
-        public bool StopsAt { get; set; }
-    }
-
+    // Helper classes for MCP deserialization
     private class McpToolCall
     {
         public string Name { get; set; } = string.Empty;
