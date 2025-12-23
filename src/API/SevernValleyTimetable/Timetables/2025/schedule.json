@@ -10,5 +10,29 @@
   {
     "date": "26-Oct",
     "timetable": "timetable-e"
+  },
+  {
+    "date": "26-Dec",
+    "timetable": "timetable-b"
+  },
+  {
+    "date": "27-Dec",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "28-Dec",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "29-Dec",
+    "timetable": "winter-diesel-day"
+  },
+  {
+    "date": "30-Dec",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "31-Dec",
+    "timetable": "timetable-c"
   }
 ]
