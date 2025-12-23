@@ -1,1 +1,18 @@
-
+[
+  {
+    "date": "01-Jan",
+    "timetable": "timetable-b"
+  },
+  {
+    "date": "02-Jan",
+    "timetable": "timetable-b"
+  },
+  {
+    "date": "03-Jan",
+    "timetable": "winter-steam-gala-sat"
+  },
+  {
+    "date": "04-Jan",
+    "timetable": "winter-steam-gala-sun"
+  }
+]
