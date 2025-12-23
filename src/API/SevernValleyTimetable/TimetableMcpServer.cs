@@ -16,6 +16,7 @@ public class TimetableMcpServer
         _timetableService = timetableService;
     }
 
+/*
     [Function("TimetableMcpServer")]
     [McpServer(
         Name = "severn-valley-timetable",
@@ -412,4 +413,6 @@ public class TimetableMcpServer
     {
         public string Uri { get; set; } = string.Empty;
     }
+
+    */
 }
