@@ -167,6 +167,7 @@ function updateTimetableData() {
 // Extract stations dynamically from timetable data
 function extractStations() {
     // Find the service with the most stops to get the complete station order
+    /**
     let longestService = timetableData.trains[0];
     let maxStops = longestService.stops.length;
     
@@ -185,6 +186,16 @@ function extractStations() {
     }
     
     return stationsInRoute;
+    */
+
+    return [
+      "Kidderminster",
+      "Bewdley",
+      "Arley",
+      "Highley",
+      "Hampton Loade",
+      "Bridgnorth"
+    ];
 }
 
 let stations = [];
