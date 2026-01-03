@@ -36,26 +36,34 @@ async function checkHealth() {
     }
 }
 
-/* API Response Format:
-{
-    "name": "11 October Special",
-    "date": "Saturday 11 October only",
-    "trains": [
-    {
-        "trainNumber": "Diesel 37248",
-        "direction": "northbound",
-        "stops": [
-        { "station": "Bridgnorth", "departure": "09:40", "stopsAt": true },
-        { "station": "Hampton Loade", "time": "09:58", "stopsAt": false },
-        ...
-        ]
-    },
-    ...
-    ]
-}
-*/
-
 let timetableData = null;
+
+// Update timetable info display
+function updateTimetableInfo() {
+    const infoContainer = document.getElementById('timetableInfo');
+    
+    if (!timetableData) {
+        infoContainer.classList.remove('visible');
+        return;
+    }
+    
+    let html = '';
+    
+    if (timetableData.name) {
+        html += `<div class="timetable-name">${timetableData.name}</div>`;
+    }
+    
+    if (timetableData.date) {
+        html += `<div class="timetable-date">${timetableData.date}</div>`;
+    }
+    
+    if (html) {
+        infoContainer.innerHTML = html;
+        infoContainer.classList.add('visible');
+    } else {
+        infoContainer.classList.remove('visible');
+    }
+}
 
 // Fetch timetable from API
 async function loadTimetable() {
@@ -80,6 +88,9 @@ async function loadTimetable() {
         }
         
         timetableData = await response.json();
+        
+        // Update timetable info display
+        updateTimetableInfo();
         
         // Update derived data
         updateTimetableData();
@@ -137,8 +148,6 @@ function displayErrorMessage(message) {
     `;
 }
 
-// Current timetable state
-
 // Function to update derived data when timetable changes
 function updateTimetableData() {
     // Re-extract stations
@@ -156,7 +165,6 @@ function updateTimetableData() {
 }
 
 // Extract stations dynamically from timetable data
-// Build ordered list by following the most complete route
 function extractStations() {
     // Find the service with the most stops to get the complete station order
     let longestService = timetableData.trains[0];
@@ -172,7 +180,6 @@ function extractStations() {
     const stationsInRoute = longestService.stops.map(s => s.station);
     
     // If the longest service is northbound, reverse to get Kidderminster at top
-    // If southbound, it's already in the right order (Kidderminster to Bridgnorth)
     if (longestService.direction === 'northbound') {
         return stationsInRoute.reverse();
     }
@@ -517,23 +524,15 @@ function renderTracker() {
             for (let key in activeTrains) {
                 const { train, position } = activeTrains[key];
                 if (position.type === 'between') {
-                    // For northbound: from is lower station, to is upper station
-                    // For southbound: from is upper station, to is lower station
-                    // Track sections go from current station to next (upward in list)
                     let matchesSegment = false;
                     
                     if (train.direction === 'northbound') {
-                        // Northbound goes from Bridgnorth to Kidderminster (bottom to top)
                         matchesSegment = position.fromStation === nextStation && position.toStation === station;
                     } else {
-                        // Southbound goes from Kidderminster to Bridgnorth (top to bottom)
                         matchesSegment = position.fromStation === station && position.toStation === nextStation;
                     }
                     
                     if (matchesSegment) {
-                        // progress goes 0 to 1 from departure to arrival
-                        // For northbound: start at bottom (100%) and move to top (0%)
-                        // For southbound: start at top (0%) and move to bottom (100%)
                         const percentage = train.direction === 'northbound' 
                             ? (1 - position.progress) * 100 
                             : position.progress * 100;
