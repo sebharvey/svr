@@ -274,6 +274,141 @@ h1 {
     color: #ef4444;
 }
 
+/* Desktop Layout - Two Column */
+@media (min-width: 1024px) {
+    body {
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 100vh;
+        overflow: hidden;
+    }
+    
+    /* Left column wrapper */
+    body::before {
+        content: '';
+        display: none;
+    }
+    
+    /* Left column content */
+    h1,
+    .timetable-info,
+    .timetable-selector,
+    .controls,
+    .status-panel,
+    .system-status {
+        grid-column: 1;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    /* Right column content */
+    .tracker-container {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 30px;
+    }
+    
+    /* Left column styling */
+    h1 {
+        padding: 30px 30px 10px 30px;
+        margin-bottom: 10px;
+        font-size: 32px;
+    }
+    
+    .timetable-info {
+        margin: 10px 30px 20px 30px;
+        padding: 20px;
+    }
+    
+    .timetable-name {
+        font-size: 22px;
+    }
+    
+    .timetable-date {
+        font-size: 16px;
+    }
+    
+    .controls {
+        margin: 0 30px 20px 30px;
+        padding: 20px;
+    }
+    
+    .status-panel {
+        margin: 0 30px 20px 30px;
+        padding: 25px;
+        overflow-y: auto;
+        max-height: calc(100vh - 500px);
+    }
+    
+    .status-panel h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .train-status {
+        padding: 15px;
+        margin-bottom: 12px;
+    }
+    
+    .train-status-header {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .train-status-detail {
+        font-size: 14px;
+    }
+    
+    .system-status {
+        margin: 0 30px 30px 30px;
+        padding: 15px 25px;
+        font-size: 14px;
+    }
+    
+    /* Make left column scrollable if needed */
+    @supports (display: grid) {
+        body {
+            grid-template-rows: auto;
+        }
+        
+        body > :not(.tracker-container) {
+            grid-column: 1;
+        }
+    }
+}
+
+/* Extra large desktop - more breathing room */
+@media (min-width: 1600px) {
+    h1 {
+        font-size: 36px;
+        padding: 40px 50px 15px 50px;
+    }
+    
+    .timetable-info,
+    .controls,
+    .status-panel,
+    .system-status {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    
+    .tracker-container {
+        padding: 40px 50px;
+    }
+    
+    .status-panel {
+        max-height: calc(100vh - 550px);
+    }
+}
+
 @media (max-width: 600px) {
     body {
         padding: 10px;
