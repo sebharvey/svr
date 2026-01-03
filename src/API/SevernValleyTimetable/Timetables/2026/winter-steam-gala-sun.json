@@ -4,975 +4,302 @@
   "trains": [
     {
       "trainNumber": "Steam 7802",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "09:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "09:09",
-          "departure": "09:12",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "09:27",
-          "departure": "09:30",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "09:39",
-          "departure": "09:42",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "09:52",
-          "departure": "09:55",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "10:10",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Auto 1450",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "09:25",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "09:34",
-          "departure": "09:37",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "09:42",
-          "departure": "09:45",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "09:57",
-          "departure": "10:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "time": "10:08",
-          "stopsAt": false
-        }
-      ]
-    },
-    {
-      "trainNumber": "DMU 13268",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "10:15",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "10:24",
-          "departure": "10:27",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "10:34",
-          "departure": "10:37",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "10:55",
-          "departure": "11:10",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "11:20",
-          "departure": "11:23",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "11:38",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Steam 75069",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "11:05",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "11:14",
-          "departure": "11:17",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "11:22",
-          "departure": "11:25",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "11:45",
-          "departure": "12:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "12:10",
-          "departure": "12:13",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "12:28",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "TT 7714",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "11:40",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "11:49",
-          "departure": "11:52",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "11:59",
-          "departure": "12:02",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "12:15",
-          "departure": "12:30",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "12:43",
-          "departure": "12:53",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "13:08",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Auto 1450",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "11:55",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "12:04",
-          "departure": "12:07",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "12:17",
-          "departure": "12:20",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "12:32",
-          "departure": "12:43",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "DMU 13268",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "12:30",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "12:39",
-          "departure": "12:42",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Steam 7802",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "13:05",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "13:14",
-          "departure": "13:17",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "13:29",
-          "departure": "13:32",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "13:55",
-          "departure": "14:10",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "14:20",
-          "departure": "14:23",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "14:38",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Auto 1450",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "14:05",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "14:14",
-          "departure": "14:17",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "14:22",
-          "departure": "14:25",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "14:45",
-          "departure": "14:56",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "DMU 13268",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "14:25",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "time": "14:40",
-          "stopsAt": false
-        }
-      ]
-    },
-    {
-      "trainNumber": "DMU 13268",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "14:40",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "14:49",
-          "departure": "14:52",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "14:59",
-          "departure": "15:02",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "15:18",
-          "departure": "15:30",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "15:40",
-          "departure": "15:43",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "15:58",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Steam 75069",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "15:25",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "15:34",
-          "departure": "15:37",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "15:42",
-          "departure": "15:45",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "16:05",
-          "departure": "16:20",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "16:30",
-          "departure": "16:33",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "16:48",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Auto 1450",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "16:15",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "16:24",
-          "departure": "16:27",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Steam 7802",
-      "direction": "southbound",
-      "stops": [
-        {
-          "station": "Kidderminster",
-          "departure": "17:30",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "17:39",
-          "departure": "17:42",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "17:49",
-          "departure": "17:52",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "18:10",
-          "departure": "18:25",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "18:35",
-          "departure": "18:38",
-          "stopsAt": true
-        },
-        {
-          "station": "Bridgnorth",
-          "arrival": "18:53",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "DMU 13268",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "10:15",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "10:30",
-          "departure": "10:33",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "10:44",
-          "departure": "10:47",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "10:54",
-          "departure": "10:57",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "11:07",
-          "departure": "11:10",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "11:20",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "09:00", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "09:12", "departure": "09:15", "stopsAt": true },
+        { "station": "Arley", "arrival": "09:27", "departure": "09:30", "stopsAt": true },
+        { "station": "Highley", "arrival": "09:39", "departure": "09:42", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "09:52", "departure": "09:55", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "10:10", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "Auto 1450",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Highley",
-          "departure": "10:12",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "10:19",
-          "departure": "10:22",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "10:32",
-          "departure": "10:35",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "10:45",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "09:25", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "09:37", "departure": "09:45", "stopsAt": true },
+        { "station": "Arley", "arrival": "09:57", "departure": "10:00", "stopsAt": true },
+        { "station": "Highley", "arrival": "10:05", "departure": "10:08", "stopsAt": true }
       ]
     },
     {
-      "trainNumber": "Auto 1450",
+      "trainNumber": "Steam 13268",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Highley",
-          "departure": "10:47",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "10:54",
-          "departure": "10:57",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "11:07",
-          "departure": "11:10",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "11:20",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "DMU 13268",
-      "direction": "northbound",
-      "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "11:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "11:20",
-          "departure": "11:23",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "11:34",
-          "departure": "11:37",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "11:44",
-          "departure": "11:47",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "11:57",
-          "departure": "12:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "12:10",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Steam 7802",
-      "direction": "northbound",
-      "stops": [
-        {
-          "station": "Bewdley",
-          "departure": "12:45",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "12:57",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "DMU 13268",
-      "direction": "northbound",
-      "stops": [
-        {
-          "station": "Bewdley",
-          "departure": "09:40",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "09:52",
-          "stopsAt": true
-        }
-      ]
-    },
-    {
-      "trainNumber": "Auto 1450",
-      "direction": "northbound",
-      "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "12:35",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "12:50",
-          "departure": "12:53",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "13:04",
-          "departure": "13:07",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "13:14",
-          "departure": "13:17",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "13:27",
-          "departure": "13:30",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "13:40",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "10:15", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "10:27", "departure": "10:37", "stopsAt": true },
+        { "station": "Arley", "arrival": "10:55", "departure": "10:58", "stopsAt": true },
+        { "station": "Highley", "arrival": "11:07", "departure": "11:10", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "11:20", "departure": "11:23", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "11:38", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "Steam 75069",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "13:15",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "13:30",
-          "departure": "13:33",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "13:44",
-          "departure": "13:47",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "13:54",
-          "departure": "13:57",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "14:07",
-          "departure": "14:10",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "14:20",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "11:05", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "11:17", "departure": "11:25", "stopsAt": true },
+        { "station": "Arley", "arrival": "11:45", "departure": "11:48", "stopsAt": true },
+        { "station": "Highley", "arrival": "11:57", "departure": "12:00", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "12:10", "departure": "12:13", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "12:28", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "TT 7714",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "14:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "time": "14:23",
-          "stopsAt": false
-        },
-        {
-          "station": "Highley",
-          "arrival": "14:34",
-          "departure": "14:37",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "14:44",
-          "departure": "14:47",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "14:57",
-          "departure": "15:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "15:10",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "11:40", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "11:52", "departure": "12:02", "stopsAt": true },
+        { "station": "Arley", "arrival": "12:15", "departure": "12:18", "stopsAt": true },
+        { "station": "Highley", "arrival": "12:27", "departure": "12:30", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "12:50", "departure": "12:53", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "13:08", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "Auto 1450",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Highley",
-          "departure": "15:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "15:17",
-          "departure": "15:20",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "15:30",
-          "departure": "15:33",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "15:40",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "11:55", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:07", "departure": "12:20", "stopsAt": true },
+        { "station": "Arley", "arrival": "12:32", "departure": "12:35", "stopsAt": true },
+        { "station": "Highley", "arrival": "12:40", "departure": "12:43", "stopsAt": true }
       ]
     },
     {
-      "trainNumber": "DMU 13268",
+      "trainNumber": "DMU",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bewdley",
-          "departure": "15:40",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "15:52",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "12:30", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:42", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "Steam 7802",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "15:20",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "15:40",
-          "departure": "15:43",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "15:54",
-          "departure": "15:57",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "16:04",
-          "departure": "16:07",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "16:17",
-          "departure": "16:20",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "16:30",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "13:05", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "13:17", "departure": "13:32", "stopsAt": true },
+        { "station": "Arley", "arrival": "13:55", "departure": "13:58", "stopsAt": true },
+        { "station": "Highley", "arrival": "14:07", "departure": "14:10", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "14:20", "departure": "14:23", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "14:38", "stopsAt": true }
       ]
     },
     {
-      "trainNumber": "DMU 13268",
+      "trainNumber": "Auto 1450",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "16:55",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "17:10",
-          "departure": "17:13",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "17:24",
-          "departure": "17:27",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "17:34",
-          "departure": "17:37",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "17:47",
-          "departure": "17:50",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "18:00",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "14:05", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:17", "departure": "14:25", "stopsAt": true },
+        { "station": "Arley", "arrival": "14:45", "departure": "14:48", "stopsAt": true },
+        { "station": "Highley", "arrival": "14:53", "departure": "14:56", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "14:25", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:40", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 13268",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "14:40", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:52", "departure": "15:02", "stopsAt": true },
+        { "station": "Arley", "arrival": "15:15", "departure": "15:18", "stopsAt": true },
+        { "station": "Highley", "arrival": "15:27", "departure": "15:30", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "15:40", "departure": "15:43", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "15:58", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "Steam 75069",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bridgnorth",
-          "departure": "17:30",
-          "stopsAt": true
-        },
-        {
-          "station": "Hampton Loade",
-          "arrival": "17:45",
-          "departure": "17:48",
-          "stopsAt": true
-        },
-        {
-          "station": "Highley",
-          "arrival": "17:59",
-          "departure": "18:02",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "18:09",
-          "departure": "18:12",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "18:22",
-          "departure": "18:25",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "18:27",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "15:25", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "15:37", "departure": "15:45", "stopsAt": true },
+        { "station": "Arley", "arrival": "16:05", "departure": "16:08", "stopsAt": true },
+        { "station": "Highley", "arrival": "16:17", "departure": "16:20", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "16:30", "departure": "16:33", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "16:48", "stopsAt": true }
       ]
     },
     {
-      "trainNumber": "DMU 13268",
+      "trainNumber": "DMU",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Bewdley",
-          "departure": "18:00",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "18:12",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "16:15", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "16:27", "stopsAt": true }
       ]
     },
     {
-      "trainNumber": "Steam 7802",
+      "trainNumber": "Auto 1450/TT 7714 (Steam 7802)",
       "direction": "northbound",
       "stops": [
-        {
-          "station": "Highley",
-          "departure": "12:47",
-          "stopsAt": true
-        },
-        {
-          "station": "Arley",
-          "arrival": "12:54",
-          "departure": "12:57",
-          "stopsAt": true
-        },
-        {
-          "station": "Bewdley",
-          "arrival": "13:07",
-          "departure": "13:10",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "13:20",
-          "stopsAt": true
-        }
+        { "station": "Kidderminster", "departure": "17:30", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "17:42", "departure": "17:52", "stopsAt": true },
+        { "station": "Arley", "arrival": "18:10", "departure": "18:13", "stopsAt": true },
+        { "station": "Highley", "arrival": "18:22", "departure": "18:25", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "18:35", "departure": "18:38", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "18:53", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 13268",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bewdley", "departure": "09:40", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "09:52", "stopsAt": true }
       ]
     },
     {
       "trainNumber": "Auto 1450",
-      "direction": "northbound",
+      "direction": "southbound",
       "stops": [
-        {
-          "station": "Bewdley",
-          "departure": "18:27",
-          "stopsAt": true
-        },
-        {
-          "station": "Kidderminster",
-          "arrival": "18:40",
-          "stopsAt": true
-        }
+        { "station": "Highley", "departure": "10:12", "stopsAt": true },
+        { "station": "Arley", "arrival": "10:19", "departure": "10:22", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "10:35", "departure": "10:45", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "10:57", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "10:15", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "10:30", "departure": "10:33", "stopsAt": true },
+        { "station": "Highley", "arrival": "10:44", "departure": "10:47", "stopsAt": true },
+        { "station": "Arley", "arrival": "10:54", "departure": "10:57", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "11:10", "departure": "11:20", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "11:32", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 7802",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "11:00", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "11:20", "departure": "11:23", "stopsAt": true },
+        { "station": "Highley", "arrival": "11:34", "departure": "11:37", "stopsAt": true },
+        { "station": "Arley", "arrival": "11:44", "departure": "11:47", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:00", "departure": "12:10", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "12:22", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bewdley", "departure": "12:45", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "12:57", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Auto 1450",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Highley", "departure": "12:47", "stopsAt": true },
+        { "station": "Arley", "arrival": "12:54", "departure": "12:57", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "13:10", "departure": "13:20", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "13:32", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 13268",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "12:35", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "12:50", "departure": "12:53", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:04", "departure": "13:07", "stopsAt": true },
+        { "station": "Arley", "arrival": "13:14", "departure": "13:17", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "13:30", "departure": "13:40", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "13:52", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "13:15", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "13:30", "departure": "13:33", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:44", "departure": "13:47", "stopsAt": true },
+        { "station": "Arley", "arrival": "13:54", "departure": "13:57", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:10", "departure": "14:20", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "14:32", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "TT 7714",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "14:00", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "14:20", "departure": "14:23", "stopsAt": true },
+        { "station": "Highley", "arrival": "14:34", "departure": "14:37", "stopsAt": true },
+        { "station": "Arley", "arrival": "14:44", "departure": "14:47", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "15:00", "departure": "15:10", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "15:22", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Auto 1450",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Highley", "departure": "15:00", "stopsAt": true },
+        { "station": "Arley", "arrival": "17:17", "departure": "15:20", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "15:33", "departure": "15:40", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "15:52", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bewdley", "departure": "15:50", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "16:05", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 7802",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "15:20", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "15:40", "departure": "15:43", "stopsAt": true },
+        { "station": "Highley", "arrival": "15:54", "departure": "15:57", "stopsAt": true },
+        { "station": "Arley", "arrival": "16:04", "departure": "16:07", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "16:20", "departure": "16:30", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "16:42", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 13268",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "16:55", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "17:10", "departure": "17:13", "stopsAt": true },
+        { "station": "Highley", "arrival": "17:24", "departure": "17:27", "stopsAt": true },
+        { "station": "Arley", "arrival": "17:34", "departure": "17:37", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "17:50", "departure": "18:00", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "18:12", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "17:30", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "17:45", "departure": "17:48", "stopsAt": true },
+        { "station": "Highley", "arrival": "17:59", "departure": "18:02", "stopsAt": true },
+        { "station": "Arley", "arrival": "18:09", "departure": "18:12", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "18:25", "departure": "18:27", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "18:40", "stopsAt": true }
       ]
     }
   ]
