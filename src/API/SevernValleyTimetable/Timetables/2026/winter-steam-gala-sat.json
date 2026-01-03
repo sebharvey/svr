@@ -1,6 +1,3 @@
-I'll convert the Winter Steam Gala Saturday timetable into the structured JSON format.
-
-```json
 {
   "name": "Winter Steam Gala",
   "date": "Saturday 3 January",
@@ -415,4 +412,3 @@ I'll convert the Winter Steam Gala Saturday timetable into the structured JSON f
     }
   ]
 }
-```
