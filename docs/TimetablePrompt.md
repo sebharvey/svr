@@ -11,8 +11,14 @@ Convert the provided railway timetable image into a structured JSON format follo
    - `direction`: either "northbound" (Bridgnorth to Kidderminster) or "southbound" (Kidderminster to Bridgnorth)
    - `stops`: an array of stations on the route in order of travel
 
-4. **Station order** (always in this order from north to south):
-   - Kidderminster, Bewdley, Arley, Highley, Hampton Loade, Bridgnorth
+4. **Station order and direction definitions**:
+   - **IMPORTANT**: "Northbound" and "Southbound" are naming conventions that do NOT match geographic directions
+   - **Northbound** means travelling from Bridgnorth to Kidderminster
+   - **Southbound** means travelling from Kidderminster to Bridgnorth
+   - Station order along the line: Bridgnorth, Hampton Loade, Highley, Arley, Bewdley, Kidderminster
+   - When determining direction:
+     * If a train's first station is Bridgnorth (or any station closer to Bridgnorth) and travels towards Kidderminster → "northbound"
+     * If a train's first station is Kidderminster (or any station closer to Kidderminster) and travels towards Bridgnorth → "southbound"
 
 5. **For each stop in the stops array**:
    - `station`: station name
