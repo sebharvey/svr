@@ -1,0 +1,300 @@
+{
+  "name": "Branchline Weekend Timetable",
+  "date": "Sunday 1 March 2026",
+  "trains": [
+    {
+      "trainNumber": "Diesel 108 DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "09:00", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "09:12", "departure": "09:15", "stopsAt": true },
+        { "station": "Arley", "arrival": "09:28", "departure": "09:31", "stopsAt": true },
+        { "station": "Highley", "arrival": "09:41", "departure": "09:44", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "09:55", "departure": "09:58", "stopsAt": true },
+        { "station": "Eardington", "arrival": "10:04", "departure": "10:07", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "10:15", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 1450",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "09:20", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "09:35", "departure": "09:38", "stopsAt": true },
+        { "station": "Arley", "arrival": "09:50", "departure": "09:53", "stopsAt": true },
+        { "station": "Highley", "arrival": "09:58", "departure": "10:01", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 7714",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "09:55", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "10:06", "departure": "10:09", "stopsAt": true },
+        { "station": "Arley", "arrival": "10:23", "departure": "10:26", "stopsAt": true },
+        { "station": "Highley", "arrival": "10:35", "departure": "10:38", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "10:48", "departure": "10:51", "stopsAt": true },
+        { "station": "Eardington", "time": "10:58", "stopsAt": false },
+        { "station": "Bridgnorth", "arrival": "11:06", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "10:30", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "10:43", "departure": "10:46", "stopsAt": true },
+        { "station": "Arley", "arrival": "11:00", "departure": "11:03", "stopsAt": true },
+        { "station": "Highley", "arrival": "11:08", "departure": "11:11", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Highley", "departure": "11:55", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "12:10", "departure": "12:13", "stopsAt": true },
+        { "station": "Eardington", "arrival": "12:19", "departure": "12:22", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "12:30", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 101 DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "11:30", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "11:40", "departure": "11:43", "stopsAt": true },
+        { "station": "Arley", "arrival": "11:57", "departure": "12:00", "stopsAt": true },
+        { "station": "Highley", "arrival": "12:05", "departure": "12:08", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 1450",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "12:25", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:47", "departure": "12:50", "stopsAt": true },
+        { "station": "Arley", "arrival": "13:03", "departure": "13:06", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:14", "departure": "13:17", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "13:27", "departure": "13:30", "stopsAt": true },
+        { "station": "Eardington", "arrival": "13:36", "departure": "13:39", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "13:47", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 108 DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "12:45", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:53", "departure": "12:56", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 7714",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Bewdley", "departure": "13:25", "stopsAt": true },
+        { "station": "Arley", "arrival": "13:39", "departure": "13:42", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:50", "departure": "13:53", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "14:02", "departure": "14:05", "stopsAt": true },
+        { "station": "Eardington", "time": "14:12", "stopsAt": false },
+        { "station": "Bridgnorth", "arrival": "14:20", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 108 DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "13:40", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "13:52", "departure": "13:55", "stopsAt": true },
+        { "station": "Arley", "arrival": "14:14", "departure": "14:17", "stopsAt": true },
+        { "station": "Highley", "arrival": "14:22", "departure": "14:25", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 108 DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Highley", "departure": "15:10", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "15:22", "departure": "15:25", "stopsAt": true },
+        { "station": "Eardington", "arrival": "15:31", "departure": "15:34", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "15:42", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 101 DMU",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "14:45", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:56", "departure": "14:59", "stopsAt": true },
+        { "station": "Arley", "arrival": "15:12", "departure": "15:15", "stopsAt": true },
+        { "station": "Highley", "arrival": "15:20", "departure": "15:23", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "southbound",
+      "stops": [
+        { "station": "Kidderminster", "departure": "15:40", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "15:59", "departure": "16:02", "stopsAt": true },
+        { "station": "Arley", "arrival": "16:15", "departure": "16:18", "stopsAt": true },
+        { "station": "Highley", "arrival": "16:25", "departure": "16:28", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "16:37", "departure": "16:40", "stopsAt": true },
+        { "station": "Eardington", "arrival": "16:46", "departure": "16:49", "stopsAt": true },
+        { "station": "Bridgnorth", "arrival": "16:57", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 108 DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bewdley", "departure": "08:30", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "08:41", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "08:15", "stopsAt": true },
+        { "station": "Eardington", "arrival": "08:21", "departure": "08:24", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "08:32", "departure": "08:35", "stopsAt": true },
+        { "station": "Highley", "arrival": "08:45", "departure": "08:48", "stopsAt": true },
+        { "station": "Arley", "arrival": "08:56", "departure": "08:59", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "09:11", "departure": "09:14", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "09:25", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 101 DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "09:35", "stopsAt": true },
+        { "station": "Eardington", "arrival": "09:41", "departure": "09:44", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "09:59", "departure": "10:02", "stopsAt": true },
+        { "station": "Highley", "arrival": "10:12", "departure": "10:15", "stopsAt": true },
+        { "station": "Arley", "arrival": "10:22", "departure": "10:25", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "10:41", "departure": "10:44", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "10:55", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 1450",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Highley", "departure": "10:50", "stopsAt": true },
+        { "station": "Arley", "arrival": "10:58", "departure": "11:01", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "11:14", "departure": "11:17", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "11:35", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 108 DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "11:15", "stopsAt": true },
+        { "station": "Eardington", "arrival": "11:21", "departure": "11:24", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "11:31", "departure": "11:34", "stopsAt": true },
+        { "station": "Highley", "arrival": "11:44", "departure": "11:47", "stopsAt": true },
+        { "station": "Arley", "arrival": "11:57", "departure": "12:00", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:16", "departure": "12:19", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "12:30", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 7714",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "11:50", "stopsAt": true },
+        { "station": "Eardington", "time": "11:58", "stopsAt": false },
+        { "station": "Hampton Loade", "arrival": "12:07", "departure": "12:10", "stopsAt": true },
+        { "station": "Highley", "arrival": "12:20", "departure": "12:23", "stopsAt": true },
+        { "station": "Arley", "arrival": "12:30", "departure": "12:33", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "12:43", "departure": "12:46", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 108 DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bewdley", "departure": "13:05", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "13:16", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 101 DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Highley", "departure": "12:50", "stopsAt": true },
+        { "station": "Arley", "arrival": "13:06", "departure": "13:09", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "13:25", "departure": "13:28", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "13:45", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "13:05", "stopsAt": true },
+        { "station": "Eardington", "arrival": "13:11", "departure": "13:14", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "13:28", "departure": "13:31", "stopsAt": true },
+        { "station": "Highley", "arrival": "13:38", "departure": "13:41", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Highley", "departure": "14:05", "stopsAt": true },
+        { "station": "Arley", "arrival": "14:13", "departure": "14:16", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "14:30", "departure": "14:33", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "14:50", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 1450",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Highley", "departure": "15:03", "stopsAt": true },
+        { "station": "Arley", "arrival": "15:11", "departure": "15:14", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "15:24", "departure": "15:27", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "15:45", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 7714",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "15:05", "stopsAt": true },
+        { "station": "Eardington", "time": "15:13", "stopsAt": false },
+        { "station": "Hampton Loade", "arrival": "15:20", "departure": "15:23", "stopsAt": true },
+        { "station": "Highley", "arrival": "15:33", "departure": "15:36", "stopsAt": true },
+        { "station": "Arley", "arrival": "15:44", "departure": "15:47", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "16:01", "departure": "16:04", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "16:15", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Diesel 101 DMU",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Highley", "departure": "15:55", "stopsAt": true },
+        { "station": "Arley", "arrival": "16:17", "departure": "16:20", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "16:30", "departure": "16:33", "stopsAt": true }
+      ]
+    },
+    {
+      "trainNumber": "Steam 75069",
+      "direction": "northbound",
+      "stops": [
+        { "station": "Bridgnorth", "departure": "17:20", "stopsAt": true },
+        { "station": "Eardington", "arrival": "17:25", "departure": "17:28", "stopsAt": true },
+        { "station": "Hampton Loade", "arrival": "17:36", "departure": "17:39", "stopsAt": true },
+        { "station": "Highley", "arrival": "17:49", "departure": "17:52", "stopsAt": true },
+        { "station": "Arley", "arrival": "18:00", "departure": "18:03", "stopsAt": true },
+        { "station": "Bewdley", "arrival": "18:16", "departure": "18:19", "stopsAt": true },
+        { "station": "Kidderminster", "arrival": "18:30", "stopsAt": true }
+      ]
+    }
+  ]
+}
