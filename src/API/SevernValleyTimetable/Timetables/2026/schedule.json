@@ -18,5 +18,13 @@
   {
     "date": "22-Feb",
     "timetable": "winter-half-term-timetable-b"
+  },
+  {
+    "date": "28-Feb",
+    "timetable": "branchline-sat"
+  },
+  {
+    "date": "01-Mar",
+    "timetable": "branchline-sun"
   }
 ]
