@@ -164,7 +164,7 @@ function updateTimetableData() {
     });
 }
 
-// Extract stations dynamically from timetable data
+// Extract stations dynamically from timetable data - we dont want to hardcode the list as they may change depending on the timetable 
 function extractStations() {
     // Find the service with the most stops to get the complete station order
     
@@ -186,16 +186,6 @@ function extractStations() {
     }
     
     return stationsInRoute;
-    
-
-    return [
-      "Kidderminster",
-      "Bewdley",
-      "Arley",
-      "Highley",
-      "Hampton Loade",
-      "Bridgnorth"
-    ];
 }
 
 let stations = [];
