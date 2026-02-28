@@ -388,6 +388,14 @@ function generateStatusText(train, position, currentTime) {
         const currentStop = stops[currentStopIndex];
         if (currentStop.departure) {
             const nextStop = stops[currentStopIndex + 1];
+
+            // FIX: guard against nextStop being undefined (train terminates at an intermediate station)
+            if (!nextStop) {
+                const departTime = parseTime(currentStop.departure);
+                const minutesUntil = departTime - currentTime;
+                return `At ${position.station}, departing at ${currentStop.departure} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
+            }
+
             const departTime = parseTime(currentStop.departure);
             const minutesUntil = departTime - currentTime;
             return `At ${position.station}, departing at ${currentStop.departure} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''}) → ${nextStop.station}`;
