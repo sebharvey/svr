@@ -38,31 +38,48 @@ async function checkHealth() {
 
 let timetableData = null;
 
+// Real-time ticking clock
+let clockInterval = null;
+
+function startClock() {
+    // Clear any existing clock interval to avoid duplicates
+    if (clockInterval) {
+        clearInterval(clockInterval);
+    }
+
+    function tick() {
+        const clockEl = document.getElementById('liveClock');
+        if (!clockEl) return;
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        clockEl.textContent = `${h}:${m}:${s}`;
+    }
+
+    tick(); // Set immediately so there's no blank flash
+    clockInterval = setInterval(tick, 1000);
+}
+
 // Update timetable info display
 function updateTimetableInfo() {
     const infoContainer = document.getElementById('timetableInfo');
-    
-    if (!timetableData) {
-        infoContainer.classList.remove('visible');
-        return;
+
+    // Always show the clock; add timetable name/date if available
+    let html = '<div id="liveClock" class="live-clock">00:00:00</div>';
+
+    if (timetableData) {
+        if (timetableData.name) {
+            html += `<div class="timetable-name">${timetableData.name}</div>`;
+        }
+        if (timetableData.date) {
+            html += `<div class="timetable-date">${timetableData.date}</div>`;
+        }
     }
-    
-    let html = '';
-    
-    if (timetableData.name) {
-        html += `<div class="timetable-name">${timetableData.name}</div>`;
-    }
-    
-    if (timetableData.date) {
-        html += `<div class="timetable-date">${timetableData.date}</div>`;
-    }
-    
-    if (html) {
-        infoContainer.innerHTML = html;
-        infoContainer.classList.add('visible');
-    } else {
-        infoContainer.classList.remove('visible');
-    }
+
+    infoContainer.innerHTML = html;
+    infoContainer.classList.add('visible');
+    startClock();
 }
 
 // Fetch timetable from API
@@ -89,7 +106,7 @@ async function loadTimetable() {
         
         timetableData = await response.json();
         
-        // Update timetable info display
+        // Update timetable info display (also starts clock)
         updateTimetableInfo();
         
         // Update derived data
@@ -108,6 +125,9 @@ async function loadTimetable() {
 
 // Display message when no timetable is available
 function displayNoTimetableMessage() {
+    // Still show the clock even when there's no timetable
+    updateTimetableInfo();
+
     const trackerContainer = document.getElementById('trackerContainer');
     const statusContainer = document.getElementById('statusContainer');
     
@@ -129,6 +149,9 @@ function displayNoTimetableMessage() {
 
 // Display error message
 function displayErrorMessage(message) {
+    // Still show the clock even on error
+    updateTimetableInfo();
+
     const trackerContainer = document.getElementById('trackerContainer');
     const statusContainer = document.getElementById('statusContainer');
     
@@ -164,10 +187,8 @@ function updateTimetableData() {
     });
 }
 
-// Extract stations dynamically from timetable data - we dont want to hardcode the list as they may change depending on the timetable 
+// Extract stations dynamically from timetable data
 function extractStations() {
-    // Find the service with the most stops to get the complete station order
-    
     let longestService = timetableData.trains[0];
     let maxStops = longestService.stops.length;
     
@@ -389,7 +410,7 @@ function generateStatusText(train, position, currentTime) {
         if (currentStop.departure) {
             const nextStop = stops[currentStopIndex + 1];
 
-            // FIX: guard against nextStop being undefined (train terminates at an intermediate station)
+            // Guard against nextStop being undefined (train terminates at an intermediate station)
             if (!nextStop) {
                 const departTime = parseTime(currentStop.departure);
                 const minutesUntil = departTime - currentTime;
@@ -458,38 +479,31 @@ function renderTracker() {
                 const existingStartTime = getStopTime(existingTrain.stops[0]);
                 const existingEndTime = getStopTime(existingTrain.stops[existingTrain.stops.length - 1]);
                 
-                // Check if services are currently running (between start and end)
                 const currentIsRunning = currentTime >= currentStartTime && currentTime <= currentEndTime;
                 const existingIsRunning = currentTime >= existingStartTime && currentTime <= existingEndTime;
                 
-                // Priority 1: Currently running service
                 if (currentIsRunning && !existingIsRunning) {
                     activeTrains[key] = { train, position };
                 }
                 else if (!currentIsRunning && existingIsRunning) {
                     // Keep existing
                 }
-                // Both running: prioritize moving trains
                 else if (currentIsRunning && existingIsRunning) {
                     if (position.type === 'between' && existingPosition.type === 'at_station') {
                         activeTrains[key] = { train, position };
                     }
                 }
-                // Neither running: both are waiting or pre-departure
                 else {
-                    // If current has finished and existing hasn't started (waiting for departure)
                     const currentHasFinished = currentTime > currentEndTime;
                     const existingHasFinished = currentTime > existingEndTime;
                     
                     if (currentHasFinished && !existingHasFinished) {
-                        // Current service has finished, existing hasn't started - use current (it's waiting)
                         activeTrains[key] = { train, position };
                     }
                     else if (existingHasFinished && !currentHasFinished) {
-                        // Keep existing (it's waiting)
+                        // Keep existing
                     }
                     else if (currentHasFinished && existingHasFinished) {
-                        // Both finished - keep the most recent one
                         if (currentEndTime > existingEndTime) {
                             activeTrains[key] = { train, position };
                         }
@@ -505,12 +519,10 @@ function renderTracker() {
     for (let i = 0; i < stations.length; i++) {
         const station = stations[i];
         
-        // Create station div
         const stationDiv = document.createElement('div');
         stationDiv.className = 'station';
         stationDiv.innerHTML = `<div class="station-name">${station}</div>`;
         
-        // Add trains at this station
         for (let key in activeTrains) {
             const { train, position } = activeTrains[key];
             if (position.type === 'at_station' && position.station === station) {
@@ -521,7 +533,6 @@ function renderTracker() {
         
         container.appendChild(stationDiv);
         
-        // Create track section (except after last station)
         if (i < stations.length - 1) {
             const trackDiv = document.createElement('div');
             trackDiv.className = 'track-section';
@@ -529,7 +540,6 @@ function renderTracker() {
             
             const nextStation = stations[i + 1];
             
-            // Add trains between stations
             for (let key in activeTrains) {
                 const { train, position } = activeTrains[key];
                 if (position.type === 'between') {
@@ -555,7 +565,6 @@ function renderTracker() {
         }
     }
     
-    // Render status panel
     renderStatus(activeTrains, currentTime);
 }
 
@@ -666,7 +675,9 @@ function startAutoRefresh() {
     }
 }
 
-// Initial load
+// Initial load - show clock straight away even before timetable loads
+updateTimetableInfo();
+
 loadTimetable();
 checkHealth();
 
