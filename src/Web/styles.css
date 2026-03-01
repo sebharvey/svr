@@ -1,3 +1,55 @@
+/* =============================================
+   CSS Custom Properties — Dark Mode (default)
+   ============================================= */
+:root {
+    --bg-primary:    #1a1a1a;
+    --bg-secondary:  #2a2a2a;
+    --bg-tertiary:   #333333;
+    --bg-quaternary: #3a3a3a;
+    --bg-quinary:    #404040;
+    --border:        #4a4a4a;
+    --border-light:  #5a5a5a;
+    --text-primary:  #ffffff;
+    --text-body:     #e0e0e0;
+    --text-muted:    #b0b0b0;
+    --text-faint:    #888888;
+    --text-faintest: #666666;
+    --track-line:    #555555;
+    --shadow:        rgba(0, 0, 0, 0.4);
+
+    /* Toggle button */
+    --toggle-bg:     #3a3a3a;
+    --toggle-icon:   '☀️';
+    --toggle-label:  'Light mode';
+}
+
+/* =============================================
+   CSS Custom Properties — Light Mode
+   ============================================= */
+body.light-mode {
+    --bg-primary:    #f4f1ec;
+    --bg-secondary:  #ede9e2;
+    --bg-tertiary:   #e2ddd6;
+    --bg-quaternary: #d8d3cb;
+    --bg-quinary:    #ccc8bf;
+    --border:        #b8b2a8;
+    --border-light:  #a09990;
+    --text-primary:  #1a1714;
+    --text-body:     #2d2926;
+    --text-muted:    #4a4440;
+    --text-faint:    #6b6560;
+    --text-faintest: #8a847e;
+    --track-line:    #a09990;
+    --shadow:        rgba(0, 0, 0, 0.12);
+
+    --toggle-bg:     #d8d3cb;
+    --toggle-icon:   '🌙';
+    --toggle-label:  'Dark mode';
+}
+
+/* =============================================
+   Reset & Base
+   ============================================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,29 +58,74 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #1a1a1a;
-    color: #e0e0e0;
+    background: var(--bg-primary);
+    color: var(--text-body);
     padding: 20px;
     min-height: 100vh;
     -webkit-text-size-adjust: 100%;
     touch-action: manipulation;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    color: #fff;
+    color: var(--text-primary);
 }
 
+/* =============================================
+   Theme Toggle Button
+   ============================================= */
+.theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--toggle-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px 6px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-quinary);
+    border-color: var(--border-light);
+    color: var(--text-body);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.theme-toggle:active {
+    transform: scale(0.97);
+}
+
+.theme-toggle-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* =============================================
+   Timetable Info
+   ============================================= */
 .timetable-info {
-    background: #2a2a2a;
+    background: var(--bg-secondary);
     padding: 15px;
     border-radius: 8px;
     margin: 0 auto 20px;
     max-width: 800px;
     text-align: center;
-    display: none; /* Hidden until timetable loaded */
+    display: none;
+    transition: background 0.3s ease;
 }
 
 .timetable-info.visible {
@@ -38,33 +135,41 @@ h1 {
 .live-clock {
     font-size: 36px;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-primary);
     letter-spacing: 0.05em;
     font-variant-numeric: tabular-nums;
     font-family: 'Courier New', 'Lucida Console', monospace;
     margin-bottom: 8px;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+body.light-mode .live-clock {
+    text-shadow: none;
 }
 
 .timetable-name {
     font-size: 18px;
     font-weight: bold;
-    color: #b0b0b0;
+    color: var(--text-muted);
     margin-bottom: 5px;
 }
 
 .timetable-date {
     font-size: 14px;
-    color: #888;
+    color: var(--text-faint);
 }
 
+/* =============================================
+   Timetable Selector
+   ============================================= */
 .timetable-selector {
-    background: #2a2a2a;
+    background: var(--bg-secondary);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
     display: none;
     justify-content: center;
+    transition: background 0.3s ease;
 }
 
 .timetable-selector label {
@@ -76,22 +181,26 @@ h1 {
 }
 
 .timetable-selector select {
-    background: #3a3a3a;
-    color: #e0e0e0;
-    border: 1px solid #4a4a4a;
+    background: var(--bg-tertiary);
+    color: var(--text-body);
+    border: 1px solid var(--border);
     padding: 8px 15px;
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
     min-width: 200px;
+    transition: background 0.2s, border-color 0.2s;
 }
 
 .timetable-selector select:hover {
-    background: #4a4a4a;
+    background: var(--bg-quaternary);
 }
 
+/* =============================================
+   Controls
+   ============================================= */
 .controls {
-    background: #2a2a2a;
+    background: var(--bg-secondary);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -100,6 +209,7 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    transition: background 0.3s ease;
 }
 
 .time-input-group {
@@ -109,25 +219,26 @@ h1 {
 }
 
 .time-display {
-    background: #3a3a3a;
-    color: #e0e0e0;
-    border: 1px solid #4a4a4a;
+    background: var(--bg-tertiary);
+    color: var(--text-body);
+    border: 1px solid var(--border);
     padding: 6px 15px;
     border-radius: 4px;
     font: bold 16px/1;
     min-width: 80px;
     text-align: center;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .time-btn,
 .live-btn {
-    background: #4a4a4a;
-    color: #e0e0e0;
-    border: 1px solid #5a5a5a;
+    background: var(--bg-quaternary);
+    color: var(--text-body);
+    border: 1px solid var(--border);
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color .2s;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .time-btn {
@@ -137,11 +248,11 @@ h1 {
 
 .time-btn:hover,
 .live-btn:hover:not(:disabled) {
-    background: #5a5a5a;
+    background: var(--bg-quinary);
 }
 
 .time-btn:active {
-    background: #3a3a3a;
+    background: var(--bg-tertiary);
 }
 
 .live-btn {
@@ -150,23 +261,27 @@ h1 {
 }
 
 .live-btn:disabled {
-    background: #2a2a2a;
-    border-color: #3a3a3a;
-    color: #666;
+    background: var(--bg-secondary);
+    border-color: var(--bg-tertiary);
+    color: var(--text-faint);
     cursor: not-allowed;
 }
 
+/* =============================================
+   Tracker & Status Panel
+   ============================================= */
 .tracker-container,
 .status-panel {
-    background: #2a2a2a;
+    background: var(--bg-secondary);
     border-radius: 8px;
     padding: 20px;
     margin: 0 auto 20px;
     max-width: 800px;
+    transition: background 0.3s ease;
 }
 
 .station {
-    background: #404040;
+    background: var(--bg-quinary);
     padding: 15px;
     border-radius: 6px;
     margin-bottom: 2px;
@@ -175,21 +290,24 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.3s ease;
 }
 
 .station-name {
     font-weight: bold;
     font-size: 16px;
     z-index: 1;
+    color: var(--text-primary);
 }
 
 .track-section {
-    background: #333;
+    background: var(--bg-tertiary);
     position: relative;
     min-height: 100px;
     margin-bottom: 2px;
     display: flex;
     align-items: center;
+    transition: background 0.3s ease;
 }
 
 .track-line {
@@ -198,8 +316,9 @@ h1 {
     top: 0;
     bottom: 0;
     width: 3px;
-    background: #555;
+    background: var(--track-line);
     transform: translateX(-50%);
+    transition: background 0.3s ease;
 }
 
 .train {
@@ -236,45 +355,55 @@ h1 {
 
 .train-number {
     font-weight: bold;
+    color: var(--text-body);
 }
 
 .direction-arrow {
     font-size: 14px;
 }
 
+/* =============================================
+   Status Panel
+   ============================================= */
 .status-panel h2 {
     font-size: 18px;
     margin-bottom: 15px;
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .train-status {
-    background: #333;
+    background: var(--bg-tertiary);
     padding: 12px;
     border-radius: 6px;
     margin-bottom: 10px;
     border-left: 4px solid;
+    transition: background 0.3s ease;
 }
 
 .train-status-header {
     font-weight: bold;
     margin-bottom: 6px;
     font-size: 14px;
+    color: var(--text-body);
 }
 
 .train-status-detail {
     font-size: 13px;
-    color: #b0b0b0;
+    color: var(--text-muted);
 }
 
+/* =============================================
+   System Status
+   ============================================= */
 .system-status {
-    background: #2a2a2a;
+    background: var(--bg-secondary);
     border-radius: 8px;
     padding: 12px 20px;
     margin: 0 auto 20px;
     max-width: 800px;
     text-align: center;
     font-size: 13px;
+    transition: background 0.3s ease;
 }
 
 .system-status.online {
@@ -285,7 +414,9 @@ h1 {
     color: #ef4444;
 }
 
-/* Desktop Layout - Two Column */
+/* =============================================
+   Desktop Layout — Two Column
+   ============================================= */
 @media (min-width: 1024px) {
     body {
         padding: 0;
@@ -294,7 +425,7 @@ h1 {
         height: 100vh;
         overflow: hidden;
     }
-    
+
     body::before {
         content: '';
         position: fixed;
@@ -302,10 +433,11 @@ h1 {
         top: 0;
         width: 50%;
         height: 100vh;
-        background: #1a1a1a;
+        background: var(--bg-primary);
         z-index: -1;
+        transition: background 0.3s ease;
     }
-    
+
     h1 {
         position: fixed;
         top: 0;
@@ -314,10 +446,17 @@ h1 {
         padding: 30px 30px 10px 30px;
         margin-bottom: 0;
         font-size: 32px;
-        background: #1a1a1a;
+        background: var(--bg-primary);
         z-index: 10;
+        transition: background 0.3s ease;
     }
-    
+
+    .theme-toggle {
+        /* Shift left of the fixed-right edge so it sits within the left column */
+        top: 28px;
+        right: calc(50% + 16px);
+    }
+
     .timetable-info {
         position: fixed;
         top: 90px;
@@ -332,7 +471,7 @@ h1 {
     .live-clock {
         font-size: 48px;
     }
-    
+
     .controls {
         position: fixed;
         top: 240px;
@@ -343,7 +482,7 @@ h1 {
         margin: 0;
         padding: 20px;
     }
-    
+
     .status-panel {
         position: fixed;
         top: 340px;
@@ -356,7 +495,7 @@ h1 {
         padding: 25px;
         overflow-y: auto;
     }
-    
+
     .system-status {
         position: fixed;
         bottom: 20px;
@@ -368,7 +507,7 @@ h1 {
         padding: 15px 25px;
         font-size: 14px;
     }
-    
+
     .tracker-container {
         position: fixed;
         top: 0;
@@ -381,30 +520,25 @@ h1 {
         overflow-y: auto;
         padding: 30px;
     }
-    
-    .timetable-name {
-        font-size: 16px;
-    }
-    
-    .timetable-date {
-        font-size: 14px;
-    }
-    
+
+    .timetable-name { font-size: 16px; }
+    .timetable-date  { font-size: 14px; }
+
     .status-panel h2 {
         font-size: 22px;
         margin-bottom: 20px;
     }
-    
+
     .train-status {
         padding: 15px;
         margin-bottom: 12px;
     }
-    
+
     .train-status-header {
         font-size: 16px;
         margin-bottom: 8px;
     }
-    
+
     .train-status-detail {
         font-size: 14px;
     }
@@ -416,70 +550,74 @@ h1 {
         font-size: 36px;
         padding: 40px 50px 15px 50px;
     }
-    
+
     .timetable-info {
         top: 110px;
         left: 50px;
         width: calc(50% - 100px);
     }
-    
+
     .controls {
         top: 270px;
         left: 50px;
         width: calc(50% - 100px);
     }
-    
+
     .status-panel {
         top: 370px;
         left: 50px;
         width: calc(50% - 100px);
     }
-    
+
     .system-status {
         left: 50px;
         width: calc(50% - 100px);
     }
-    
+
     .tracker-container {
         padding: 40px 50px;
     }
+
+    .theme-toggle {
+        right: calc(50% + 50px);
+        top: 38px;
+    }
 }
 
+/* Mobile */
 @media (max-width: 600px) {
     body {
         padding: 10px;
     }
-    
+
     h1 {
         font-size: 20px;
+        padding-right: 90px; /* room for the toggle */
     }
 
     .live-clock {
         font-size: 28px;
     }
-    
-    .timetable-name {
-        font-size: 16px;
-    }
-    
-    .timetable-date {
-        font-size: 13px;
-    }
-    
+
+    .timetable-name { font-size: 16px; }
+    .timetable-date  { font-size: 13px; }
+
     .controls {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .controls label {
         justify-content: space-between;
     }
-    
-    .train {
-        font-size: 11px;
-    }
-    
-    .train-icon {
-        font-size: 16px;
+
+    .train       { font-size: 11px; }
+    .train-icon  { font-size: 16px; }
+
+    .theme-toggle {
+        top: 12px;
+        right: 10px;
+        padding: 5px 10px 5px 8px;
+        font-size: 12px;
     }
 }
