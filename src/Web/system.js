@@ -1,9 +1,19 @@
-// =============================================
-// Theme Toggle — persisted via localStorage
-// =============================================
 (function () {
-    const STORAGE_KEY = 'svr-theme';
-    const body = document.documentElement; // apply early to avoid flash
+    const STORAGE_KEY     = 'svr-theme';
+    const STORAGE_ISSET   = 'svr-theme-set'; // flag: user has explicitly chosen
+
+    function systemPrefersDark() {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function resolveTheme() {
+        // If the user has previously made an explicit choice, honour it
+        if (localStorage.getItem(STORAGE_ISSET) === '1') {
+            return localStorage.getItem(STORAGE_KEY) || 'dark';
+        }
+        // Otherwise fall back to the OS/browser preference
+        return systemPrefersDark() ? 'dark' : 'light';
+    }
 
     function applyTheme(theme) {
         if (theme === 'light') {
@@ -27,22 +37,32 @@
         }
     }
 
-    // Read persisted preference (default: dark)
-    const savedTheme = localStorage.getItem(STORAGE_KEY) || 'dark';
     // Apply before DOMContentLoaded to minimise flash
-    if (savedTheme === 'light') document.documentElement.classList.add('light-mode-pending');
+    const initialTheme = resolveTheme();
+    if (initialTheme === 'light') document.documentElement.classList.add('light-mode-pending');
 
     document.addEventListener('DOMContentLoaded', () => {
         // Move the class from <html> to <body> now that <body> exists
         document.documentElement.classList.remove('light-mode-pending');
-        applyTheme(savedTheme);
+        applyTheme(initialTheme);
+
+        // Listen for OS-level theme changes — only applies when no explicit user choice
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (localStorage.getItem(STORAGE_ISSET) !== '1') {
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
 
         const toggleBtn = document.getElementById('themeToggle');
         if (toggleBtn) {
             toggleBtn.addEventListener('click', () => {
                 const isLight = document.body.classList.contains('light-mode');
                 const next = isLight ? 'dark' : 'light';
-                localStorage.setItem(STORAGE_KEY, next);
+                // Persist the explicit user choice
+                localStorage.setItem(STORAGE_KEY,   next);
+                localStorage.setItem(STORAGE_ISSET, '1');
                 applyTheme(next);
             });
         }
