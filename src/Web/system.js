@@ -1,4 +1,57 @@
+// =============================================
+// Theme Toggle — persisted via localStorage
+// =============================================
+(function () {
+    const STORAGE_KEY = 'svr-theme';
+    const body = document.documentElement; // apply early to avoid flash
+
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.body.classList.add('light-mode');
+        } else {
+            document.body.classList.remove('light-mode');
+        }
+        updateToggleUI(theme);
+    }
+
+    function updateToggleUI(theme) {
+        const icon  = document.getElementById('themeToggleIcon');
+        const label = document.getElementById('themeToggleLabel');
+        if (!icon || !label) return;
+        if (theme === 'light') {
+            icon.textContent  = '🌙';
+            label.textContent = 'Dark mode';
+        } else {
+            icon.textContent  = '☀️';
+            label.textContent = 'Light mode';
+        }
+    }
+
+    // Read persisted preference (default: dark)
+    const savedTheme = localStorage.getItem(STORAGE_KEY) || 'dark';
+    // Apply before DOMContentLoaded to minimise flash
+    if (savedTheme === 'light') document.documentElement.classList.add('light-mode-pending');
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Move the class from <html> to <body> now that <body> exists
+        document.documentElement.classList.remove('light-mode-pending');
+        applyTheme(savedTheme);
+
+        const toggleBtn = document.getElementById('themeToggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                const isLight = document.body.classList.contains('light-mode');
+                const next = isLight ? 'dark' : 'light';
+                localStorage.setItem(STORAGE_KEY, next);
+                applyTheme(next);
+            });
+        }
+    });
+})();
+
+// =============================================
 // Check for debug query string
+// =============================================
 const urlParams = new URLSearchParams(window.location.search);
 const debugMode = urlParams.get('debug') === 'true';
     
@@ -132,16 +185,16 @@ function displayNoTimetableMessage() {
     const statusContainer = document.getElementById('statusContainer');
     
     trackerContainer.innerHTML = `
-        <div style="text-align: center; padding: 40px 20px; color: #888;">
+        <div style="text-align: center; padding: 40px 20px; color: var(--text-faint);">
             <div style="font-size: 48px; margin-bottom: 20px;">🚂</div>
-            <h2 style="color: #e0e0e0; margin-bottom: 10px;">No Timetable Available</h2>
+            <h2 style="color: var(--text-primary); margin-bottom: 10px;">No Timetable Available</h2>
             <p>There is no scheduled timetable for today.</p>
             <p style="margin-top: 20px; font-size: 14px;">The Severn Valley Railway may not be operating services today.</p>
         </div>
     `;
     
     statusContainer.innerHTML = `
-        <div style="text-align: center; color: #888; padding: 20px;">
+        <div style="text-align: center; color: var(--text-faint); padding: 20px;">
             No train services scheduled for today
         </div>
     `;
@@ -156,16 +209,16 @@ function displayErrorMessage(message) {
     const statusContainer = document.getElementById('statusContainer');
     
     trackerContainer.innerHTML = `
-        <div style="text-align: center; padding: 40px 20px; color: #888;">
+        <div style="text-align: center; padding: 40px 20px; color: var(--text-faint);">
             <div style="font-size: 48px; margin-bottom: 20px;">⚠️</div>
-            <h2 style="color: #e0e0e0; margin-bottom: 10px;">Error Loading Timetable</h2>
+            <h2 style="color: var(--text-primary); margin-bottom: 10px;">Error Loading Timetable</h2>
             <p>Unable to load the timetable data.</p>
-            <p style="margin-top: 20px; font-size: 14px; color: #666;">${message}</p>
+            <p style="margin-top: 20px; font-size: 14px; color: var(--text-faintest);">${message}</p>
         </div>
     `;
     
     statusContainer.innerHTML = `
-        <div style="text-align: center; color: #888; padding: 20px;">
+        <div style="text-align: center; color: var(--text-faint); padding: 20px;">
             Unable to load train status
         </div>
     `;
@@ -597,7 +650,7 @@ function renderStatus(activeTrains, currentTime) {
     container.innerHTML = '';
     
     if (Object.keys(activeTrains).length === 0) {
-        container.innerHTML = '<div style="color: #888;">No trains currently active</div>';
+        container.innerHTML = '<div style="color: var(--text-faint);">No trains currently active</div>';
         return;
     }
     
