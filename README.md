@@ -2,7 +2,7 @@
 
 A real-time visualization of train movements on the Severn Valley Railway line between Kidderminster and Bridgnorth. This single-page web application provides an interactive, live-updating display of train positions and status information based on a JSON timetable.
 
-https://victorious-mushroom-07851c603.1.azurestaticapps.net
+https://svrlive.omegasoft.co.uk
  
 ## 🚂 Features
 
