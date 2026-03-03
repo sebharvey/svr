@@ -72,9 +72,7 @@
     });
 })();
 
-// =============================================
 // Check for debug query string
-// =============================================
 const urlParams = new URLSearchParams(window.location.search);
 const debugMode = urlParams.get('debug') === 'true';
     
