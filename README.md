@@ -1,21 +1,20 @@
 # Severn Valley Live Train Tracker
 
-A real-time visualization of train movements on the Severn Valley Railway line between Kidderminster and Bridgnorth. This single-page web application provides an interactive, live-updating display of train positions and status information based on a JSON timetable.
+A real-time visualization of train movements on the Severn Valley Railway line between Kidderminster and Bridgnorth. The system consists of a web frontend and an Azure Functions backend API that serves date-appropriate timetables.
 
 https://svrlive.omegasoft.co.uk
- 
-## 🚂 Features
+
+## Features
 
 ### Core Functionality
 
 - **Live Train Tracking**: Real-time visualization of train positions on the railway line
-- **Dual Time Modes**:
-  - Live mode with automatic 30-second updates
-  - Manual mode with 5-minute increment controls for testing/debugging
+- **API-Driven Timetables**: Timetable data fetched from an Azure Functions backend, automatically selecting the correct timetable for today's date
 - **Intelligent Train Display**: Each train appears only once, showing its current or next service
-- **Status Panel**: Detailed information about each active train’s current status
+- **Status Panel**: Detailed information about each active train's current status
 - **Terminus Management**: Smart handling of trains waiting at terminal stations
 - **Color-Coded Trains**: Consistent color assignment per train throughout the day
+- **System Health Status**: Live indicator showing whether the backend API is online
 
 ### Visual Design
 
@@ -24,92 +23,112 @@ https://svrlive.omegasoft.co.uk
   - Northbound trains on the left (moving upward)
   - Southbound trains on the right (moving downward)
 - **Dynamic Icons**: Steam (🚂), DMU (🚃), and Diesel (🚆) locomotives
-- **Dark Mode Interface**: Optimized for Claude.ai’s dark theme
+- **Light/Dark Theme**: Toggle between light and dark mode; defaults to OS preference and persists across sessions
+- **Live Clock**: Real-time HH:MM:SS clock displayed at the top
 - **Mobile-Responsive**: Optimized for iPhone and mobile browsers
 
-## 📋 Table of Contents
+## Table of Contents
 
+- [Repository Structure](#repository-structure)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Debug Mode](#debug-mode)
+- [API Reference](#api-reference)
 - [Data Format](#data-format)
 - [Architecture](#architecture)
 - [Algorithm Details](#algorithm-details)
 - [Customization](#customization)
 - [Browser Compatibility](#browser-compatibility)
 - [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
 
-## 🚀 Installation
+## Repository Structure
 
-### Basic Setup
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/severn-valley-train-tracker.git
-cd severn-valley-train-tracker
+```
+svr/
+├── README.md
+├── CLAUDE.MD
+├── docs/
+│   ├── MCP-SERVER-README.md   # MCP server documentation
+│   └── TimetablePrompt.md
+└── src/
+    ├── Web/
+    │   ├── index.html         # Frontend markup
+    │   ├── styles.css         # Styles (light and dark themes)
+    │   └── system.js          # All frontend logic
+    └── API/
+        └── SevernValleyTimetable/
+            ├── SevernValleyTimetable.sln
+            ├── SevernValleyTimetable.csproj
+            ├── Program.cs
+            ├── TimetableFunction.cs   # GET /api/timetable
+            ├── HealthCheckFunction.cs # GET /api/health
+            ├── TimetableMcpServer.cs  # MCP server (currently disabled)
+            ├── TimetableService.cs    # Core scheduling logic + caching
+            ├── host.json
+            ├── local.settings.json
+            └── Timetables/
+                ├── debug.json         # Debug/test timetable
+                ├── 2025/
+                │   ├── schedule.json  # Date → timetable mapping for 2025
+                │   └── *.json         # Individual timetable files
+                └── 2026/
+                    ├── schedule.json  # Date → timetable mapping for 2026
+                    └── *.json         # Individual timetable files
 ```
 
-1. Open `index.html` in a web browser:
+## Installation
+
+### Frontend
+
+The web frontend is a set of static files (`index.html`, `styles.css`, `system.js`) that can be served from any static web host.
 
 ```bash
-# On macOS
-open index.html
+# Serve locally with Python
+python -m http.server 8000 --directory src/Web
 
-# On Linux
-xdg-open index.html
-
-# On Windows
-start index.html
-```
-
-No build process, dependencies, or server required - it’s a single self-contained HTML file!
-
-### For Development
-
-If you want to serve it locally for development:
-
-```bash
-# Using Python 3
-python -m http.server 8000
-
-# Using Node.js http-server
-npx http-server
+# Or with Node.js http-server
+npx http-server src/Web
 
 # Then navigate to http://localhost:8000
 ```
 
-## 💡 Usage
+The frontend fetches timetable data from the hosted Azure Functions API by default. For local development against a local API, update the `apiUrl` in `system.js`.
 
-### Time Controls
+### Backend API (Azure Functions)
 
-**Live Time Mode (Default)**
+Requirements: .NET 8 SDK, Azure Functions Core Tools v4.
 
-- Time display shows current real time
-- Tracker updates automatically every 30 seconds
-- “Live Time” button is disabled (grayed out)
+```bash
+cd src/API/SevernValleyTimetable
+func start
+```
 
-**Manual Time Mode**
+The API will be available at `http://localhost:7071`.
 
-- Click the ◀ or ▶ arrows to enter manual mode
-- Time adjusts in 5-minute increments
-- NO automatic updates
-- Click “Live Time” button to return to live mode
+## Usage
+
+### Theme Toggle
+
+A light/dark mode button is shown in the top-right corner. The theme defaults to the OS preference and any explicit user choice is persisted in `localStorage`.
 
 ### Reading the Display
 
+**Timetable Info**
+
+- The live HH:MM:SS clock is shown at the top
+- When a timetable is loaded, the timetable name and date appear below the clock
+- If no timetable is scheduled for today, a message is displayed instead of the track diagram
+
 **Station Display**
 
-- Gray boxes represent stations
-- Kidderminster at the top, Bridgnorth at the bottom
+- Gray boxes represent stations, Kidderminster at the top, Bridgnorth at the bottom
 - Trains shown inside station boxes when stopped
 
 **Track Sections**
 
-- Darker gray areas between stations
-- Central vertical line represents the railway
-- Trains positioned dynamically based on progress between stations
+- Darker areas between stations represent track segments
+- The central vertical line is the railway
+- Trains are positioned dynamically based on progress between stations
 
 **Train Indicators**
 
@@ -119,21 +138,95 @@ npx http-server
 
 **Status Panel**
 
-- Shows all active trains
+- Shows all active trains below the track diagram
 - Displays current activity (traveling, waiting, terminated)
 - Countdown timers for arrivals and departures
 - Non-stop passing information
 
-## 📊 Data Format
+**System Status**
 
-### JSON Timetable Structure
+- Bottom bar shows whether the backend API is online or unavailable
+- Checked on page load and every 60 seconds
 
-The application expects a JSON object with the following structure:
+### Auto-Refresh
+
+- In live mode the tracker re-renders every 30 seconds automatically
+
+## Debug Mode
+
+Append `?debug=true` to the page URL to enable debug mode:
+
+```
+https://svrlive.omegasoft.co.uk?debug=true
+```
+
+Debug mode:
+- Shows manual time controls (◀ / ▶ arrows and "Live Time" button) to step through time in 5-minute increments
+- Causes the API to return the `debug.json` timetable instead of the date-appropriate one
+
+## API Reference
+
+Base URL: `https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net`
+
+### GET /api/timetable
+
+Returns the timetable for today's UTC date. The service reads `schedule.json` for the current year to determine which timetable file applies.
+
+**Query Parameters**
+
+| Parameter | Type    | Description                                            |
+|-----------|---------|--------------------------------------------------------|
+| `debug`   | boolean | If `true`, returns `debug.json` instead of today's timetable |
+
+**Responses**
+
+| Status | Description                        |
+|--------|------------------------------------|
+| 200    | JSON timetable object              |
+| 404    | No timetable scheduled for today   |
+| 500    | Unexpected server error            |
+
+### GET /api/health
+
+Returns system health information, including a count of available timetable files.
+
+**Response (200)**
 
 ```json
 {
-  "route": "Kidderminster - Bridgnorth",
-  "date": "Saturday 11 October only",
+  "status": "healthy",
+  "timestamp": "2026-03-03T10:00:00Z",
+  "service": "SevernValleyTimetable",
+  "version": "1.0.0",
+  "timetablesAvailable": 12,
+  "checks": {
+    "timetableService": "ok",
+    "fileSystem": "ok"
+  }
+}
+```
+
+## Data Format
+
+### Schedule File (`schedule.json`)
+
+Each year directory contains a `schedule.json` that maps calendar dates to timetable file names:
+
+```json
+[
+  { "date": "01-Jan", "timetable": "timetable-b" },
+  { "date": "03-Jan", "timetable": "winter-steam-gala-sat" }
+]
+```
+
+The `date` field uses `dd-MMM` format. Dates not listed return a 404.
+
+### Timetable JSON Structure
+
+```json
+{
+  "name": "Timetable B",
+  "date": "Saturday",
   "trains": [
     {
       "trainNumber": "Diesel 37248",
@@ -164,287 +257,238 @@ The application expects a JSON object with the following structure:
 
 **Root Level**
 
-- `route` (string): Route description (informational only)
-- `date` (string): Operating date (informational only)
+- `name` (string): Timetable name shown in the UI header
+- `date` (string): Operating date description shown in the UI header
 - `trains` (array): Array of train service objects
 
 **Train Object**
 
-- `trainNumber` (string): Unique identifier for the physical train (e.g., “Diesel 37248”, “Steam 75069”)
-- `direction` (string): Either “northbound” or “southbound”
+- `trainNumber` (string): Unique identifier for the physical train (e.g., "Diesel 37248", "Steam 75069")
+- `direction` (string): Either `"northbound"` or `"southbound"`
 - `stops` (array): Ordered list of station stops
 
 **Stop Object**
 
-- `station` (string): Station name (must match station list in code)
-- `stopsAt` (boolean): Whether train stops at this station
+- `station` (string): Station name (must match station names in the timetable)
+- `stopsAt` (boolean): Whether the train stops at this station
 - `departure` (string, optional): Departure time in HH:MM format
 - `arrival` (string, optional): Arrival time in HH:MM format
 - `time` (string, optional): Pass-through time for non-stop stations
 
 **Time Field Rules**
 
-- First stop: Must have `departure`
-- Last stop: Must have `arrival`
-- Intermediate stops where train stops: Must have both `arrival` and `departure`
-- Non-stop stations: Use `time` field with `stopsAt: false`
+- First stop: must have `departure`
+- Last stop: must have `arrival`
+- Intermediate stops where the train stops: must have both `arrival` and `departure`
+- Non-stop stations: use `time` with `stopsAt: false`
 
 ### Station List
 
-The following stations must be included in order (Kidderminster to Bridgnorth):
+Stations are extracted dynamically from the timetable at runtime (from the service with the most stops). The canonical order is Kidderminster to Bridgnorth:
 
 1. Kidderminster
-1. Bewdley
-1. Arley
-1. Highley
-1. Hampton Loade
-1. Bridgnorth
+2. Bewdley
+3. Arley
+4. Highley
+5. Hampton Loade
+6. Bridgnorth
 
-## 🏗 Architecture
-
-### File Structure
-
-```
-severn-valley-train-tracker/
-├── index.html              # Single-file application
-├── README.md              # This file
-└── LICENSE                # MIT License
-```
+## Architecture
 
 ### Technology Stack
 
-- **HTML5**: Structure
-- **CSS3**: Styling with Flexbox
-- **Vanilla JavaScript**: All logic (no frameworks)
-- **No Dependencies**: Completely self-contained
+**Frontend**
 
-### Key Components
+- HTML5, CSS3 (Flexbox, CSS custom properties)
+- Vanilla JavaScript — no frameworks or build step
+- `localStorage` for theme persistence
 
-#### 1. Data Layer
+**Backend**
 
-- `timetableData`: Embedded JSON object containing all train services
-- `trainColors`: Color mapping generated from sorted train numbers
-- `stations`: Ordered array of station names
+- .NET 8 Azure Functions (isolated worker model)
+- Hosted on Azure App Service (UK South)
+- Application Insights telemetry
+- JSON timetable files stored alongside the function app
 
-#### 2. State Management
+### Key Frontend Components (`system.js`)
 
-- `isLiveMode`: Boolean flag for time mode
-- `manualTime`: Current time in manual mode (minutes since midnight)
-- `refreshInterval`: Auto-refresh timer reference
+#### Theme System
 
-#### 3. Core Functions
+- `resolveTheme()`: Reads `localStorage` or falls back to `prefers-color-scheme`
+- `applyTheme(theme)`: Adds/removes `light-mode` class on `<body>`
+- Theme applied before `DOMContentLoaded` to avoid flash of wrong theme
 
-**Time Functions**
+#### Data Loading
+
+- `loadTimetable()`: Fetches timetable JSON from the API; handles 404 gracefully
+- `updateTimetableData()`: Re-extracts stations and re-assigns train colors after each load
+- `extractStations()`: Derives ordered station list from the service with the most stops
+
+#### State Management
+
+- `isLiveMode`: Boolean flag; `true` by default
+- `manualTime`: Minutes since midnight, used only in debug/manual mode
+- `refreshInterval`: Auto-refresh timer (30 s, live mode only)
+- `clockInterval`: 1-second clock timer
+- `timetableData`: The loaded timetable JSON object
+
+#### Core Functions
+
+**Time**
 
 - `getCurrentTime()`: Returns current time based on mode
-- `parseTime(timeStr)`: Converts HH:MM to minutes
+- `parseTime(timeStr)`: Converts HH:MM to minutes since midnight
 - `formatTime(minutes)`: Converts minutes to HH:MM
-- `updateTimeDisplay()`: Updates time display
-- `getStopTime(stop)`: Extracts time from stop object
+- `getStopTime(stop)`: Extracts a comparable time from a stop object
 
 **Position Calculation**
 
-- `findTrainPosition(train, currentTime)`: Determines if/where train is active
-- `getNextService(trainNumber, currentStation, currentTime)`: Finds next departure
+- `findTrainPosition(train, currentTime)`: Returns position object or `null`
+- `getNextService(trainNumber, station, currentTime)`: Finds next departure for a train from a given station
 
 **Rendering**
 
-- `renderTracker()`: Main render function for track display
-- `createTrainElement(train, topPercentage)`: Creates train DOM element
-- `renderStatus(activeTrains, currentTime)`: Renders status panel
-- `generateStatusText(train, position, currentTime)`: Creates status message
+- `renderTracker()`: Main render — builds station and track-section DOM
+- `createTrainElement(train, topPercentage)`: Creates a train DOM element
+- `renderStatus(activeTrains, currentTime)`: Renders the status panel
+- `generateStatusText(train, position, currentTime)`: Produces the human-readable status string
 
-**Utility Functions**
+**Utility**
 
-- `getTrainIcon(trainNumber)`: Returns emoji based on train type
-- `getTrainColor(trainNumber)`: Returns assigned color
+- `getTrainIcon(trainNumber)`: Returns emoji based on train type keyword
+- `getTrainColor(trainNumber)`: Returns the pre-assigned hex color
 
-## 🧮 Algorithm Details
+### Key Backend Components
+
+#### `TimetableService`
+
+Singleton service with two in-memory caches (schedule and timetable file content):
+
+- `GetTimetableForDateAsync(date, debugMode)`: Main entry point; selects and returns the correct JSON
+- `LoadScheduleAsync(year)`: Reads and caches `schedule.json` for a given year
+- Returns `FileNotFoundException` (→ HTTP 404) when no schedule entry exists for the date
+
+#### `TimetableFunction`
+
+Azure Function triggered by `GET /api/timetable`. Delegates to `TimetableService` and handles `FileNotFoundException` → 404.
+
+#### `HealthCheckFunction`
+
+Azure Function triggered by `GET /api/health`. Calls `GetAvailableTimetablesAsync()` to verify file system access and returns structured health JSON.
+
+## Algorithm Details
 
 ### Service Selection Algorithm
 
-When a train number has multiple services throughout the day, the algorithm selects which one to display:
+When the same physical train (`trainNumber`) has multiple entries in the timetable (e.g., an outbound and return trip), one entry is displayed at a time. Priority order:
 
-```
-FOR each train service in timetable:
-  position = findTrainPosition(service, currentTime)
-  
-  IF position exists:
-    IF trainNumber not in activeTrains:
-      ADD to activeTrains
-    ELSE:
-      existing = activeTrains[trainNumber]
-      
-      currentIsRunning = currentTime between start and end
-      existingIsRunning = currentTime between start and end
-      
-      IF currentIsRunning AND NOT existingIsRunning:
-        REPLACE existing with current
-      ELSE IF existingIsRunning:
-        KEEP existing
-      ELSE IF both running:
-        IF current is moving AND existing is at station:
-          REPLACE with current
-      ELSE (neither running):
-        currentFinished = currentTime > endTime
-        existingFinished = currentTime > endTime
-        
-        IF currentFinished AND NOT existingFinished:
-          REPLACE with current (waiting train)
-        ELSE IF both finished:
-          KEEP most recently finished
-```
-
-**Priority Order:**
-
-1. Currently running services
-1. Moving trains over stationary trains
-1. Most recently completed services (for waiting at terminus)
+1. **Currently running** service over a finished one
+2. **Moving** train over one stationary at a station (when both are running)
+3. **Most recently finished** service (for terminus waiting display)
 
 ### Position Calculation
 
-**Between Stations:**
+**Between stations:**
 
-```javascript
+```
 progress = (currentTime - departTime) / (arriveTime - departTime)
 
-// Northbound: bottom to top
+// Northbound: displayed bottom-to-top (lower % = higher on screen)
 displayPercentage = (1 - progress) * 100
 
-// Southbound: top to bottom  
+// Southbound: displayed top-to-bottom
 displayPercentage = progress * 100
 ```
 
-**At Stations:**
+**At a station:** Train is at a station when:
 
-- Train is at a station if:
-  - Current time is between arrival and departure times, OR
-  - Current time is after final arrival (at terminus)
+- Current time is between the stop's `arrival` and `departure`, OR
+- Current time is past the final `arrival` (at terminus)
 
-**Track Segment Matching:**
+**Pre-departure:** A train at a terminal station is shown up to 15 minutes before its first departure.
 
-- Stations displayed top (Kidderminster) to bottom (Bridgnorth)
-- Northbound: Match when `fromStation === nextStation && toStation === currentStation`
-- Southbound: Match when `fromStation === currentStation && toStation === nextStation`
+**Post-arrival:** A train is kept visible at its terminus for up to 15 minutes after arrival if it has no further services.
 
 ### Terminus Station Logic
 
-When a train arrives at Kidderminster or Bridgnorth:
-
 ```
 1. Check if service has ended (currentTime > endTime)
-2. Look for next service from that station (any direction)
+2. Look for a future service from that station for this train number
 3. IF next service exists:
-     - Keep train visible at station
-     - After endTime, switch display to next service direction
-     - Show "Waiting at [station], next departure..."
-4. ELSE (no next service):
+     - Show "Waiting at [station], next departure at [time]..."
+4. ELSE:
      - Show "Terminated at [station]"
      - Remove from display after 15 minutes
 ```
 
 ### Color Assignment
 
-Colors are assigned at initialization:
+Colors are assigned once when the timetable loads:
 
-```
-1. Extract all unique train numbers from timetable
+1. Extract all unique train numbers from the timetable
 2. Sort alphabetically
-3. Assign colors from palette in order
-4. Store in trainColors object
-5. Use consistently throughout app lifetime
-```
+3. Assign colors from `colorPalette` in order
+4. Store in `trainColors` object for the session
 
-This ensures:
+This guarantees each train always has the same color regardless of which services are currently active.
 
-- Same train always has same color
-- Colors don’t change when trains appear/disappear
-- Predictable color assignment across different timetables
+## Customization
 
-## 🎨 Customization
+### Changing the Color Palette
 
-### Changing Station Names
-
-Update the `stations` array and ensure all timetable entries use matching names:
+Update the `colorPalette` array in `system.js`:
 
 ```javascript
-const stations = ['Your Station 1', 'Your Station 2', ...];
+const colorPalette = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fd79a8', '#fdcb6e', '#6c5ce7', '#a29bfe', '#74b9ff'];
 ```
-
-### Adding More Trains
-
-Simply add more train objects to the `timetableData.trains` array. The app dynamically handles any number of trains.
-
-### Modifying Colors
-
-Update the `colorPalette` array with your preferred hex colors:
-
-```javascript
-const colorPalette = ['#ff6b6b', '#4ecdc4', '#45b7d1', ...];
-```
-
-Colors are assigned in order based on alphabetically sorted train numbers.
 
 ### Adjusting Auto-Refresh Rate
 
-Change the interval in the `startAutoRefresh()` function:
+Change the interval in `startAutoRefresh()`:
 
 ```javascript
 refreshInterval = setInterval(() => {
     updateTimeDisplay();
     renderTracker();
-}, 30000); // Change 30000 to desired milliseconds
+}, 30000); // milliseconds
 ```
+
+### Adding a New Timetable
+
+1. Create a new JSON file in `src/API/SevernValleyTimetable/Timetables/<year>/`
+2. Add entries to the corresponding `schedule.json` mapping dates to the new file name (without `.json` extension)
+3. Redeploy the Azure Function app
 
 ### Custom Styling
 
-All styles are in the `<style>` tag. Key CSS variables to modify:
+CSS custom properties are defined for both themes in `styles.css`. Override the relevant variables under `:root` (dark) and `.light-mode` selectors.
 
-```css
-/* Background colors */
-body { background-color: #1a1a1a; }
-.station { background-color: #404040; }
-.track-section { background-color: #333333; }
-
-/* Text colors */
-body { color: #e0e0e0; }
-.station-name { color: #ffffff; }
-```
-
-## 🌐 Browser Compatibility
+## Browser Compatibility
 
 ### Supported Browsers
 
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-- ✅ Mobile Safari (iOS 14+)
-- ✅ Chrome Mobile (Android 5+)
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+- Mobile Safari (iOS 14+)
+- Chrome Mobile (Android 5+)
 
 ### Required Features
 
-- ES6 JavaScript (arrow functions, template literals, spread operator)
-- CSS Flexbox
-- CSS Transform
-- Array methods (map, filter, reduce, sort)
-- Set data structure
-- setInterval/clearInterval
+- ES6 JavaScript (arrow functions, template literals, spread operator, `async`/`await`)
+- CSS Flexbox and CSS custom properties
+- `fetch` API
+- `localStorage`
+- `setInterval` / `clearInterval`
 
-### Known Limitations
+## Troubleshooting
 
-**NOT Supported:**
+**Problem: "No Timetable Available" message**
 
-- localStorage/sessionStorage (deliberately excluded for Claude.ai compatibility)
-- Service Workers
-- IndexedDB
-- Web Workers
-
-**State is NOT persisted** - refreshing the page resets to live time mode.
-
-## 🐛 Troubleshooting
-
-### Common Issues
+- The SVR may not be running services today
+- Check `schedule.json` for the current year to confirm whether today's date is listed
+- Use `?debug=true` to load the debug timetable regardless of date
 
 **Problem: Trains not appearing**
 
@@ -454,148 +498,19 @@ body { color: #e0e0e0; }
 
 **Problem: Train in wrong position**
 
-- Verify time fields (arrival/departure/time) are in HH:MM format
-- Check that times are in chronological order
-- Ensure 24-hour time format (not 12-hour)
+- Verify time fields are in HH:MM 24-hour format
+- Check that times are in chronological order within each service
 
-**Problem: Colors changing**
+**Problem: System status shows "unavailable"**
 
-- This was a bug in earlier versions - ensure you have the latest code
-- Colors should be assigned once at initialization based on sorted train numbers
+- Check the health endpoint: `GET /api/health`
+- Verify the Azure Function app is running in the Azure portal
 
-**Problem: Duplicate trains showing**
+**Problem: Theme not persisting**
 
-- This should not happen in current version
-- Each train number should appear exactly once
-- Check that service selection algorithm is working correctly
-
-**Problem: Manual time not incrementing**
-
-- Ensure you’re not resetting manualTime on every arrow click
-- Manual time should only initialize to current time on FIRST arrow click
+- Ensure `localStorage` is not blocked by browser settings or extensions
 
 **Problem: Auto-refresh not stopping in manual mode**
 
-- Check that `startAutoRefresh()` is called after mode changes
-- Verify `clearInterval()` is being called when switching to manual mode
-
-### Debug Mode
-
-To enable console logging for debugging, add this at the start of `renderTracker()`:
-
-```javascript
-console.log('Current Time:', formatTime(currentTime));
-console.log('Active Trains:', activeTrains);
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Here’s how to contribute:
-
-### For Bug Fixes
-
-1. Fork the repository
-1. Create a feature branch: `git checkout -b fix-issue-name`
-1. Make your changes
-1. Test thoroughly at different times of day
-1. Commit: `git commit -m "Fix: description of fix"`
-1. Push: `git push origin fix-issue-name`
-1. Create a Pull Request
-
-### For New Features
-
-1. Open an issue first to discuss the feature
-1. Follow the same fork/branch/PR process
-1. Include documentation updates
-1. Add examples if applicable
-
-### Code Style Guidelines
-
-- Use 4-space indentation
-- Use camelCase for variables and functions
-- Add comments for complex logic
-- Keep functions focused and small
-- Avoid hardcoding values
-- Test with different timetables
-
-### Testing Checklist
-
-Before submitting a PR, test:
-
-- [ ] Live time mode with auto-refresh
-- [ ] Manual time mode with arrow controls
-- [ ] Switching between modes
-- [ ] Train positions at different times
-- [ ] Terminus station behavior
-- [ ] Multiple trains at same location
-- [ ] Non-stop services
-- [ ] Mobile display
-- [ ] Different timetable data
-
-## 📄 License
-
-MIT License
-
-Copyright (c) 2024
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-## 🙏 Acknowledgments
-
-- Inspired by the Severn Valley Railway heritage line
-- Built for Claude.ai artifact environment
-- Designed for both human and AI agent comprehension
-
-## 📞 Support
-
-For issues, questions, or suggestions:
-
-- Open an issue on GitHub
-- Include browser/device information
-- Provide example timetable data if relevant
-- Describe expected vs actual behavior
-
-## 🔮 Future Enhancements
-
-Potential features for future versions:
-
-- [ ] Multiple route support
-- [ ] Delay/disruption indicators
-- [ ] Historical playback mode
-- [ ] Export/import timetables
-- [ ] Platform number display
-- [ ] Weather integration
-- [ ] Sound notifications
-- [ ] Accessibility improvements (ARIA labels)
-- [ ] Keyboard navigation
-- [ ] Print stylesheet
-
------
-
-**Note for AI Agents**: This application demonstrates several important patterns:
-
-- Single-responsibility functions
-- State management without frameworks
-- Dynamic data-driven rendering
-- Time-based calculations
-- Conflict resolution (multiple services per train)
-- Mobile-first responsive design
-- No external dependencies
-
-The codebase is intentionally simple and self-contained to maximize portability and minimize dependencies.
+- Only appears in debug mode (`?debug=true`)
+- `clearInterval` is called on every `startAutoRefresh()` call; manual mode simply does not restart the interval
