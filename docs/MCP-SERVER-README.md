@@ -325,9 +325,9 @@ Train numbers typically follow these patterns:
 
 The MCP server uses the same underlying `TimetableService` as the REST API, ensuring consistency across all access methods:
 
-- **REST API**: `GET /api/timetable`
+- **REST API**: `GET /api/v1/timetable`
 - **MCP Server**: `tools/call` with `get_timetable`
-- **Health Check**: `GET /api/health`
+- **Health Check**: `GET /api/v1/health`
 
 ## Limitations
 
@@ -340,7 +340,7 @@ The MCP server uses the same underlying `TimetableService` as the REST API, ensu
 ## Support
 
 For issues or questions:
-1. Check the health endpoint: `GET /api/health`
+1. Check the health endpoint: `GET /api/v1/health`
 2. Verify the date is in the available dates list
 3. Ensure station names match exactly (case-insensitive)
 4. Check Application Insights logs in Azure

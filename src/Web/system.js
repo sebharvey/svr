@@ -83,7 +83,7 @@ if (debugMode) {
 // Health check
 async function checkHealth() {
     try {
-        const response = await fetch('https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/health');
+        const response = await fetch('https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/v1/health');
         
         if (response.ok) {
             const healthData = await response.json();
@@ -159,7 +159,7 @@ function updateTimetableInfo() {
 async function loadTimetable() {
     try {
         // Build API URL with optional debug parameter
-        let apiUrl = 'https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/timetable';
+        let apiUrl = 'https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net/api/v1/timetable';
         if (debugMode !== null && debugMode) {
             apiUrl += `?debug=${debugMode}`;
         }
