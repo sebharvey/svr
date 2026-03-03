@@ -46,6 +46,9 @@
         document.documentElement.classList.remove('light-mode-pending');
         applyTheme(initialTheme);
 
+        const yearEl = document.getElementById('copyrightYear');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
         // Listen for OS-level theme changes — only applies when no explicit user choice
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
