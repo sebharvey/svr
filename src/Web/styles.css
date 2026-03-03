@@ -415,6 +415,18 @@ body.light-mode .live-clock {
 }
 
 /* =============================================
+   Copyright Footer
+   ============================================= */
+.copyright {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 10px 0 14px;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+/* =============================================
    Desktop Layout — Two Column
    ============================================= */
 @media (min-width: 1024px) {
@@ -486,7 +498,7 @@ body.light-mode .live-clock {
     .status-panel {
         position: fixed;
         top: 340px;
-        bottom: 80px;
+        bottom: 110px;
         left: 30px;
         right: 50%;
         width: calc(50% - 60px);
@@ -498,7 +510,7 @@ body.light-mode .live-clock {
 
     .system-status {
         position: fixed;
-        bottom: 20px;
+        bottom: 50px;
         left: 30px;
         right: 50%;
         width: calc(50% - 60px);
@@ -506,6 +518,18 @@ body.light-mode .live-clock {
         margin: 0;
         padding: 15px 25px;
         font-size: 14px;
+    }
+
+    .copyright {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        padding: 8px 30px;
+        margin: 0;
+        font-size: 12px;
+        background: var(--bg-primary);
+        transition: background 0.3s ease, color 0.3s ease;
     }
 
     .tracker-container {
@@ -572,6 +596,11 @@ body.light-mode .live-clock {
     .system-status {
         left: 50px;
         width: calc(50% - 100px);
+    }
+
+    .copyright {
+        left: 0;
+        padding: 8px 50px;
     }
 
     .tracker-container {
