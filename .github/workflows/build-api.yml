@@ -3,8 +3,12 @@ name: Build API
 on:
   push:
     branches: [ main, develop ]
+    paths:
+      - 'src/API/**'
   pull_request:
     branches: [ main, develop ]
+    paths:
+      - 'src/API/**'
 
 env:
   DOTNET_VERSION: '8.0.x'
