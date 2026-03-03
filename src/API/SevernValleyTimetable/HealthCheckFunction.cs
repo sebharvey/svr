@@ -19,7 +19,7 @@ public class HealthCheckFunction
 
     [Function("HealthCheck")]
     public async Task<HttpResponseData> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health")] HttpRequestData req)
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "v1/health")] HttpRequestData req)
     {
         _logger.LogInformation("Health check requested");
 

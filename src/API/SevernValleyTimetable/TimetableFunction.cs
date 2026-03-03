@@ -19,7 +19,7 @@ public class TimetableFunction
 
     [Function("GetTimetable")]
     public async Task<HttpResponseData> GetTimetable(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "timetable")] HttpRequestData req)
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "v1/timetable")] HttpRequestData req)
     {
         _logger.LogInformation("Getting timetable for current date");
 

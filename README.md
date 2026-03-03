@@ -60,8 +60,8 @@ svr/
             ├── SevernValleyTimetable.sln
             ├── SevernValleyTimetable.csproj
             ├── Program.cs
-            ├── TimetableFunction.cs   # GET /api/timetable
-            ├── HealthCheckFunction.cs # GET /api/health
+            ├── TimetableFunction.cs   # GET /api/v1/timetable
+            ├── HealthCheckFunction.cs # GET /api/v1/health
             ├── TimetableMcpServer.cs  # MCP server (currently disabled)
             ├── TimetableService.cs    # Core scheduling logic + caching
             ├── host.json
@@ -168,7 +168,7 @@ Debug mode:
 
 Base URL: `https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net`
 
-### GET /api/timetable
+### GET /api/v1/timetable
 
 Returns the timetable for today's UTC date. The service reads `schedule.json` for the current year to determine which timetable file applies.
 
@@ -186,7 +186,7 @@ Returns the timetable for today's UTC date. The service reads `schedule.json` fo
 | 404    | No timetable scheduled for today   |
 | 500    | Unexpected server error            |
 
-### GET /api/health
+### GET /api/v1/health
 
 Returns system health information, including a count of available timetable files.
 
@@ -370,11 +370,11 @@ Singleton service with two in-memory caches (schedule and timetable file content
 
 #### `TimetableFunction`
 
-Azure Function triggered by `GET /api/timetable`. Delegates to `TimetableService` and handles `FileNotFoundException` → 404.
+Azure Function triggered by `GET /api/v1/timetable`. Delegates to `TimetableService` and handles `FileNotFoundException` → 404.
 
 #### `HealthCheckFunction`
 
-Azure Function triggered by `GET /api/health`. Calls `GetAvailableTimetablesAsync()` to verify file system access and returns structured health JSON.
+Azure Function triggered by `GET /api/v1/health`. Calls `GetAvailableTimetablesAsync()` to verify file system access and returns structured health JSON.
 
 ## Algorithm Details
 
@@ -503,7 +503,7 @@ CSS custom properties are defined for both themes in `styles.css`. Override the 
 
 **Problem: System status shows "unavailable"**
 
-- Check the health endpoint: `GET /api/health`
+- Check the health endpoint: `GET /api/v1/health`
 - Verify the Azure Function app is running in the Azure portal
 
 **Problem: Theme not persisting**
