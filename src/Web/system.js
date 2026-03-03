@@ -1,5 +1,3 @@
-//test
-
 (function () {
     const STORAGE_KEY     = 'svr-theme';
     const STORAGE_ISSET   = 'svr-theme-set'; // flag: user has explicitly chosen
