@@ -40,7 +40,15 @@
     "timetable": "timetable-b"
   },
   {
+    "date": "15-Mar",
+    "timetable": "timetable-a"
+  },
+  {
     "date": "21-Mar",
     "timetable": "timetable-b"
+  },
+  {
+    "date": "22-Mar",
+    "timetable": "timetable-a"
   }
 ]
