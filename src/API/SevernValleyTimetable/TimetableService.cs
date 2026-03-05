@@ -13,7 +13,6 @@ public class TimetableScheduleEntry
 public class TimetableData
 {
     public string? Name { get; set; }
-    public string? Date { get; set; }
     public List<TrainService>? Trains { get; set; }
 }
 
