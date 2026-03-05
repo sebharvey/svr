@@ -117,12 +117,20 @@ The user has provided a timetable image (attached to this conversation or refere
 
 ## Step 2 – Save the timetable JSON file
 
-Save the JSON to:
+Determine the save path:
 ```
 src/API/SevernValleyTimetable/Timetables/{year}/{timetable-filename}.json
 ```
 
-Where `{year}` is extracted from the full-date argument (e.g. `2026`).
+Where `{year}` is extracted from the full-date argument (e.g. `2026`). If no year is present in the date string, default to the current year.
+
+**Important**: Always create a new file — never overwrite an existing one. If a file already exists at that path, append a numeric suffix to make it unique:
+- First try: `{timetable-filename}.json`
+- If taken: `{timetable-filename}-2.json`
+- If taken: `{timetable-filename}-3.json`
+- And so on, incrementing until a free filename is found.
+
+Use the chosen unique filename for both this step and Step 3.
 
 Use 2-space indentation and consistent camelCase field names.
 
@@ -135,7 +143,7 @@ Read the existing schedule file at:
 src/API/SevernValleyTimetable/Timetables/{year}/schedule.json
 ```
 
-Add a new entry for this timetable. The `"date"` field must use `dd-MMM` format (e.g. `"15-Mar"`, `"05-Apr"`). The `"timetable"` field is the filename without `.json`.
+Always **append** a new entry for this timetable — do not update or replace any existing entry, even if one with the same timetable filename already exists. The `"date"` field must use `dd-MMM` format (e.g. `"15-Mar"`, `"05-Apr"`). The `"timetable"` field is the unique filename chosen in Step 2 (without `.json`).
 
 Example entry to add:
 ```json
