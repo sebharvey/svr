@@ -122,7 +122,7 @@ Determine the save path:
 src/API/SevernValleyTimetable/Timetables/{year}/{timetable-filename}.json
 ```
 
-Where `{year}` is extracted from the full-date argument (e.g. `2026`).
+Where `{year}` is extracted from the full-date argument (e.g. `2026`). If no year is present in the date string, default to the current year.
 
 **Important**: Always create a new file — never overwrite an existing one. If a file already exists at that path, append a numeric suffix to make it unique:
 - First try: `{timetable-filename}.json`
