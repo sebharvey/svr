@@ -4,7 +4,7 @@ Convert the provided railway timetable image into a structured JSON format follo
 
 ## JSON Structure Requirements:
 
-1. **Metadata**: Include the timetable name, and date/day of operation
+1. **Metadata**: Include the timetable name only
    - Timetable names should not include 'severn valley railway' or anything similar.  Use the actual timetable name such as 'timetable A', or 'autumn timetable'.
 3. **Trains array**: Each train object must contain:
    - `trainNumber`: the train identifier (e.g., "Diesel 37248", "Steam 75069", "Diesel DMU")
@@ -85,7 +85,6 @@ Convert the provided railway timetable image into a structured JSON format follo
 ```json
 {
   "name": "Special timetable",
-  "date": "Saturday 11 October only",
   "trains": [
     {
       "trainNumber": "Diesel 37248",
