@@ -146,9 +146,7 @@ function updateTimetableInfo() {
         if (timetableData.name) {
             html += `<div class="timetable-name">${timetableData.name}</div>`;
         }
-        const today = new Date();
-        const dateStr = today.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-        html += `<div class="timetable-date">${dateStr}</div>`;
+        html += `<div class="timetable-date"></div>`;
     }
 
     infoContainer.innerHTML = html;
