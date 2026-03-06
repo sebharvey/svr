@@ -1,3 +1,6 @@
+// Author: Seb Harvey
+// Description: Theme detection and management for the SVR web application
+
 (function () {
     const STORAGE_KEY     = 'svr-theme';
     const STORAGE_ISSET   = 'svr-theme-set'; // flag: user has explicitly chosen
