@@ -26,5 +26,9 @@
   {
     "date": "01-Mar",
     "timetable": "branchline-sun"
+  },
+  {
+    "date": "07-Mar",
+    "timetable": "timetable-b-spring"
   }
 ]
