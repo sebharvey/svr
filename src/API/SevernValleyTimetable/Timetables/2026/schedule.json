@@ -26,5 +26,29 @@
   {
     "date": "01-Mar",
     "timetable": "branchline-sun"
+  },
+  {
+    "date": "07-Mar",
+    "timetable": "timetable-b-spring"
+  },
+  {
+    "date": "08-Mar",
+    "timetable": "timetable-a-spring"
+  },
+  {
+    "date": "14-Mar",
+    "timetable": "timetable-b-spring"
+  },
+  {
+    "date": "15-Mar",
+    "timetable": "timetable-a-spring"
+  },
+  {
+    "date": "21-Mar",
+    "timetable": "timetable-b-spring"
+  },
+  {
+    "date": "22-Mar",
+    "timetable": "timetable-a-spring"
   }
 ]
