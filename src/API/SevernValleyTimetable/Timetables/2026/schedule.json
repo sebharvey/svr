@@ -50,5 +50,9 @@
   {
     "date": "22-Mar",
     "timetable": "timetable-a-spring"
+  },
+  {
+    "date": "31-Mar",
+    "timetable": "timetable-c-easter"
   }
 ]
