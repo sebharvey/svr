@@ -40,7 +40,15 @@
     "timetable": "timetable-b-spring"
   },
   {
+    "date": "15-Mar",
+    "timetable": "timetable-a-sprint"
+  },
+  {
     "date": "21-Mar",
     "timetable": "timetable-b-spring"
+  },
+  {
+    "date": "22-Mar",
+    "timetable": "timetable-a-sprint"
   }
 ]
