@@ -54,5 +54,25 @@
   {
     "date": "31-Mar",
     "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "01-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "02-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "03-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "04-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "05-Apr",
+    "timetable": "timetable-c-easter"
   }
 ]
