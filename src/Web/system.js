@@ -344,22 +344,44 @@ function getStopTime(stop) {
     return parseTime(stop.departure || stop.arrival || stop.time);
 }
 
+function isFirstTrainFromTerminal(train) {
+    const firstStop = train.stops[0];
+    const isTerminal = firstStop.station === stations[0] || firstStop.station === stations[stations.length - 1];
+    if (!isTerminal) return false;
+
+    const trainDepartTime = getStopTime(firstStop);
+    for (let otherTrain of timetableData.trains) {
+        const otherFirstStop = otherTrain.stops[0];
+        if (otherFirstStop.station === firstStop.station) {
+            if (getStopTime(otherFirstStop) < trainDepartTime) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 function findTrainPosition(train, currentTime) {
     const stops = train.stops;
-    
+
     // Check if train hasn't started yet
     const firstStop = stops[0];
     const startTime = getStopTime(firstStop);
-    
-    // Show train at terminal station 15 minutes before departure
+
+    // Show train at terminal station before departure:
+    // - First train of the day: 60 minutes early
+    // - All subsequent trains: 15 minutes early
     if (currentTime < startTime) {
         const isTerminalStation = firstStop.station === stations[0] || firstStop.station === stations[stations.length - 1];
-        if (isTerminalStation && currentTime >= startTime - 15) {
-            return {
-                type: 'at_station',
-                station: firstStop.station,
-                waitingForDeparture: true
-            };
+        if (isTerminalStation) {
+            const earlyWindow = isFirstTrainFromTerminal(train) ? 60 : 15;
+            if (currentTime >= startTime - earlyWindow) {
+                return {
+                    type: 'at_station',
+                    station: firstStop.station,
+                    waitingForDeparture: true
+                };
+            }
         }
         return null;
     }
