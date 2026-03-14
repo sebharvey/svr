@@ -1,0 +1,12 @@
+{
+  "description": "Average transit times between adjacent SVR stations, derived from 80th-percentile trimmed averages across all timetables. Times rounded up to the nearest whole minute.",
+  "units": "minutes",
+  "station_pairs": [
+    { "from": "Kidderminster", "to": "Bewdley", "minutes": 13 },
+    { "from": "Bewdley", "to": "Arley", "minutes": 13 },
+    { "from": "Arley", "to": "Highley", "minutes": 8 },
+    { "from": "Highley", "to": "Hampton Loade", "minutes": 10 },
+    { "from": "Hampton Loade", "to": "Eardington", "minutes": 7 },
+    { "from": "Eardington", "to": "Bridgnorth", "minutes": 7 }
+  ]
+}
