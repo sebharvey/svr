@@ -75,6 +75,8 @@
     });
 })();
 
+const splashStartTime = Date.now();
+
 // Check for debug query string
 const urlParams = new URLSearchParams(window.location.search);
 const debugMode = urlParams.get('debug') === 'true';
@@ -157,12 +159,13 @@ function updateTimetableInfo() {
     startClock();
 }
 
-// Hide the splash screen with a fade-out
+// Hide the splash screen with a fade-out, enforcing a minimum 2-second display
 function hideSplashScreen() {
     const splash = document.getElementById('splashScreen');
-    if (splash) {
-        splash.classList.add('hidden');
-    }
+    if (!splash) return;
+    const elapsed = Date.now() - splashStartTime;
+    const delay = Math.max(0, 2000 - elapsed);
+    setTimeout(() => splash.classList.add('hidden'), delay);
 }
 
 // Fetch timetable from API
