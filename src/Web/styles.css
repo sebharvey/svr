@@ -21,6 +21,11 @@
     --toggle-bg:     #3a3a3a;
     --toggle-icon:   '☀️';
     --toggle-label:  'Light mode';
+
+    /* Sticky header */
+    --header-bg:     #111111;
+    --header-border: #3a3a3a;
+    --header-text:   #d4a847;
 }
 
 /* =============================================
@@ -45,6 +50,98 @@ body.light-mode {
     --toggle-bg:     #d8d3cb;
     --toggle-icon:   '🌙';
     --toggle-label:  'Dark mode';
+
+    /* Sticky header */
+    --header-bg:     #e2ddd6;
+    --header-border: #b8b2a8;
+    --header-text:   #7a3b1e;
+}
+
+/* =============================================
+   Splash Screen
+   ============================================= */
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.splash-logo {
+    font-size: 72px;
+    line-height: 1;
+    animation: splash-bounce 1.2s ease-in-out infinite;
+}
+
+@keyframes splash-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+
+.splash-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.splash-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-top: -4px;
+}
+
+.splash-loader {
+    margin: 16px 0 8px;
+    width: 200px;
+}
+
+.splash-track {
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.splash-train {
+    position: absolute;
+    top: 0;
+    left: -40%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--text-muted), var(--text-primary));
+    border-radius: 2px;
+    animation: splash-slide 1.4s ease-in-out infinite;
+}
+
+@keyframes splash-slide {
+    0%   { left: -40%; }
+    100% { left: 100%; }
+}
+
+.splash-status {
+    font-size: 13px;
+    color: var(--text-faint);
 }
 
 /* =============================================
@@ -67,11 +164,26 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-h1 {
+/* =============================================
+   Sticky Site Header
+   ============================================= */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--header-border);
+    margin: -20px -20px 20px;
+    padding: 14px 20px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.site-header h1 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: var(--text-primary);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--header-text);
+    letter-spacing: 0.02em;
 }
 
 /* =============================================
