@@ -1,21 +1,56 @@
 // Author: Seb Harvey
-// Description: Entry point and host configuration for the Severn Valley Timetable Azure Functions API
+// Description: Minimal API for the Severn Valley Timetable
 
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using SevernValleyTimetable.Functions;
+var builder = WebApplication.CreateBuilder(args);
 
-var host = new HostBuilder()
-    .ConfigureFunctionsWorkerDefaults()
-    .ConfigureServices(services =>
+builder.Services.AddSingleton<TimetableService>();
+
+var app = builder.Build();
+
+app.MapGet("/api/v1/timetable", async (HttpContext ctx, TimetableService timetableService) =>
+{
+    var debugParam = ctx.Request.Query["debug"].ToString();
+    var isDebugMode = bool.TryParse(debugParam, out var debugValue) && debugValue;
+
+    try
     {
-        services.AddApplicationInsightsTelemetryWorkerService();
-        services.ConfigureFunctionsApplicationInsights();
-        
-        // Register TimetableService as singleton for caching
-        services.AddSingleton<TimetableService>();
-    })
-    .Build();
+        var timetable = await timetableService.GetTimetableForDateAsync(DateTime.UtcNow, isDebugMode);
+        return Results.Text(timetable, "application/json");
+    }
+    catch (FileNotFoundException)
+    {
+        return Results.NotFound(new { error = "No timetable found for the current date" });
+    }
+});
 
-host.Run();
+app.MapGet("/api/v1/health", async (TimetableService timetableService) =>
+{
+    try
+    {
+        var availableTimetables = await timetableService.GetAvailableTimetablesAsync();
+
+        return Results.Ok(new
+        {
+            status = "healthy",
+            timestamp = DateTime.UtcNow,
+            service = "SevernValleyTimetable",
+            version = "1.0.0",
+            timetablesAvailable = availableTimetables.Count,
+            checks = new { timetableService = "ok", fileSystem = "ok" }
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Json(new
+        {
+            status = "unhealthy",
+            timestamp = DateTime.UtcNow,
+            service = "SevernValleyTimetable",
+            version = "1.0.0",
+            error = ex.Message,
+            checks = new { timetableService = "error", fileSystem = "error" }
+        }, statusCode: 503);
+    }
+});
+
+app.Run();

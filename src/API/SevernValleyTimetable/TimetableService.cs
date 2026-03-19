@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 
-namespace SevernValleyTimetable.Functions;
+namespace SevernValleyTimetable;
 
 // Model classes for timetable data
 public class TimetableScheduleEntry
