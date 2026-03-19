@@ -157,6 +157,14 @@ function updateTimetableInfo() {
     startClock();
 }
 
+// Hide the splash screen with a fade-out
+function hideSplashScreen() {
+    const splash = document.getElementById('splashScreen');
+    if (splash) {
+        splash.classList.add('hidden');
+    }
+}
+
 // Fetch timetable from API
 async function loadTimetable() {
     try {
@@ -165,28 +173,31 @@ async function loadTimetable() {
         if (debugMode !== null && debugMode) {
             apiUrl += `?debug=${debugMode}`;
         }
-        
+
         const response = await fetch(apiUrl);
-        
+
         // Handle 404 - no timetable available
         if (response.status === 404) {
+            hideSplashScreen();
             displayNoTimetableMessage();
             return;
         }
-        
+
         // Handle other non-OK responses
         if (!response.ok) {
             throw new Error(`API returned status ${response.status}`);
         }
-        
+
         timetableData = await response.json();
-        
+
+        hideSplashScreen();
+
         // Update timetable info display (also starts clock)
         updateTimetableInfo();
-        
+
         // Update derived data
         updateTimetableData();
-        
+
         // Initial render
         updateTimeDisplay();
         updateLiveButton();
@@ -194,6 +205,7 @@ async function loadTimetable() {
         startAutoRefresh();
     } catch (error) {
         console.error('Error loading timetable:', error);
+        hideSplashScreen();
         displayErrorMessage(error.message);
     }
 }
