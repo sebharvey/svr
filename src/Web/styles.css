@@ -176,10 +176,13 @@ body {
     margin: -20px -20px 20px;
     padding: 14px 20px;
     transition: background 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 .site-header h1 {
-    text-align: center;
     font-size: 22px;
     font-weight: 700;
     color: var(--header-text);
@@ -190,10 +193,7 @@ body {
    Theme Toggle Button
    ============================================= */
 .theme-toggle {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 100;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -562,23 +562,18 @@ body.light-mode .live-clock {
         transition: background 0.3s ease;
     }
 
-    h1 {
+    .site-header {
         position: fixed;
         top: 0;
         left: 0;
         width: 50%;
-        padding: 30px 30px 10px 30px;
-        margin-bottom: 0;
-        font-size: 32px;
-        background: var(--bg-primary);
-        z-index: 10;
-        transition: background 0.3s ease;
+        padding: 20px 30px;
+        margin: 0;
+        z-index: 200;
     }
 
-    .theme-toggle {
-        /* Shift left of the fixed-right edge so it sits within the left column */
-        top: 28px;
-        right: calc(50% + 16px);
+    .site-header h1 {
+        font-size: 32px;
     }
 
     .timetable-info {
@@ -682,9 +677,12 @@ body.light-mode .live-clock {
 
 /* Extra large desktop */
 @media (min-width: 1600px) {
-    h1 {
+    .site-header {
+        padding: 24px 50px;
+    }
+
+    .site-header h1 {
         font-size: 36px;
-        padding: 40px 50px 15px 50px;
     }
 
     .timetable-info {
@@ -718,11 +716,6 @@ body.light-mode .live-clock {
     .tracker-container {
         padding: 40px 50px;
     }
-
-    .theme-toggle {
-        right: calc(50% + 50px);
-        top: 38px;
-    }
 }
 
 /* Mobile */
@@ -731,9 +724,13 @@ body.light-mode .live-clock {
         padding: 10px;
     }
 
-    h1 {
-        font-size: 20px;
-        padding-right: 90px; /* room for the toggle */
+    .site-header h1 {
+        font-size: 18px;
+    }
+
+    .theme-toggle {
+        padding: 5px 10px 5px 8px;
+        font-size: 12px;
     }
 
     .live-clock {
@@ -754,11 +751,4 @@ body.light-mode .live-clock {
 
     .train       { font-size: 11px; }
     .train-icon  { font-size: 16px; }
-
-    .theme-toggle {
-        top: 12px;
-        right: 10px;
-        padding: 5px 10px 5px 8px;
-        font-size: 12px;
-    }
 }
