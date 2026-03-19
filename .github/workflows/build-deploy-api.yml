@@ -1,7 +1,7 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy dotnet core app to Azure Function App - svrliveapi
+name: Build and deploy dotnet core app to Azure Web App - svrliveapi
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
         shell: pwsh
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-          dotnet build --configuration Release --output ./output
+          dotnet publish SevernValleyTimetable/SevernValleyTimetable.csproj --configuration Release --output ./output
           popd
       
       - name: Login to Azure
@@ -43,9 +43,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7FACD569D6BA43D4B4CBEE9F278B325F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FA21BA62AD6547D2A61725F7FBD60140 }}
 
-      - name: 'Run Azure Functions Action'
-        uses: Azure/functions-action@v1
-        id: fa
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v3
+        id: deploy
         with:
           app-name: 'svrliveapi'
           slot-name: 'Production'
