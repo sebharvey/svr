@@ -1,6 +1,8 @@
 // Author: Seb Harvey
 // Description: Minimal API for the Severn Valley Timetable
 
+using SevernValleyTimetable;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<TimetableService>();
