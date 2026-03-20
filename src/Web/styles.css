@@ -2,74 +2,59 @@
    CSS Custom Properties — Dark Mode (default)
    ============================================= */
 :root {
-    /* Base palette — teal-ink dark */
-    --ink:           #333C3E;
-    --coral:         #d9805e;
-    --coral-hot:     #e47a5b;
-    --teal:          #55827E;
-    --teal-deep:     #558382;
-    --sand:          #E2C7A4;
-    --sand-warm:     #ead4a7;
-    --slate:         #8497bc;
-    --slate-bold:    #87a0cc;
-    --crimson:       #942020;
-
-    --bg-primary:    #333C3E;
-    --bg-secondary:  #3f4a4c;
-    --bg-tertiary:   #4a5558;
-    --bg-quaternary: #546063;
-    --bg-quinary:    #5e6c6f;
-    --border:        #637275;
-    --border-light:  #728487;
+    --bg-primary:    #1a1a1a;
+    --bg-secondary:  #2a2a2a;
+    --bg-tertiary:   #333333;
+    --bg-quaternary: #3a3a3a;
+    --bg-quinary:    #404040;
+    --border:        #4a4a4a;
+    --border-light:  #5a5a5a;
     --text-primary:  #ffffff;
-    --text-body:     #E2C7A4;
-    --text-muted:    #b8a890;
-    --text-faint:    #8e8070;
-    --text-faintest: #6e6255;
-    --track-line:    #637275;
+    --text-body:     #e0e0e0;
+    --text-muted:    #b0b0b0;
+    --text-faint:    #888888;
+    --text-faintest: #666666;
+    --track-line:    #555555;
     --shadow:        rgba(0, 0, 0, 0.4);
 
     /* Toggle button */
-    --toggle-bg:     #4a5558;
+    --toggle-bg:     #3a3a3a;
     --toggle-icon:   '☀️';
     --toggle-label:  'Light mode';
 
     /* Sticky header */
-    --header-bg:     #262e30;
-    --header-border: #55827E;
-    --header-text:   #d9805e;
-    --header-gradient: linear-gradient(90deg, #d9805e 0%, #E2C7A4 50%, #87a0cc 100%);
+    --header-bg:     #111111;
+    --header-border: #3a3a3a;
+    --header-text:   #d4a847;
 }
 
 /* =============================================
    CSS Custom Properties — Light Mode
    ============================================= */
 body.light-mode {
-    /* Palette overrides — warm sand/cream */
-    --bg-primary:    #f4f0ea;
-    --bg-secondary:  #ede8e0;
-    --bg-tertiary:   #e5dfd6;
-    --bg-quaternary: #dcd5ca;
-    --bg-quinary:    #d3cbbf;
+    --bg-primary:    #f4f1ec;
+    --bg-secondary:  #ede9e2;
+    --bg-tertiary:   #e2ddd6;
+    --bg-quaternary: #d8d3cb;
+    --bg-quinary:    #ccc8bf;
     --border:        #b8b2a8;
-    --border-light:  #a09890;
-    --text-primary:  #333C3E;
-    --text-body:     #4a5255;
-    --text-muted:    #637275;
-    --text-faint:    #8a9295;
-    --text-faintest: #aab2b5;
-    --track-line:    #b8b2a8;
+    --border-light:  #a09990;
+    --text-primary:  #1a1714;
+    --text-body:     #2d2926;
+    --text-muted:    #4a4440;
+    --text-faint:    #6b6560;
+    --text-faintest: #8a847e;
+    --track-line:    #a09990;
     --shadow:        rgba(0, 0, 0, 0.12);
 
-    --toggle-bg:     #dcd5ca;
+    --toggle-bg:     #d8d3cb;
     --toggle-icon:   '🌙';
     --toggle-label:  'Dark mode';
 
     /* Sticky header */
-    --header-bg:     #ffffff;
-    --header-border: #d9805e;
-    --header-text:   #d9805e;
-    --header-gradient: linear-gradient(90deg, #d9805e 0%, #E2C7A4 50%, #87a0cc 100%);
+    --header-bg:     #e2ddd6;
+    --header-border: #b8b2a8;
+    --header-text:   #7a3b1e;
 }
 
 /* =============================================
@@ -144,7 +129,7 @@ body.light-mode {
     left: -40%;
     width: 40%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, var(--coral), var(--sand));
+    background: linear-gradient(90deg, transparent, var(--text-muted), var(--text-primary));
     border-radius: 2px;
     animation: splash-slide 1.4s ease-in-out infinite;
 }
@@ -169,7 +154,7 @@ body.light-mode {
 }
 
 body {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-primary);
     color: var(--text-body);
     padding: 20px;
@@ -187,7 +172,7 @@ body {
     top: 0;
     z-index: 200;
     background: var(--header-bg);
-    border-bottom: none;
+    border-bottom: 2px solid var(--header-border);
     margin: -20px -20px 20px;
     padding: 14px 20px;
     transition: background 0.3s ease, border-color 0.3s ease;
@@ -197,22 +182,11 @@ body {
     gap: 12px;
 }
 
-.site-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--header-gradient);
-}
-
 .site-header h1 {
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--header-text);
-    letter-spacing: -0.02em;
-    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.02em;
 }
 
 /* =============================================
@@ -276,7 +250,7 @@ body {
     color: var(--text-primary);
     letter-spacing: 0.05em;
     font-variant-numeric: tabular-nums;
-    font-family: 'DM Mono', 'Courier New', 'Lucida Console', monospace;
+    font-family: 'Courier New', 'Lucida Console', monospace;
     margin-bottom: 8px;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
 }
@@ -362,7 +336,7 @@ body.light-mode .live-clock {
     border: 1px solid var(--border);
     padding: 6px 15px;
     border-radius: 4px;
-    font: bold 16px/1 'DM Mono', monospace;
+    font: bold 16px/1;
     min-width: 80px;
     text-align: center;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
@@ -545,11 +519,11 @@ body.light-mode .live-clock {
 }
 
 .system-status.online {
-    color: var(--teal);
+    color: #4ade80;
 }
 
 .system-status.offline {
-    color: var(--crimson);
+    color: #ef4444;
 }
 
 /* =============================================
@@ -596,7 +570,6 @@ body.light-mode .live-clock {
         padding: 20px 30px;
         margin: 0;
         z-index: 200;
-        overflow: visible;
     }
 
     .site-header h1 {
