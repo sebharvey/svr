@@ -74,5 +74,29 @@
   {
     "date": "05-Apr",
     "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "06-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "07-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "08-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "09-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "11-Apr",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "12-Apr",
+    "timetable": "timetable-b-spring"
   }
 ]
