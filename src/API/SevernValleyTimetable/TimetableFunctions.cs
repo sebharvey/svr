@@ -23,9 +23,23 @@ public class TimetableFunctions
         var debugParam = req.Query["debug"].ToString();
         var isDebugMode = bool.TryParse(debugParam, out var debugValue) && debugValue;
 
+        var dateParam = req.Query["date"].ToString();
+        var targetDate = DateTime.UtcNow;
+
+        if (!string.IsNullOrEmpty(dateParam) && !isDebugMode)
+        {
+            var fullDateStr = $"{dateParam}-{DateTime.UtcNow.Year}";
+            if (DateTime.TryParseExact(fullDateStr, "dd-MMM-yyyy",
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None, out var parsedDate))
+            {
+                targetDate = parsedDate;
+            }
+        }
+
         try
         {
-            var timetable = await _timetableService.GetTimetableForDateAsync(DateTime.UtcNow, isDebugMode);
+            var timetable = await _timetableService.GetTimetableForDateAsync(targetDate, isDebugMode);
             return new ContentResult
             {
                 Content = timetable,
@@ -35,7 +49,24 @@ public class TimetableFunctions
         }
         catch (FileNotFoundException)
         {
-            return new NotFoundObjectResult(new { error = "No timetable found for the current date" });
+            return new NotFoundObjectResult(new { error = "No timetable found for the specified date" });
+        }
+    }
+
+    [Function("GetSchedule")]
+    public async Task<IActionResult> GetSchedule(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "v1/schedule")] HttpRequest req)
+    {
+        try
+        {
+            var year = DateTime.UtcNow.Year;
+            var schedule = await _timetableService.LoadScheduleAsync(year);
+            return new OkObjectResult(schedule ?? new List<TimetableScheduleEntry>());
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching schedule");
+            return new ObjectResult(new { error = ex.Message }) { StatusCode = 500 };
         }
     }
 
