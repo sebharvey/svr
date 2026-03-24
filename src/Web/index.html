@@ -60,8 +60,23 @@
         <span id="systemStatusText">System status: checking...</span>
     </div>
 
+    <div class="upcoming-dates-bar">
+        <button class="upcoming-dates-btn" id="upcomingDatesBtn">📅 Upcoming Dates</button>
+    </div>
+
     <footer class="copyright">
         &copy; <span id="copyrightYear"></span> Seb Harvey
     </footer>
+
+    <div class="overlay-backdrop" id="overlayBackdrop">
+        <div class="overlay-panel">
+            <div class="overlay-header">
+                <button class="overlay-back-btn" id="overlayBackBtn">← Back</button>
+                <h2 class="overlay-title" id="overlayTitle">Upcoming Dates</h2>
+                <button class="overlay-close-btn" id="overlayCloseBtn">✕</button>
+            </div>
+            <div class="overlay-body" id="overlayBody"></div>
+        </div>
+    </div>
 </body>
 </html>

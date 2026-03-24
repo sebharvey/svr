@@ -795,3 +795,173 @@ checkHealth();
 
 // Check health status every 60 seconds
 setInterval(checkHealth, 60000);
+
+// =============================================
+// Upcoming Dates Overlay
+// =============================================
+
+const API_BASE = 'https://svrliveapi-aaeydueba4b9aveb.uksouth-01.azurewebsites.net';
+
+let scheduleCache = null;
+
+function parseDateEntry(dateStr, year) {
+    const months = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+    const [day, mon] = dateStr.split('-');
+    return new Date(year, months[mon], parseInt(day, 10));
+}
+
+async function openUpcomingDatesOverlay() {
+    document.getElementById('overlayBackdrop').classList.add('visible');
+    document.body.classList.add('overlay-open');
+
+    if (!scheduleCache) {
+        document.getElementById('overlayBackBtn').style.display = 'none';
+        document.getElementById('overlayTitle').textContent = 'Upcoming Dates';
+        document.getElementById('overlayBody').innerHTML = '<div class="overlay-loading">Loading schedule...</div>';
+        try {
+            const res = await fetch(`${API_BASE}/api/v1/schedule`);
+            if (!res.ok) throw new Error('Bad response');
+            scheduleCache = await res.json();
+        } catch (e) {
+            document.getElementById('overlayBody').innerHTML = '<div class="overlay-error">Failed to load schedule. Please try again.</div>';
+            return;
+        }
+    }
+
+    showDateList();
+}
+
+function closeUpcomingDatesOverlay() {
+    document.getElementById('overlayBackdrop').classList.remove('visible');
+    document.body.classList.remove('overlay-open');
+}
+
+function showDateList() {
+    document.getElementById('overlayBackBtn').style.display = 'none';
+    document.getElementById('overlayTitle').textContent = 'Upcoming Dates';
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const year = today.getFullYear();
+
+    const upcoming = (scheduleCache || [])
+        .filter(e => parseDateEntry(e.date, year) >= today)
+        .sort((a, b) => parseDateEntry(a.date, year) - parseDateEntry(b.date, year));
+
+    if (upcoming.length === 0) {
+        document.getElementById('overlayBody').innerHTML = '<p class="overlay-empty">No upcoming running dates found in this year\'s schedule.</p>';
+        return;
+    }
+
+    const html = upcoming.map(entry => {
+        const date = parseDateEntry(entry.date, year);
+        const dayName = date.toLocaleDateString('en-GB', { weekday: 'short' });
+        const dateStr = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        const label = entry.timetable.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        return `<button class="date-card" data-date="${entry.date}">
+            <span class="date-card-day">${dayName}</span>
+            <span class="date-card-date">${dateStr}</span>
+            <span class="date-card-label">${label}</span>
+            <span class="date-card-arrow">›</span>
+        </button>`;
+    }).join('');
+
+    document.getElementById('overlayBody').innerHTML = `<div class="date-list">${html}</div>`;
+    document.querySelectorAll('.date-card').forEach(card => {
+        card.addEventListener('click', () => showDateTimetable(card.dataset.date));
+    });
+}
+
+async function showDateTimetable(dateStr) {
+    const year = new Date().getFullYear();
+    const date = parseDateEntry(dateStr, year);
+    const title = date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+
+    document.getElementById('overlayTitle').textContent = title;
+    document.getElementById('overlayBackBtn').style.display = 'inline-flex';
+    document.getElementById('overlayBody').innerHTML = '<div class="overlay-loading">Loading timetable...</div>';
+
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/timetable?date=${encodeURIComponent(dateStr)}`);
+        if (!res.ok) {
+            document.getElementById('overlayBody').innerHTML = '<div class="overlay-error">No timetable available for this date.</div>';
+            return;
+        }
+        const data = await res.json();
+        document.getElementById('overlayBody').innerHTML = renderTimetableTables(data);
+    } catch (e) {
+        document.getElementById('overlayBody').innerHTML = '<div class="overlay-error">Failed to load timetable.</div>';
+    }
+}
+
+function getStationsFromData(data) {
+    let longest = data.trains[0];
+    for (const t of data.trains) {
+        if (t.stops.length > longest.stops.length) longest = t;
+    }
+    const list = longest.stops.map(s => s.station);
+    return longest.direction === 'northbound' ? list.reverse() : list;
+}
+
+function getDisplayTime(stop) {
+    return stop.departure || stop.arrival || stop.time || null;
+}
+
+function buildTimetableHtml(trains, stationOrder) {
+    if (!trains.length) return '<p class="no-services">No services scheduled</p>';
+
+    trains.sort((a, b) => {
+        const ta = getDisplayTime(a.stops[0]) || '00:00';
+        const tb = getDisplayTime(b.stops[0]) || '00:00';
+        return ta.localeCompare(tb);
+    });
+
+    let html = '<div class="timetable-scroll"><table class="timetable-table"><thead><tr><th class="th-station">Station</th>';
+    for (const train of trains) {
+        const icon = getTrainIcon(train.trainNumber);
+        html += `<th class="th-train">${icon}<br><span>${train.trainNumber}</span></th>`;
+    }
+    html += '</tr></thead><tbody>';
+
+    for (const station of stationOrder) {
+        html += `<tr><td class="td-station">${station}</td>`;
+        for (const train of trains) {
+            const stop = train.stops.find(s => s.station === station);
+            if (!stop) {
+                html += '<td class="td-no-stop">—</td>';
+            } else if (!stop.stopsAt) {
+                html += `<td class="td-pass">${stop.time || '·'}</td>`;
+            } else {
+                const time = getDisplayTime(stop);
+                html += `<td class="td-stop">${time || '—'}</td>`;
+            }
+        }
+        html += '</tr>';
+    }
+
+    html += '</tbody></table></div>';
+    return html;
+}
+
+function renderTimetableTables(data) {
+    const stationOrder = getStationsFromData(data);
+    const southbound = data.trains.filter(t => t.direction === 'southbound');
+    const northbound = data.trains.filter(t => t.direction === 'northbound');
+
+    return `
+        <div class="tt-section">
+            <h3 class="tt-direction-heading southbound-heading">↓ Southbound — Kidderminster to Bridgnorth</h3>
+            ${buildTimetableHtml(southbound, [...stationOrder])}
+        </div>
+        <div class="tt-section">
+            <h3 class="tt-direction-heading northbound-heading">↑ Northbound — Bridgnorth to Kidderminster</h3>
+            ${buildTimetableHtml(northbound, [...stationOrder].reverse())}
+        </div>`;
+}
+
+document.getElementById('upcomingDatesBtn').addEventListener('click', openUpcomingDatesOverlay);
+document.getElementById('overlayCloseBtn').addEventListener('click', closeUpcomingDatesOverlay);
+document.getElementById('overlayBackBtn').addEventListener('click', showDateList);
+document.getElementById('overlayBackdrop').addEventListener('click', e => {
+    if (e.target === document.getElementById('overlayBackdrop')) closeUpcomingDatesOverlay();
+});
