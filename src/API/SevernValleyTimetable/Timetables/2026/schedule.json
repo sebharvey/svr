@@ -52,6 +52,14 @@
     "timetable": "timetable-a-spring"
   },
   {
+    "date": "28-Mar",
+    "timetable": "timetable-c-easter"
+  },
+  {
+    "date": "29-Mar",
+    "timetable": "timetable-c-easter"
+  },
+  {
     "date": "31-Mar",
     "timetable": "timetable-c-easter"
   },
