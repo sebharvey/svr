@@ -3,7 +3,7 @@
   "date": "31 March 2026",
   "trains": [
     {
-      "trainNumber": "Steam 1",
+      "trainNumber": "Steam A",
       "direction": "southbound",
       "stops": [
         { "station": "Kidderminster", "departure": "10:15", "stopsAt": true },
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "trainNumber": "Steam 2",
+      "trainNumber": "Steam B",
       "direction": "southbound",
       "stops": [
         { "station": "Kidderminster", "departure": "10:55", "stopsAt": true },
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "trainNumber": "Diesel 3",
+      "trainNumber": "Diesel",
       "direction": "southbound",
       "stops": [
         { "station": "Kidderminster", "departure": "11:45", "stopsAt": true },
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "trainNumber": "S/D* 4",
+      "trainNumber": "S/D*",
       "direction": "southbound",
       "stops": [
         { "station": "Kidderminster", "departure": "12:40", "stopsAt": true },
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "trainNumber": "Steam 5",
+      "trainNumber": "Steam A",
       "direction": "southbound",
       "stops": [
         { "station": "Kidderminster", "departure": "14:15", "stopsAt": true },
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "trainNumber": "S/D* 6",
+      "trainNumber": "S/D*",
       "direction": "southbound",
       "stops": [
         { "station": "Kidderminster", "departure": "15:45", "stopsAt": true },
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "trainNumber": "S/D* 7",
+      "trainNumber": "S/D*",
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "10:45", "stopsAt": true },
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "trainNumber": "Steam 8",
+      "trainNumber": "Steam A",
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "12:30", "stopsAt": true },
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "trainNumber": "S/D* 9",
+      "trainNumber": "S/D*",
       "direction": "northbound",
       "stops": [
         { "station": "Highley", "departure": "13:50", "stopsAt": true },
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "trainNumber": "Steam 10",
+      "trainNumber": "Steam B",
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "14:05", "stopsAt": true },
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "trainNumber": "Diesel 11",
+      "trainNumber": "Diesel",
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "14:50", "stopsAt": true },
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "trainNumber": "Steam 12",
+      "trainNumber": "Steam B",
       "direction": "northbound",
       "stops": [
         { "station": "Bridgnorth", "departure": "16:15", "stopsAt": true },
