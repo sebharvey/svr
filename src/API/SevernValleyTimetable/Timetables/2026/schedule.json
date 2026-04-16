@@ -106,5 +106,21 @@
   {
     "date": "12-Apr",
     "timetable": "timetable-b-spring"
+  },
+  {
+    "date": "16-Apr",
+    "timetable": "ssg-thu-16-apr"
+  },
+  {
+    "date": "17-Apr",
+    "timetable": "ssg-fri-17-apr"
+  },
+  {
+    "date": "18-Apr",
+    "timetable": "ssg-sat-18-apr"
+  },
+  {
+    "date": "19-Apr",
+    "timetable": "ssg-sun-19-apr"
   }
 ]
