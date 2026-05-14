@@ -124,8 +124,14 @@ Convert the provided railway timetable image into a structured JSON format follo
 
 ### Update schedule.json
 
-After saving the new timetable JSON file, also update `src/API/SevernValleyTimetable/Timetables/2026/schedule.json` to register the dates this timetable applies to.
+After saving the new timetable JSON file, also update `schedule.json` to register the dates this timetable applies to.
 
+#### Determining the year
+- If the timetable image or supplied dates indicate a specific year, use that year
+- Otherwise, default to the current year
+- The `schedule.json` path is `src/API/SevernValleyTimetable/Timetables/<year>/schedule.json`
+
+#### Steps
 1. **Determine the filename slug**: This is the timetable JSON filename without the `.json` extension (e.g., if you saved `summer-gala-sat.json`, the slug is `summer-gala-sat`)
 2. **Ask for the dates** this timetable applies to if not already provided
 3. **Add or update entries** in `schedule.json` for each applicable date in the format:
