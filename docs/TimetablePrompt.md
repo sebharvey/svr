@@ -127,8 +127,8 @@ Convert the provided railway timetable image into a structured JSON format follo
 After saving the new timetable JSON file, also update `schedule.json` to register the dates this timetable applies to.
 
 #### Determining the year
-- If the timetable image or supplied dates indicate a specific year, use that year
-- Otherwise, default to the current year
+- First, try to derive the year from the timetable image (e.g. a printed year, dated header, or year visible in the supplied dates)
+- If no year can be determined from the timetable, fall back to the current year
 - The `schedule.json` path is `src/API/SevernValleyTimetable/Timetables/<year>/schedule.json`
 
 #### Steps
