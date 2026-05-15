@@ -128,6 +128,14 @@
     "timetable": "diesel-gala-thursday"
   },
   {
+    "date": "15-May",
+    "timetable": "diesel-gala-friday"
+  },
+  {
+    "date": "16-May",
+    "timetable": "diesel-gala-saturday"
+  },
+  {
     "date": "17-May",
     "timetable": "diesel-gala-sunday"
   }
