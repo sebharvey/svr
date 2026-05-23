@@ -39,10 +39,38 @@ public class TimetableFunctions
 
         try
         {
-            var timetable = await _timetableService.GetTimetableForDateAsync(targetDate, isDebugMode);
+            var timetableJson = await _timetableService.GetTimetableForDateAsync(targetDate, isDebugMode);
+
+            if (!isDebugMode)
+            {
+                var schedule = await _timetableService.LoadScheduleAsync(targetDate.Year);
+                var dateKey = targetDate.ToString("dd-MMM");
+                var entry = schedule?.FirstOrDefault(s =>
+                    string.Equals(s.Date, dateKey, StringComparison.OrdinalIgnoreCase));
+
+                if (entry is { Delay: > 0 })
+                {
+                    var deserializeOptions = new System.Text.Json.JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    var timetableData = System.Text.Json.JsonSerializer.Deserialize<TimetableData>(timetableJson, deserializeOptions);
+                    if (timetableData != null)
+                    {
+                        timetableData.Delay = entry.Delay;
+                        var serializeOptions = new System.Text.Json.JsonSerializerOptions
+                        {
+                            PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
+                            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+                        };
+                        timetableJson = System.Text.Json.JsonSerializer.Serialize(timetableData, serializeOptions);
+                    }
+                }
+            }
+
             return new ContentResult
             {
-                Content = timetable,
+                Content = timetableJson,
                 ContentType = "application/json",
                 StatusCode = 200
             };

@@ -8,11 +8,13 @@ public class TimetableScheduleEntry
 {
     public string Date { get; set; } = string.Empty;
     public string Timetable { get; set; } = string.Empty;
+    public int Delay { get; set; } = 0;
 }
 
 public class TimetableData
 {
     public string? Name { get; set; }
+    public int Delay { get; set; }
     public List<TrainService>? Trains { get; set; }
 }
 
