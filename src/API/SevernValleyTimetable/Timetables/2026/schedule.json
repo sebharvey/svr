@@ -141,7 +141,8 @@
   },
   {
     "date": "23-May",
-    "timetable": "timetable-c"
+    "timetable": "timetable-c",
+    "delay": 60
   },
   {
     "date": "24-May",
