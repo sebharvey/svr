@@ -138,5 +138,41 @@
   {
     "date": "17-May",
     "timetable": "diesel-gala-sunday"
+  },
+  {
+    "date": "23-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "24-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "25-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "26-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "27-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "28-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "29-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "30-May",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "31-May",
+    "timetable": "timetable-c"
   }
 ]
