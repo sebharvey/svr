@@ -116,6 +116,7 @@ async function checkHealth() {
 }
 
 let timetableData = null;
+let delayMinutes = 0;
 
 // Real-time ticking clock
 let clockInterval = null;
@@ -152,6 +153,9 @@ function updateTimetableInfo() {
             html += `<div class="timetable-name">${timetableData.name}</div>`;
         }
         html += `<div class="timetable-date"></div>`;
+        if (delayMinutes > 0) {
+            html += `<div class="delay-banner">&#9888; All services running ${delayMinutes} minutes late today</div>`;
+        }
     }
 
     infoContainer.innerHTML = html;
@@ -192,6 +196,8 @@ async function loadTimetable() {
         }
 
         timetableData = await response.json();
+        delayMinutes = timetableData.delay || 0;
+        document.body.classList.toggle('has-delay', delayMinutes > 0);
 
         hideSplashScreen();
 
@@ -320,6 +326,11 @@ function formatTime(minutes) {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
 }
 
+function formatTimeWithDelay(originalMinutes) {
+    if (delayMinutes === 0) return formatTime(originalMinutes);
+    return `<s class="time-original">${formatTime(originalMinutes)}</s> ${formatTime(originalMinutes + delayMinutes)}`;
+}
+
 function getTrainIcon(trainNumber) {
     if (trainNumber.includes('Steam')) return '🚂';
     if (trainNumber.includes('DMU')) return '🚃';
@@ -381,7 +392,7 @@ function findTrainPosition(train, currentTime) {
 
     // Check if train hasn't started yet
     const firstStop = stops[0];
-    const startTime = getStopTime(firstStop);
+    const startTime = getStopTime(firstStop) + delayMinutes;
 
     // Show train at terminal station before departure:
     // - First train of the day: 60 minutes early
@@ -400,17 +411,17 @@ function findTrainPosition(train, currentTime) {
         }
         return null;
     }
-    
+
     // Check if train has completed journey
     const lastStop = stops[stops.length - 1];
-    const endTime = getStopTime(lastStop);
-    
+    const endTime = getStopTime(lastStop) + delayMinutes;
+
     // If train has finished this service
     if (currentTime > endTime) {
         // Check if there's a future service for this train
         const lastStation = lastStop.station;
         const nextService = getNextService(train.trainNumber, lastStation, currentTime);
-        
+
         if (nextService) {
             // Train is waiting at terminus for next service
             return {
@@ -428,17 +439,17 @@ function findTrainPosition(train, currentTime) {
             };
         }
     }
-    
+
     // Find current segment
     for (let i = 0; i < stops.length - 1; i++) {
         const currentStop = stops[i];
         const nextStop = stops[i + 1];
-        
-        const departTime = currentStop.departure ? parseTime(currentStop.departure) : getStopTime(currentStop);
-        const arriveTime = nextStop.arrival ? parseTime(nextStop.arrival) : getStopTime(nextStop);
-        
+
+        const departTime = (currentStop.departure ? parseTime(currentStop.departure) : getStopTime(currentStop)) + delayMinutes;
+        const arriveTime = (nextStop.arrival ? parseTime(nextStop.arrival) : getStopTime(nextStop)) + delayMinutes;
+
         if (currentTime >= departTime && currentTime <= arriveTime) {
-            // Train is between stations
+            // Train is between stations; store offset times so callers can compute originals
             const progress = (currentTime - departTime) / (arriveTime - departTime);
             return {
                 type: 'between',
@@ -449,11 +460,11 @@ function findTrainPosition(train, currentTime) {
                 arriveTime: arriveTime
             };
         }
-        
+
         // Check if at a station (between arrival and departure)
         if (currentStop.arrival && currentStop.departure) {
-            const arrivalTime = parseTime(currentStop.arrival);
-            const departureTime = parseTime(currentStop.departure);
+            const arrivalTime = parseTime(currentStop.arrival) + delayMinutes;
+            const departureTime = parseTime(currentStop.departure) + delayMinutes;
             if (currentTime >= arrivalTime && currentTime < departureTime) {
                 return {
                     type: 'at_station',
@@ -462,7 +473,7 @@ function findTrainPosition(train, currentTime) {
             }
         }
     }
-    
+
     // Should not reach here, but return at final station as fallback
     return {
         type: 'at_station',
@@ -473,15 +484,15 @@ function findTrainPosition(train, currentTime) {
 function getNextService(trainNumber, currentStation, currentTime) {
     // Find any service with the same train number that departs from the current station
     const services = timetableData.trains.filter(t => t.trainNumber === trainNumber);
-    
+
     for (let service of services) {
         const firstStop = service.stops[0];
-        const startTime = getStopTime(firstStop);
+        const startTime = getStopTime(firstStop) + delayMinutes;
         // Check that the service starts from the current station and is in the future
         if (startTime > currentTime && firstStop.station === currentStation) {
             return {
                 service: service,
-                departTime: startTime
+                departTime: startTime  // offset time
             };
         }
     }
@@ -490,79 +501,82 @@ function getNextService(trainNumber, currentStation, currentTime) {
 
 function generateStatusText(train, position, currentTime) {
     const stops = train.stops;
-    
+
     if (!position) {
         return null;
     }
-    
+
     if (position.type === 'at_station') {
         const isTerminus = position.station === stations[0] || position.station === stations[stations.length - 1];
-        
+
         // Check if this is a pre-departure waiting position
         if (position.waitingForDeparture) {
             const firstStop = stops[0];
-            const departTime = getStopTime(firstStop);
-            const minutesUntil = departTime - currentTime;
-            return `Waiting at ${position.station}, departing at ${formatTime(departTime)} (departing in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
+            const scheduledDepart = getStopTime(firstStop);
+            const actualDepart = scheduledDepart + delayMinutes;
+            const minutesUntil = actualDepart - currentTime;
+            return `Waiting at ${position.station}, departing at ${formatTimeWithDelay(scheduledDepart)} (departing in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
         }
-        
+
         if (isTerminus) {
             const nextService = getNextService(train.trainNumber, position.station, currentTime);
             if (nextService) {
+                // nextService.departTime is already offset
                 const minutesUntil = nextService.departTime - currentTime;
-                return `Waiting at ${position.station}, next departure at ${formatTime(nextService.departTime)} (departing in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
+                return `Waiting at ${position.station}, next departure at ${formatTimeWithDelay(nextService.departTime - delayMinutes)} (departing in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
             } else {
                 return `Terminated at ${position.station}`;
             }
         }
-        
+
         // At intermediate station
         const currentStopIndex = stops.findIndex(s => s.station === position.station);
         const currentStop = stops[currentStopIndex];
         if (currentStop.departure) {
             const nextStop = stops[currentStopIndex + 1];
+            const scheduledDepart = parseTime(currentStop.departure);
+            const actualDepart = scheduledDepart + delayMinutes;
+            const minutesUntil = actualDepart - currentTime;
 
             // Guard against nextStop being undefined (train terminates at an intermediate station)
             if (!nextStop) {
-                const departTime = parseTime(currentStop.departure);
-                const minutesUntil = departTime - currentTime;
-                return `At ${position.station}, departing at ${currentStop.departure} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
+                return `At ${position.station}, departing at ${formatTimeWithDelay(scheduledDepart)} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''})`;
             }
 
-            const departTime = parseTime(currentStop.departure);
-            const minutesUntil = departTime - currentTime;
-            return `At ${position.station}, departing at ${currentStop.departure} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''}) → ${nextStop.station}`;
+            return `At ${position.station}, departing at ${formatTimeWithDelay(scheduledDepart)} (in ${minutesUntil} minute${minutesUntil !== 1 ? 's' : ''}) → ${nextStop.station}`;
         }
     }
-    
+
     if (position.type === 'between') {
+        // position.departTime and position.arriveTime are offset times
         const minutesUntilArrival = position.arriveTime - currentTime;
-        const arrivalText = minutesUntilArrival === 0 ? 'arriving now' : `arriving ${formatTime(position.arriveTime)} in ${minutesUntilArrival} minute${minutesUntilArrival !== 1 ? 's' : ''}`;
-        
-        // Check for non-stop stations
-        let statusParts = [`Traveling from ${position.fromStation} (departed ${formatTime(position.departTime)}) → ${position.toStation} (${arrivalText})`];
-        
+        const scheduledArrive = position.arriveTime - delayMinutes;
+        const scheduledDepart = position.departTime - delayMinutes;
+        const arrivalText = minutesUntilArrival === 0 ? 'arriving now' : `arriving ${formatTimeWithDelay(scheduledArrive)} in ${minutesUntilArrival} minute${minutesUntilArrival !== 1 ? 's' : ''}`;
+
+        let statusParts = [`Traveling from ${position.fromStation} (departed ${formatTimeWithDelay(scheduledDepart)}) → ${position.toStation} (${arrivalText})`];
+
         // Find stations being passed without stopping
         const fromIndex = stations.indexOf(position.fromStation);
         const toIndex = stations.indexOf(position.toStation);
-        const intermediateStations = train.direction === 'northbound' 
+        const intermediateStations = train.direction === 'northbound'
             ? stations.slice(fromIndex + 1, toIndex)
             : stations.slice(toIndex + 1, fromIndex);
-        
+
         for (let station of intermediateStations) {
             const stopInfo = stops.find(s => s.station === station);
             if (stopInfo && !stopInfo.stopsAt) {
-                const passTime = getStopTime(stopInfo);
-                const minutesUntilPass = passTime - currentTime;
+                const scheduledPass = getStopTime(stopInfo);
+                const minutesUntilPass = (scheduledPass + delayMinutes) - currentTime;
                 if (minutesUntilPass > 0) {
                     statusParts.push(`Passing ${station} in ${minutesUntilPass} minute${minutesUntilPass !== 1 ? 's' : ''}`);
                 }
             }
         }
-        
+
         return statusParts.join(' • ');
     }
-    
+
     return null;
 }
 
@@ -858,10 +872,14 @@ function showDateList() {
         const dayName = date.toLocaleDateString('en-GB', { weekday: 'short' });
         const dateStr = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         const label = entry.timetable.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        const delayBadge = (entry.delay && entry.delay > 0)
+            ? `<span class="date-card-delay">+${entry.delay} min delay</span>`
+            : '';
         return `<button class="date-card" data-date="${entry.date}">
             <span class="date-card-day">${dayName}</span>
             <span class="date-card-date">${dateStr}</span>
             <span class="date-card-label">${label}</span>
+            ${delayBadge}
             <span class="date-card-arrow">›</span>
         </button>`;
     }).join('');
@@ -907,7 +925,7 @@ function getDisplayTime(stop) {
     return stop.departure || stop.arrival || stop.time || null;
 }
 
-function buildTimetableHtml(trains, stationOrder) {
+function buildTimetableHtml(trains, stationOrder, delay = 0) {
     if (!trains.length) return '<p class="no-services">No services scheduled</p>';
 
     trains.sort((a, b) => {
@@ -930,10 +948,21 @@ function buildTimetableHtml(trains, stationOrder) {
             if (!stop) {
                 html += '<td class="td-no-stop">—</td>';
             } else if (!stop.stopsAt) {
-                html += `<td class="td-pass">${stop.time || '·'}</td>`;
+                const time = stop.time || null;
+                if (delay > 0 && time) {
+                    const delayed = formatTime(parseTime(time) + delay);
+                    html += `<td class="td-pass"><s class="time-original">${time}</s> ${delayed}</td>`;
+                } else {
+                    html += `<td class="td-pass">${time || '·'}</td>`;
+                }
             } else {
                 const time = getDisplayTime(stop);
-                html += `<td class="td-stop">${time || '—'}</td>`;
+                if (delay > 0 && time) {
+                    const delayed = formatTime(parseTime(time) + delay);
+                    html += `<td class="td-stop"><s class="time-original">${time}</s> ${delayed}</td>`;
+                } else {
+                    html += `<td class="td-stop">${time || '—'}</td>`;
+                }
             }
         }
         html += '</tr>';
@@ -947,15 +976,21 @@ function renderTimetableTables(data) {
     const stationOrder = getStationsFromData(data);
     const southbound = data.trains.filter(t => t.direction === 'southbound');
     const northbound = data.trains.filter(t => t.direction === 'northbound');
+    const delay = data.delay || 0;
+
+    const delayNotice = delay > 0
+        ? `<div class="overlay-delay-notice">&#9888; All services on this date running ${delay} minutes late</div>`
+        : '';
 
     return `
+        ${delayNotice}
         <div class="tt-section">
             <h3 class="tt-direction-heading southbound-heading">↓ Southbound — Kidderminster to Bridgnorth</h3>
-            ${buildTimetableHtml(southbound, [...stationOrder])}
+            ${buildTimetableHtml(southbound, [...stationOrder], delay)}
         </div>
         <div class="tt-section">
             <h3 class="tt-direction-heading northbound-heading">↑ Northbound — Bridgnorth to Kidderminster</h3>
-            ${buildTimetableHtml(northbound, [...stationOrder].reverse())}
+            ${buildTimetableHtml(northbound, [...stationOrder].reverse(), delay)}
         </div>`;
 }
 
