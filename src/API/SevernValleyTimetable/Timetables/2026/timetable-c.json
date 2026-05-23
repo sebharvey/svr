@@ -1,6 +1,5 @@
 {
-  "name": "Timetable C Easter",
-  "date": "31 March 2026",
+  "name": "Timetable C",
   "trains": [
     {
       "trainNumber": "Steam A",
