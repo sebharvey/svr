@@ -175,5 +175,13 @@
   {
     "date": "31-May",
     "timetable": "timetable-c"
+  },
+  {
+    "date": "13-Jun",
+    "timetable": "timetable-c"
+  },
+  {
+    "date": "20-Jun",
+    "timetable": "timetable-c"
   }
 ]
