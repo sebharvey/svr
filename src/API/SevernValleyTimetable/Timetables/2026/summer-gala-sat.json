@@ -2,7 +2,7 @@
   "name": "Summer Mixed Traction Festival - Saturday",
   "trains": [
     {
-      "trainNumber": "Bridgnorth 08:15",
+      "trainNumber": "Train A",
       "direction": "northbound",
       "stops": [
         {
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 08:15",
+      "trainNumber": "Train B",
       "direction": "southbound",
       "stops": [
         {
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 09:00",
+      "trainNumber": "Train C",
       "direction": "southbound",
       "stops": [
         {
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 09:15",
+      "trainNumber": "Train A",
       "direction": "northbound",
       "stops": [
         {
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 09:35",
+      "trainNumber": "Train B",
       "direction": "northbound",
       "stops": [
         {
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 09:35",
+      "trainNumber": "Train D",
       "direction": "northbound",
       "stops": [
         {
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 09:40",
+      "trainNumber": "Train E",
       "direction": "southbound",
       "stops": [
         {
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 09:45",
+      "trainNumber": "Train A",
       "direction": "southbound",
       "stops": [
         {
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 10:15",
+      "trainNumber": "Train D",
       "direction": "southbound",
       "stops": [
         {
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 10:25",
+      "trainNumber": "Train B",
       "direction": "northbound",
       "stops": [
         {
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 10:25",
+      "trainNumber": "Train E",
       "direction": "southbound",
       "stops": [
         {
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 10:30",
+      "trainNumber": "Train F",
       "direction": "southbound",
       "stops": [
         {
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 10:50",
+      "trainNumber": "Train E",
       "direction": "northbound",
       "stops": [
         {
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 10:55",
+      "trainNumber": "Train F",
       "direction": "northbound",
       "stops": [
         {
@@ -397,7 +397,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 11:20",
+      "trainNumber": "Train B",
       "direction": "southbound",
       "stops": [
         {
@@ -425,7 +425,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 11:25",
+      "trainNumber": "Train A",
       "direction": "northbound",
       "stops": [
         {
@@ -441,7 +441,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 11:35",
+      "trainNumber": "Train D",
       "direction": "northbound",
       "stops": [
         {
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 11:50",
+      "trainNumber": "Train A",
       "direction": "southbound",
       "stops": [
         {
@@ -508,7 +508,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 12:10",
+      "trainNumber": "Train D",
       "direction": "northbound",
       "stops": [
         {
@@ -536,7 +536,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 12:10",
+      "trainNumber": "Train B",
       "direction": "southbound",
       "stops": [
         {
@@ -558,7 +558,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 12:20",
+      "trainNumber": "Train E",
       "direction": "southbound",
       "stops": [
         {
@@ -574,7 +574,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 12:35",
+      "trainNumber": "Train B",
       "direction": "northbound",
       "stops": [
         {
@@ -619,7 +619,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 12:40",
+      "trainNumber": "Train F",
       "direction": "southbound",
       "stops": [
         {
@@ -635,7 +635,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 13:05",
+      "trainNumber": "Train F",
       "direction": "southbound",
       "stops": [
         {
@@ -663,7 +663,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 13:10",
+      "trainNumber": "Train D",
       "direction": "northbound",
       "stops": [
         {
@@ -679,7 +679,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 13:20",
+      "trainNumber": "Train A",
       "direction": "northbound",
       "stops": [
         {
@@ -701,7 +701,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 13:35",
+      "trainNumber": "Train D",
       "direction": "southbound",
       "stops": [
         {
@@ -746,7 +746,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 13:50",
+      "trainNumber": "Train F",
       "direction": "northbound",
       "stops": [
         {
@@ -774,7 +774,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 14:00",
+      "trainNumber": "Train A",
       "direction": "southbound",
       "stops": [
         {
@@ -796,7 +796,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 14:05",
+      "trainNumber": "Train B",
       "direction": "southbound",
       "stops": [
         {
@@ -812,7 +812,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 14:25",
+      "trainNumber": "Train A",
       "direction": "northbound",
       "stops": [
         {
@@ -857,7 +857,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 14:40",
+      "trainNumber": "Train F",
       "direction": "northbound",
       "stops": [
         {
@@ -873,7 +873,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 14:50",
+      "trainNumber": "Train B",
       "direction": "southbound",
       "stops": [
         {
@@ -901,7 +901,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 14:55",
+      "trainNumber": "Train E",
       "direction": "northbound",
       "stops": [
         {
@@ -917,7 +917,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 15:05",
+      "trainNumber": "Train D",
       "direction": "northbound",
       "stops": [
         {
@@ -939,7 +939,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 15:20",
+      "trainNumber": "Train E",
       "direction": "southbound",
       "stops": [
         {
@@ -984,7 +984,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 15:40",
+      "trainNumber": "Train D",
       "direction": "northbound",
       "stops": [
         {
@@ -1012,7 +1012,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 15:40",
+      "trainNumber": "Train B",
       "direction": "southbound",
       "stops": [
         {
@@ -1034,7 +1034,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 15:50",
+      "trainNumber": "Train A",
       "direction": "southbound",
       "stops": [
         {
@@ -1050,7 +1050,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 16:05",
+      "trainNumber": "Train B",
       "direction": "northbound",
       "stops": [
         {
@@ -1095,7 +1095,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 16:20",
+      "trainNumber": "Train F",
       "direction": "southbound",
       "stops": [
         {
@@ -1111,7 +1111,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 16:35",
+      "trainNumber": "Train D",
       "direction": "southbound",
       "stops": [
         {
@@ -1139,7 +1139,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 16:40",
+      "trainNumber": "Train F",
       "direction": "northbound",
       "stops": [
         {
@@ -1155,7 +1155,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 16:50",
+      "trainNumber": "Train E",
       "direction": "northbound",
       "stops": [
         {
@@ -1177,7 +1177,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 17:05",
+      "trainNumber": "Train F",
       "direction": "southbound",
       "stops": [
         {
@@ -1205,7 +1205,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 17:20",
+      "trainNumber": "Train D",
       "direction": "southbound",
       "stops": [
         {
@@ -1227,7 +1227,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 17:30",
+      "trainNumber": "Train A",
       "direction": "northbound",
       "stops": [
         {
@@ -1243,7 +1243,7 @@
       ]
     },
     {
-      "trainNumber": "Hampton Loade 17:30",
+      "trainNumber": "Train E",
       "direction": "northbound",
       "stops": [
         {
@@ -1277,7 +1277,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 17:40",
+      "trainNumber": "Train B",
       "direction": "southbound",
       "stops": [
         {
@@ -1293,7 +1293,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 18:00",
+      "trainNumber": "Train D",
       "direction": "northbound",
       "stops": [
         {
@@ -1338,7 +1338,7 @@
       ]
     },
     {
-      "trainNumber": "Highley 18:12",
+      "trainNumber": "Train F",
       "direction": "southbound",
       "stops": [
         {
@@ -1365,7 +1365,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 18:30",
+      "trainNumber": "Train E",
       "direction": "southbound",
       "stops": [
         {
@@ -1381,7 +1381,7 @@
       ]
     },
     {
-      "trainNumber": "Bewdley 19:05",
+      "trainNumber": "Train E",
       "direction": "southbound",
       "stops": [
         {
@@ -1420,7 +1420,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 19:20",
+      "trainNumber": "Train F",
       "direction": "northbound",
       "stops": [
         {
@@ -1465,7 +1465,7 @@
       ]
     },
     {
-      "trainNumber": "Kidderminster 19:20",
+      "trainNumber": "Train D",
       "direction": "southbound",
       "stops": [
         {
@@ -1481,7 +1481,7 @@
       ]
     },
     {
-      "trainNumber": "Bridgnorth 20:45",
+      "trainNumber": "Train E",
       "direction": "northbound",
       "stops": [
         {
