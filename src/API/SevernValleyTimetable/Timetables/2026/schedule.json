@@ -183,5 +183,13 @@
   {
     "date": "20-Jun",
     "timetable": "timetable-c"
+  },
+  {
+    "date": "18-Jul",
+    "timetable": "summer-gala-sat"
+  },
+  {
+    "date": "19-Jul",
+    "timetable": "summer-gala-sun"
   }
 ]
