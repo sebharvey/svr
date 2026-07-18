@@ -1,1 +1,1529 @@
-{}
+{
+  "name": "Summer Mixed Traction Festival - Saturday",
+  "trains": [
+    {
+      "trainNumber": "Bridgnorth 08:15",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "08:15",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "08:21",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "time": "08:27",
+          "stopsAt": false
+        },
+        {
+          "station": "Highley",
+          "time": "08:36",
+          "stopsAt": false
+        },
+        {
+          "station": "Arley",
+          "arrival": "08:44",
+          "departure": "08:47",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "09:00",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 08:15",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "08:15",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "08:27",
+          "departure": "08:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "08:45",
+          "departure": "08:48",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "time": "08:57",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "time": "09:05",
+          "stopsAt": false
+        },
+        {
+          "station": "Eardington",
+          "time": "09:12",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "09:18",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 09:00",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "09:00",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "09:12",
+          "departure": "09:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "09:32",
+          "departure": "09:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "09:44",
+          "departure": "09:47",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "09:57",
+          "departure": "10:00",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "10:08",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "10:15",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 09:15",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "09:15",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "09:27",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 09:35",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "09:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "09:40",
+          "departure": "09:43",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "09:52",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 09:35",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "09:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "09:55",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 09:40",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "09:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "09:52",
+          "departure": "09:55",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "10:07",
+          "departure": "10:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "10:20",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 09:45",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "09:45",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "10:10",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 10:15",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "10:15",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "10:27",
+          "departure": "10:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "10:47",
+          "departure": "10:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "10:59",
+          "departure": "11:02",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "11:12",
+          "departure": "11:15",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "11:23",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "11:30",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 10:25",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "10:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "10:36",
+          "departure": "10:39",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "10:47",
+          "departure": "10:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "11:03",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 10:25",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "10:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "10:32",
+          "departure": "10:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "10:43",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 10:30",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "10:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "10:50",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 10:50",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "10:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "11:00",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "11:12",
+          "departure": "11:15",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "11:26",
+          "departure": "11:29",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "11:37",
+          "departure": "11:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "11:53",
+          "departure": "12:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "12:17",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 10:55",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "10:55",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "11:15",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 11:20",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "11:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "11:37",
+          "departure": "11:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "11:49",
+          "departure": "11:52",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "12:02",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 11:25",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "11:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "11:45",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 11:35",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "11:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "11:40",
+          "departure": "11:43",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "11:52",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 11:50",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "11:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "12:02",
+          "departure": "12:15",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "12:32",
+          "departure": "12:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "12:44",
+          "departure": "12:47",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "12:57",
+          "departure": "13:00",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "13:08",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "13:15",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 12:10",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "12:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "12:21",
+          "departure": "12:24",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "12:32",
+          "departure": "12:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "12:48",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 12:10",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "12:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "12:17",
+          "departure": "12:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "12:28",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 12:20",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "12:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "12:40",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 12:35",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "12:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "12:45",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "12:57",
+          "departure": "13:00",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "13:11",
+          "departure": "13:14",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "13:22",
+          "departure": "13:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "13:38",
+          "departure": "13:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "14:02",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 12:40",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "12:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "12:52",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 13:05",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "13:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "13:22",
+          "departure": "13:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "13:34",
+          "departure": "13:37",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "13:47",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 13:10",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "13:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "13:30",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 13:20",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "13:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "13:25",
+          "departure": "13:28",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "13:37",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 13:35",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "13:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "13:47",
+          "departure": "14:00",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "14:17",
+          "departure": "14:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "14:29",
+          "departure": "14:32",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "14:42",
+          "departure": "14:45",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "14:53",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "15:00",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 13:50",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "13:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "14:06",
+          "departure": "14:09",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "14:17",
+          "departure": "14:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "14:33",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 14:00",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "14:00",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "14:07",
+          "departure": "14:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "14:18",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 14:05",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "14:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "14:25",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 14:25",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "14:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "14:33",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "14:42",
+          "departure": "14:45",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "14:56",
+          "departure": "14:59",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "15:07",
+          "departure": "15:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "15:23",
+          "departure": "15:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "15:47",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 14:40",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "14:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "14:52",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 14:50",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "14:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "15:07",
+          "departure": "15:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "15:19",
+          "departure": "15:22",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "15:32",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 14:55",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "14:55",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "15:15",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 15:05",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "15:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "15:10",
+          "departure": "15:13",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "15:22",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 15:20",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "15:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "15:32",
+          "departure": "15:45",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "16:02",
+          "departure": "16:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "16:14",
+          "departure": "16:17",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "16:27",
+          "departure": "16:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "16:38",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "16:45",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 15:40",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "15:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "15:51",
+          "departure": "15:54",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "16:02",
+          "departure": "16:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "16:18",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 15:40",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "15:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "15:47",
+          "departure": "15:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "15:58",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 15:50",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "15:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "16:10",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 16:05",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "16:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "16:15",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "16:27",
+          "departure": "16:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "16:41",
+          "departure": "16:44",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "16:52",
+          "departure": "16:55",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "17:08",
+          "departure": "17:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "17:32",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 16:20",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "16:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "16:40",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 16:35",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "16:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "16:52",
+          "departure": "16:55",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "17:02",
+          "departure": "17:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "17:15",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 16:40",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "16:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "17:00",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 16:50",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "16:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "16:55",
+          "departure": "16:58",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "17:07",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 17:05",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "17:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "17:17",
+          "departure": "17:35",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "17:52",
+          "departure": "17:55",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "18:03",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 17:20",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "17:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "arrival": "17:27",
+          "departure": "17:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "17:38",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 17:30",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "17:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "17:50",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Hampton Loade 17:30",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Hampton Loade",
+          "departure": "17:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "17:41",
+          "departure": "17:44",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "17:52",
+          "departure": "17:55",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "18:08",
+          "departure": "18:10",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "18:22",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 17:40",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "17:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "18:05",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 18:00",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "18:00",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "18:10",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "18:22",
+          "departure": "18:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "18:36",
+          "departure": "18:39",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "18:47",
+          "departure": "18:50",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "19:03",
+          "departure": "19:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "19:17",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Highley 18:12",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Highley",
+          "departure": "18:12",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "18:22",
+          "departure": "18:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "18:33",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "18:40",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 18:30",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "18:30",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "18:50",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bewdley 19:05",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Bewdley",
+          "departure": "19:05",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "19:17",
+          "departure": "19:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "19:29",
+          "departure": "19:32",
+          "stopsAt": true
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "19:42",
+          "departure": "19:45",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "19:53",
+          "stopsAt": false
+        },
+        {
+          "station": "Bridgnorth",
+          "arrival": "20:00",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 19:20",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "19:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "19:30",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "19:42",
+          "departure": "19:45",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "19:54",
+          "departure": "19:57",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "20:04",
+          "departure": "20:07",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "20:20",
+          "departure": "20:22",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "20:35",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Kidderminster 19:20",
+      "direction": "southbound",
+      "stops": [
+        {
+          "station": "Kidderminster",
+          "departure": "19:20",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "19:32",
+          "stopsAt": true
+        }
+      ]
+    },
+    {
+      "trainNumber": "Bridgnorth 20:45",
+      "direction": "northbound",
+      "stops": [
+        {
+          "station": "Bridgnorth",
+          "departure": "20:45",
+          "stopsAt": true
+        },
+        {
+          "station": "Eardington",
+          "time": "20:51",
+          "stopsAt": false
+        },
+        {
+          "station": "Hampton Loade",
+          "arrival": "20:59",
+          "departure": "21:02",
+          "stopsAt": true
+        },
+        {
+          "station": "Highley",
+          "arrival": "21:11",
+          "departure": "21:14",
+          "stopsAt": true
+        },
+        {
+          "station": "Arley",
+          "arrival": "21:22",
+          "departure": "21:25",
+          "stopsAt": true
+        },
+        {
+          "station": "Bewdley",
+          "arrival": "21:38",
+          "departure": "21:40",
+          "stopsAt": true
+        },
+        {
+          "station": "Kidderminster",
+          "arrival": "21:52",
+          "stopsAt": true
+        }
+      ]
+    }
+  ]
+}
